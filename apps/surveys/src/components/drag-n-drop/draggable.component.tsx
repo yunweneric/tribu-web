@@ -1,10 +1,10 @@
-import { FC } from "react";
-import { useDrag } from "react-dnd";
-import { Avatar, Box } from "@mui/material";
+import { FC } from 'react';
+import { useDrag } from 'react-dnd';
+import { Avatar, Box } from '@mui/material';
 
-import colors from "../../utils/styles/colors.module.scss";
-import { FormFields } from "../../data/enum";
-import { AllFormInterfacesType } from "../../data/types/all_form_types";
+import colors from '../../utils/styles/colors.module.scss';
+import { FormFields } from '../../data/enum';
+import { AllFormInterfacesType } from '../../data/types/all_form_types';
 
 interface DraggableComponentProps {
   item: AllFormInterfacesType;
@@ -27,7 +27,7 @@ const DraggableComponent: FC<DraggableComponentProps> = ({ item }) => {
     item: { item },
     end: (item, monitor) => {
       const result = monitor.getDropResult();
-      console.log("result", result, item, monitor);
+      console.log('result', result, item, monitor);
     },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
@@ -39,30 +39,30 @@ const DraggableComponent: FC<DraggableComponentProps> = ({ item }) => {
       ref={drag}
       sx={{
         opacity: isDragging ? 1 : 1,
-        backgroundColor: !isDragging ? "#fff" : "#fff",
-        border: isDragging ? "1px solid" : "1px solid",
+        backgroundColor: !isDragging ? '#fff' : '#fff',
+        border: isDragging ? '1px solid' : '1px solid',
         borderColor: colors.gray,
         bgcolor: colors.white,
         width: {
-          xs: "80%",
-          md: "40%",
-          lg: "40%",
+          xs: '80%',
+          md: '40%',
+          lg: '40%',
         },
         borderRadius: 1.5,
         marginTop: 5,
-        paddingY: 2,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        paddingY: 4,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
       <Box
         sx={{
           borderRadius: 0.5,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
         }}
       >
         <Avatar
@@ -71,7 +71,7 @@ const DraggableComponent: FC<DraggableComponentProps> = ({ item }) => {
             bgcolor: colors.gray,
           }}
         >
-          <img src={item.icon} alt="" width={"15px"} height={"15px"} />
+          <img src={item.icon} alt="" width={'15px'} height={'15px'} />
         </Avatar>
 
         <p>{item.label}</p>
