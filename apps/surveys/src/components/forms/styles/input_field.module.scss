@@ -1,0 +1,59 @@
+@use '../../../utils/styles/colors.module.scss' as *;
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  img {
+    background-color: $primaryGrayColor;
+    padding: 10px;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    margin: 0 2rem;
+  }
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  //   width: 100%;
+  background-color: $primaryGrayColor;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+
+  .input_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .label_container {
+    font-size: 0.8rem;
+    color: #777;
+    .index {
+      background: #000;
+      padding: 0.5rem;
+      margin-right: 5px;
+      color: $primaryWhiteColor;
+      border-radius: 0.4rem;
+    }
+    .label {
+      font-size: 16px;
+    }
+  }
+
+  .input {
+    padding: 1rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-top: 1rem;
+    color: #333;
+    outline: none;
+    background-color: $primaryWhiteColor;
+    &:focus {
+      border: 1px solid $primaryColor;
+    }
+  }
+}
