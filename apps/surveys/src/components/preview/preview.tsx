@@ -1,26 +1,26 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../../data/store/app_store";
-import { AppFormState } from "../../data/interfaces";
-import { Box, Stack, Typography } from "@mui/material";
-import colors from "../../utils/styles/colors.module.scss";
-import { FC, useEffect, useState } from "react";
-import { AllFormInterfacesType } from "../../data/types/all_form_types";
-import FormRenderer from "../forms/components/form_field_renderer";
-import { useDispatch } from "react-redux";
-import { FormProvider, useForm } from "react-hook-form";
-import { evaluateCanSkip } from "../../utils/helpers/evaluators";
+import { useSelector } from 'react-redux';
+import { RootState } from '../../data/store/app_store';
+import { AppFormState } from '../../data/interfaces';
+import { Box, Stack, Typography } from '@mui/material';
+import colors from '../../utils/styles/colors.module.scss';
+import { FC, useEffect, useState } from 'react';
+import { AllFormInterfacesType } from '../../data/types/all_form_types';
+import FormRenderer from '../forms/components/form_field_renderer';
+import { useDispatch } from 'react-redux';
+import { FormProvider, useForm } from 'react-hook-form';
+import { evaluateCanSkip } from '../../utils/helpers/evaluators';
 import {
   setCurrentIndex,
   setPreviewItems,
   updatePreviewItem,
-} from "../../data/logic/preview.slice";
-import { yupResolver } from "@hookform/resolvers/yup";
-import generateValidationSchema from "../../utils/helpers/validation_parser";
-import PreviewProgressIndicator from "./components/progress_indicator";
-import PreviewButtons from "./components/form_progress_buttons";
-import { FormFields } from "../../data/enum";
-import { ActionActions } from "../../data/enum/condition_actions";
-import { getErrorMessage } from "../../utils/helpers/formatters";
+} from '../../data/logic/preview.slice';
+import { yupResolver } from '@hookform/resolvers/yup';
+import generateValidationSchema from '../../utils/helpers/validation_parser';
+import PreviewProgressIndicator from './components/progress_indicator';
+import PreviewButtons from './components/form_progress_buttons';
+import { FormFields } from '../../data/enum';
+import { ActionActions } from '../../data/enum/condition_actions';
+import { getErrorMessage } from '../../utils/helpers/formatters';
 
 type AnimatingData = {
   isAnimating: boolean;
@@ -49,7 +49,7 @@ const FormPreview = () => {
   const { errors } = formState;
 
   useEffect(() => {
-    console.log("Rebuilding validation schema...");
+    console.log('Rebuilding validation schema...');
 
     const validSection = formDetails.sections.filter(
       (item) => item.formItems.length > 0
@@ -78,7 +78,7 @@ const FormPreview = () => {
   }, [formDetails.sections]);
 
   const onSubmit = (data) => {
-    console.log("onSubmit", data);
+    console.log('onSubmit', data);
   };
   const [animationState, setAnimationState] = useState<AnimatingData>({
     isAnimating: false,
@@ -91,11 +91,11 @@ const FormPreview = () => {
     const id = previewItems[currentIndex].id;
 
     const error = getErrorMessage(errors, label, id);
-    // console.log("errorMessage 2", errors, error);
+    console.log('errorMessage 2', errors, error);
 
     if (error == null) {
       if (currentIndex == previewItems.length - 1 && isForward) {
-        console.log("Submitting ...");
+        console.log('Submitting ...');
         return;
       }
       setAnimationState({ isAnimating: true, isForward });
@@ -127,7 +127,7 @@ const FormPreview = () => {
       return;
     }
     const canSkip = evaluateCanSkip(previewItems[currentIndex], watch);
-    console.log("canSkip", canSkip);
+    console.log('canSkip', canSkip);
     if (canSkip) {
       const nextActiveSectionIndex =
         Number(previewItems[currentIndex].branching.action.value) - 1;
@@ -153,7 +153,7 @@ const FormPreview = () => {
     item: AllFormInterfacesType,
     nextActiveSectionIndex: number
   ) => {
-    if (item.branching.action.action == ActionActions.SKIP) {
+    if (item.branching?.action.action == ActionActions.SKIP) {
       const nextSection = formDetails.sections[nextActiveSectionIndex];
 
       if (nextSection.formItems.length > 0) {
@@ -165,7 +165,7 @@ const FormPreview = () => {
         dispatch(setCurrentIndex(nextItemIndex));
         setReverseIndexes([...reverseIndexes, nextItemIndex]);
       } else {
-        console.log("Submit form");
+        console.log('Submit form');
       }
     }
   };
@@ -194,34 +194,34 @@ const FormPreview = () => {
   if (previewItems.length == 0) {
     return (
       <Box
-        height={"100%"}
-        width={"100%"}
-        alignItems={"center"}
-        justifyContent={"center"}
-        display={"flex"}
+        height={'100%'}
+        width={'100%'}
+        alignItems={'center'}
+        justifyContent={'center'}
+        display={'flex'}
       >
-        <Typography textAlign={"center"}>Form is empty!</Typography>
+        <Typography textAlign={'center'}>Form is empty!</Typography>
       </Box>
     );
   }
 
   return (
-    <Box height={"100%"}>
+    <Box height={'100%'}>
       <FormProvider {...form}>
         <form
           onSubmit={handleSubmit(onSubmit)}
           noValidate
-          style={{ height: "100%" }}
+          style={{ height: '100%' }}
         >
           <Box
-            display={"flex"}
-            flexDirection={"column"}
-            justifyContent={"space-between"}
-            height={"100%"}
+            display={'flex'}
+            flexDirection={'column'}
+            justifyContent={'space-between'}
+            height={'100%'}
           >
             <Box
               sx={{
-                padding: "4rem 3rem",
+                padding: '4rem 3rem',
                 borderBottom: `2px solid ${colors.gray}`,
                 backgroundColor: colors.primary,
                 color: colors.white,
@@ -239,15 +239,15 @@ const FormPreview = () => {
 
             <Box
               sx={{
-                transition: "all 0.2s",
+                transition: 'all 0.2s',
                 translate: `${
                   animationState.isAnimating
                     ? animationState.isForward
-                      ? "10rem"
-                      : "10rem"
-                    : "0"
+                      ? '10rem'
+                      : '10rem'
+                    : '0'
                 } 0`,
-                opacity: ` ${animationState.isAnimating ? "0" : "1"}`,
+                opacity: ` ${animationState.isAnimating ? '0' : '1'}`,
               }}
             >
               <Stack>
@@ -266,9 +266,9 @@ const FormPreview = () => {
             </Box>
             <Stack
               width="100%"
-              direction={"row"}
-              justifyContent={"space-between"}
-              alignItems={"center"}
+              direction={'row'}
+              justifyContent={'space-between'}
+              alignItems={'center'}
               mb={5}
             >
               <FormProgressIndicators
