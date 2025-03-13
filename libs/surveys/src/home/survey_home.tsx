@@ -74,6 +74,7 @@ export const SurveyHome = () => {
           additionalClassName="rounded-sm"
         />
       </div>
+      {/* <AppTable /> */}
     </div>
   );
 };

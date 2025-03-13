@@ -1,12 +1,24 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes, ReactNode } from 'react';
 
 export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
+  additionClasses?: string;
+  icon?: ReactNode;
 }
-const Chip: React.FC<ChipProps> = ({ label, ...props }) => {
+export const Chip: React.FC<ChipProps> = ({
+  label,
+  additionClasses,
+  ...props
+}) => {
   return (
-    <button {...props} className="bg-secondary-500 text-white rounded-3xl px-5">
+    <button
+      {...props}
+      className={`bg-secondary-500 flex text-white items-center justify-center rounded-3xl px-5 ${additionClasses} ${
+        props.icon && 'gap-2'
+      }`}
+    >
       {label}
+      {props.icon && props.icon}
     </button>
   );
 };

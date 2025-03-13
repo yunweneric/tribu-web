@@ -1,5 +1,4 @@
 import { AppButton, AppInput } from '@tribu/ui';
-import React from 'react';
 import { CiSearch } from 'react-icons/ci';
 import { IoMdAdd } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
@@ -74,7 +73,7 @@ export const AudienceHome = () => {
         </div>
         <AppButton
           onClick={() => {
-            navigate('/audience/groups/new');
+            navigate('/dashboard/audience/groups/new');
           }}
           label="New Group"
           icon={<IoMdAdd />}
