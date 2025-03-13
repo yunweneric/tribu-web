@@ -1,14 +1,17 @@
 import { AppButton, AppInput } from '@tribu/ui';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 export const SurveyTemplates = () => {
   let navigate = useNavigate();
+
+  const [activeItem, setActiveItem] = useState<String>('');
 
   return (
     <div className="w-screen h-screen">
       <div className="flex w-full">
         <div className="lg:w-1/3 bg-secondary-100 h-screen"></div>
         <div className="h-screen w-full lg:w-2/3">
-          <div className="w-[70%] mx-auto mt-20">
+          <div className="w-[70%] ml-20 mt-20">
             <AppInput
               placeholder="Enter campaign Name"
               label="Enter campaign Name"
@@ -18,7 +21,7 @@ export const SurveyTemplates = () => {
           </div>
           <div className="h-[60vh]  border-y-[1px] border-gray-200 mt-10 w-full">
             <div className="flex">
-              <div className="w-[30%] h-[60vh] border-r-[1px] flex flex-col gap-5 px-10 lg:px-20 pt-10">
+              <div className="w-[30%] h-[60vh] border-r-[1px] flex flex-col gap-5 pl-10 lg:pl-20 pt-10">
                 {[
                   'General',
                   'Market surveys',
@@ -28,9 +31,17 @@ export const SurveyTemplates = () => {
                   'Price schedules',
                 ].map((item) => {
                   return (
-                    <Link to="" className="font-normal">
+                    <div
+                      onClick={() => setActiveItem(item)}
+                      className={`
+                        cursor-pointer font-normal ${
+                          activeItem === item && 'border-r-2 border-primary-500'
+                        }
+                        `}
+                      key={`template-${item}`}
+                    >
                       {item}
-                    </Link>
+                    </div>
                   );
                 })}
               </div>

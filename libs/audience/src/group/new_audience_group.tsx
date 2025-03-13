@@ -54,7 +54,7 @@ export const NewAudienceGroup = () => {
                       <Chip
                         label={parameters[index]}
                         key={`${item}-y-${index}`}
-                        additionClasses="bg-white text-gray-800 font-light px-4  border border-gray-100 text-sm hover:border-gray-100"
+                        additionClasses="bg-white text-black font-light px-4  border border-gray-100 text-sm hover:border-gray-100"
                         icon={
                           <IoMdClose className="hover:bg-gray-100 rounded-full w-6 h-6 p-1 " />
                         }
