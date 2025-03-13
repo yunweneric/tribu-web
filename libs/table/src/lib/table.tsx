@@ -1,14 +1,45 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FC } from 'react';
 import axios from 'axios';
-import DataTable, { TableColumn } from 'react-data-table-component';
-
+import DataTable, {
+  TableColumn,
+  TableStyles,
+} from 'react-data-table-component';
+import TableLoader from './table_loader';
+const customStyles: TableStyles = {
+  table: {
+    style: {
+      borderLeft: '0.2px solid #F3F4F6 !important',
+      borderRight: '0.2px solid #F3F4F6 !important',
+      borderTop: '0.2px solid #F3F4F6 !important',
+      borderBottom: '0px solid #F3F4F6 !important',
+    },
+  },
+  rows: {
+    style: {
+      minHeight: '60px',
+      borderBottom: '0.2px solid #F3F4F6 !important',
+    },
+  },
+  headCells: {
+    style: {
+      padding: '0 30px',
+      backgroundColor: '#effef5',
+    },
+  },
+  cells: {
+    style: {
+      padding: '0 30px',
+    },
+  },
+};
 export interface UserData {
   first_name: string;
   last_name: string;
   email: string;
 }
-
-const AppTable = () => {
+export const AppTable: FC<React.HTMLAttributes<HTMLDivElement>> = ({
+  ...props
+}) => {
   const columns: TableColumn<UserData>[] = [
     {
       name: 'First Name',
@@ -30,7 +61,7 @@ const AppTable = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [totalRows, setTotalRows] = useState(0);
-  const [perPage, setPerPage] = useState(10);
+  const [perPage, setPerPage] = useState(3);
 
   const fetchUsers = async (page: number) => {
     setLoading(true);
@@ -65,18 +96,21 @@ const AppTable = () => {
   }, []);
 
   return (
-    <DataTable
-      title="Users"
-      columns={columns}
-      data={data}
-      progressPending={loading}
-      pagination
-      paginationServer
-      paginationTotalRows={totalRows}
-      onChangeRowsPerPage={handlePerRowsChange}
-      onChangePage={handlePageChange}
-      contextComponent={<div>Custom Pagination</div>}
-    />
+    <div {...props}>
+      <DataTable
+        title=""
+        columns={columns}
+        data={data}
+        progressPending={loading}
+        pagination
+        paginationServer
+        paginationTotalRows={totalRows}
+        onChangeRowsPerPage={handlePerRowsChange}
+        onChangePage={handlePageChange}
+        progressComponent={<TableLoader />}
+        customStyles={customStyles}
+      />
+    </div>
   );
 };
 

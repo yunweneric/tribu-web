@@ -36,7 +36,7 @@ export const Sidebar: FC<React.HTMLAttributes<HTMLDivElement>> = (props) => {
           additionalClass="rounded-sm cursor-pointer"
           onClick={() => navigate('/dashboard')}
         />
-        <div className="mt-20 flex flex-col gap-8 grow">
+        <div className="mt-20 flex flex-col gap-y-5 grow">
           {sidebarItems.map((item) => {
             return <SidebarItem {...item} />;
           })}

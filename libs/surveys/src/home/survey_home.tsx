@@ -1,7 +1,8 @@
-import { Sidebar, AppHeader, AppButton, AppInput } from '@tribu/ui';
+import { AppButton, AppInput } from '@tribu/ui';
 import { IoMdAdd } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 import { CiSearch } from 'react-icons/ci';
+import { AppTable } from '@tribu/table';
 
 type counterItem = {
   id: number;
@@ -74,7 +75,7 @@ export const SurveyHome = () => {
           additionalClassName="rounded-sm"
         />
       </div>
-      {/* <AppTable /> */}
+      <AppTable className="mt-10" />
     </div>
   );
 };

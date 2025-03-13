@@ -16,14 +16,18 @@ const SidebarItem: FC<SidebarItemProps> = ({ icon, label, onClick }) => {
 
   return (
     <div
-      className={`flex items-center justify-center gap-2 p-2 cursor-pointer hover:bg-gray-200 ${
+      className={`flex items-center justify-center p-2  py-4 cursor-pointer hover:bg-gray-200 ${
         isActiveRoute ? 'bg-secondary-500 text-white' : ''
       }`}
       // onClick={onClick}
       onClick={() => navigate(label.toLowerCase())}
     >
       {/* <h2 className="text-red-500 text-sm"> {`${isActiveRoute}`}</h2> */}
-      <img src={icon} alt={label} className="w-6 h-6" />
+      <img
+        src={icon}
+        alt={label}
+        className={`${isActiveRoute && 'fill-white'} w-6 h-6`}
+      />
     </div>
   );
 };

@@ -18,6 +18,7 @@
       "@tribu/audience": ["libs/audience/src/index.ts"],
       "@tribu/home": ["libs/home/src/index.ts"],
       "@tribu/surveys": ["libs/surveys/src/index.ts"],
+      "@tribu/table": ["libs/table/src/index.ts"],
       "@tribu/ui": ["libs/shared/ui/src/index.ts"]
     }
   },
