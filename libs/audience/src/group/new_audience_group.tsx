@@ -6,24 +6,24 @@ import { DemographicDto } from '@tribu/targets';
 import { demographicData } from '../forms_data/data/data';
 import Demographic from '../forms_data/forms/demographic_form';
 enum Parameters {
-  'Demographics',
-  'Location',
-  'Interests',
-  'Language',
-  'Income Level',
-  'Occupation',
-  'Device type',
-  'Off Limits',
+  Demographics = 'Demographics',
+  Location = 'Location',
+  Interests = 'Interests',
+  Language = 'Language',
+  IncomeLevel = 'Income Level',
+  Occupation = 'Occupation',
+  DeviceType = 'Device type',
+  OffLimits = 'Off Limits',
 }
 
 type FormStructure = {
-  title: string;
+  title: Parameters;
   data: Field[];
 };
 
 export const NewAudienceGroup = () => {
   const formData: FormStructure[] = [
-    { data: demographicData, title: 'Demographics' },
+    { data: demographicData, title: Parameters.Demographics },
   ];
 
   const [currentParameter, setCurrentParameter] = React.useState<FormStructure>(
@@ -32,7 +32,7 @@ export const NewAudienceGroup = () => {
 
   const generateForm = () => {
     switch (currentParameter.title) {
-      case Parameters.Demographics.toString():
+      case Parameters.Demographics:
         return <Demographic />;
       default:
         break;
@@ -45,7 +45,7 @@ export const NewAudienceGroup = () => {
       <div className="w-full h-[88vh]">
         <div className="flex w-[90%] mx-auto  border-b-gray-100">
           <div className="flex w-1/2 mt-10">
-            <div className="w-1/3">
+            <div className="w-1/4">
               {formData.map((parameter, index) => (
                 <div
                   key={`{${parameter}-x-${index}`}
@@ -60,7 +60,9 @@ export const NewAudienceGroup = () => {
                 </div>
               ))}
             </div>
-            <div>{generateForm()}</div>
+            <div className="border-l border-gray-50 px-12 grow">
+              {generateForm()}
+            </div>
           </div>
           <div className="flex w-1/2 h-[80vh] overflow-y-auto">
             <div className="flex flex-col w-full">
@@ -77,9 +79,9 @@ export const NewAudienceGroup = () => {
                   <div className="flex w-full flex-wrap   py-4 items-center px-5 gap-x-2 gap-y-2">
                     {Object.values(Parameters).map((item, index) => (
                       <Chip
-                        label={Parameters[index]}
+                        label={item}
                         key={`${item}-y-${index}`}
-                        additionClasses="bg-white text-black text-gray-500 font-light px-4  border border-gray-100 text-sm hover:border-gray-100"
+                        additionClasses="bg-white text-gray-800 font-light px-4  border border-gray-100 text-sm hover:border-gray-100"
                         icon={
                           <IoMdClose className="hover:bg-gray-100 rounded-full w-6 h-6 p-1 " />
                         }

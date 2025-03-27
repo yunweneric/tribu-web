@@ -9,54 +9,54 @@ import {
 } from '@tribu/targets';
 export const demographicData: Field[] = [
   {
-    title: 'age',
+    label: 'Age',
     type: 'radio',
     required: true,
     values: Object.values(Age),
   },
   {
-    title: 'children',
+    label: 'children',
     type: 'checkbox',
     required: true,
     values: Object.values(Children),
   },
   {
-    title: 'Income Level',
+    label: 'Income Level',
     type: 'radio',
     required: true,
     values: Object.values(IncomeDefault),
   },
   {
-    title: 'Income Level',
+    label: 'Income Level',
     type: 'radio',
     required: true,
     values: Object.values(IncomeDefault),
   },
   {
-    title: 'Educational Level',
+    label: 'Educational Level',
     type: 'radio',
     required: true,
     values: Object.values(Education),
   },
   {
-    title: 'Educational Level',
+    label: 'Educational Level',
     type: 'radio',
     required: true,
     values: Object.values(MaritalStatus),
   },
   {
-    title: 'Household Size',
+    label: 'Household Size',
     type: 'input',
     required: true,
   },
   {
-    title: 'Ethnicity',
+    label: 'Ethnicity',
     type: 'radio',
     required: true,
     values: Object.values(Ethnicity),
   },
   {
-    title: 'Language',
+    label: 'Language',
     type: 'radio',
     required: true,
     values: Object.values(Language),

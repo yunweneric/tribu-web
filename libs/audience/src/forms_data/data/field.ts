@@ -1,6 +1,6 @@
 interface Field {
-  type: 'input' | 'checkbox' | 'radio' | 'date';
+  type: 'input' | 'checkbox' | 'radio' | 'date' | string;
   required: boolean;
-  title: string;
+  label?: string | undefined;
   values?: any[];
 }

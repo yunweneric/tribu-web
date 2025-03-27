@@ -1,14 +1,15 @@
 import { demographicData } from '../data/data';
-import InputField from '../fields/input_field';
+import InputField, { InputFieldProps } from '../fields/input_field';
 
 const Demographic = () => {
   const generateField = (field: Field) => {
     switch (field.type) {
       case 'input':
-        return <InputField />;
+        return <InputField {...(field as InputFieldProps)} />;
 
       case 'checkbox':
-        return <InputField />;
+        return <InputField {...(field as InputFieldProps)} />;
+
       default:
         break;
     }
