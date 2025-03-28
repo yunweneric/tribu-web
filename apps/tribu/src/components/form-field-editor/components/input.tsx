@@ -1,14 +1,14 @@
-import { Box } from "@mui/system";
-import AppInput from "../../forms/base/app_input";
-import { TextInputInterface } from "../../../data/interfaces";
-import { useDispatch } from "react-redux";
-import { updateFormField } from "../../../data/logic/form.slice";
+import { Box } from '@mui/system';
+import AppInput from '../../forms/base/app_input';
+import { TextInputInterface } from '@tribu/forms';
+import { useDispatch } from 'react-redux';
+import { updateFormField } from '../../../data/logic/form.slice';
 
 const FormInputRenderer = (formItem: TextInputInterface) => {
   const dispatch = useDispatch();
 
   return (
-    <Box width={"100%"}>
+    <Box width={'100%'}>
       <AppInput
         placeholder="Placeholder"
         id={formItem.id}

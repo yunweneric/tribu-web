@@ -1,10 +1,10 @@
-import { FC } from "react";
-import { TextDateInterface } from "../../../data/interfaces";
-import BaseFieldItem from "../base/base_item";
-import AppDatePicker from "../base/app_date_field";
-import { Control, Controller, FieldValues } from "react-hook-form";
-import AppErrorMessage from "../base/app_error2_message";
-import { generateFormName } from "../../../utils/helpers/formatters";
+import { FC } from 'react';
+import { TextDateInterface } from '@tribu/forms';
+import BaseFieldItem from '../base/base_item';
+import AppDatePicker from '../base/app_date_field';
+import { Control, Controller, FieldValues } from 'react-hook-form';
+import AppErrorMessage from '../base/app_error2_message';
+import { generateFormName } from '../../../utils/helpers/formatters';
 
 interface FormDateFieldInterface extends TextDateInterface {
   control?: Control<FieldValues>;
@@ -30,7 +30,7 @@ const FormDateField: FC<FormDateFieldInterface> = (
                 onChange={(date) => {
                   // const newDate = dayjs(date);
                   onChange(date.toISOString());
-                  console.log("newDate", date);
+                  console.log('newDate', date);
                   return date;
                 }}
                 value={value}

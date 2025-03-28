@@ -1,19 +1,16 @@
-import { FC, useEffect, useState } from "react";
-import BaseFieldItem from "../base/base_item";
+import { FC, useEffect, useState } from 'react';
+import BaseFieldItem from '../base/base_item';
 import {
   Box,
   Checkbox,
   FormControl,
   FormControlLabel,
   FormGroup,
-} from "@mui/material";
-import {
-  CheckboxInterface,
-  FormItemElementInterface,
-} from "../../../data/interfaces";
-import { Control, Controller, FieldValues } from "react-hook-form";
-import AppErrorMessage from "../base/app_error2_message";
-import { generateFormName } from "../../../utils/helpers/formatters";
+} from '@mui/material';
+import { CheckboxInterface, FormItemElementInterface } from '@tribu/forms';
+import { Control, Controller, FieldValues } from 'react-hook-form';
+import AppErrorMessage from '../base/app_error2_message';
+import { generateFormName } from '../../../utils/helpers/formatters';
 interface FormCheckBoxInterface extends CheckboxInterface {
   control?: Control<FieldValues>;
 }

@@ -1,9 +1,9 @@
-import { FieldErrors, FieldValues } from "react-hook-form";
-import { ErrorMessage } from "../../data/types/error.types";
-import colors from "../styles/colors.module.scss";
+import { FieldErrors, FieldValues } from 'react-hook-form';
+import { ErrorMessage } from '../../../../../libs/forms/src/types/error.types';
+import colors from '../styles/colors.module.scss';
 const generateFormName = (label: string, id: string) => {
   // console.log(label, id);
-  return label.split(" ").join("") + `-${id}`;
+  return label.split(' ').join('') + `-${id}`;
 };
 
 const getErrorMessage = (
@@ -21,7 +21,7 @@ const getErrorMessage = (
       if (errorKeys[i] == newId) {
         errorMessage = {
           id: newId,
-          message: errorValues[z].message as string,
+          message: errorValues[z]?.message as string,
         };
         return errorMessage;
       }
@@ -30,24 +30,24 @@ const getErrorMessage = (
 
   return errorMessage;
 };
-const styleFormFields = (props) => {
+const styleFormFields = (props: any) => {
   return {
     backgroundColor: colors.white,
     borderRadius: !props.hasBorder ? 0 : 0.5,
-    border: !props.hasBorder ? "none" : `1px solid ${colors.gray}`,
-    "& fieldset": {
-      border: !props.hasBorder ? "none" : `1px solid ${colors.gray}`,
+    border: !props.hasBorder ? 'none' : `1px solid ${colors.gray}`,
+    '& fieldset': {
+      border: !props.hasBorder ? 'none' : `1px solid ${colors.gray}`,
     },
-    ":focus": {
-      border: !props.hasBorder ? "none" : `1px solid ${colors.gray}`,
-      "& fieldset": {
-        border: !props.hasBorder ? "none" : `1px solid ${colors.gray}`,
+    ':focus': {
+      border: !props.hasBorder ? 'none' : `1px solid ${colors.gray}`,
+      '& fieldset': {
+        border: !props.hasBorder ? 'none' : `1px solid ${colors.gray}`,
       },
     },
-    ":hover": {
-      border: !props.hasBorder ? "none" : `1px solid ${colors.gray}`,
-      "& fieldset": {
-        border: !props.hasBorder ? "none" : `1px solid ${colors.gray}`,
+    ':hover': {
+      border: !props.hasBorder ? 'none' : `1px solid ${colors.gray}`,
+      '& fieldset': {
+        border: !props.hasBorder ? 'none' : `1px solid ${colors.gray}`,
       },
     },
   };

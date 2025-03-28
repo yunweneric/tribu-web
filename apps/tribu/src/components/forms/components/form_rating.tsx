@@ -1,11 +1,11 @@
-import { FC } from "react";
-import BaseFieldItem from "../base/base_item";
-import { Box } from "@mui/material";
-import { RatingInterface } from "../../../data/interfaces";
-import AppRating from "../base/app_rating";
-import { Control, Controller, FieldValues } from "react-hook-form";
-import AppErrorMessage from "../base/app_error2_message";
-import { generateFormName } from "../../../utils/helpers/formatters";
+import { FC } from 'react';
+import BaseFieldItem from '../base/base_item';
+import { Box } from '@mui/material';
+import { RatingInterface } from '@tribu/forms';
+import AppRating from '../base/app_rating';
+import { Control, Controller, FieldValues } from 'react-hook-form';
+import AppErrorMessage from '../base/app_error2_message';
+import { generateFormName } from '../../../utils/helpers/formatters';
 
 interface FormRatingType extends RatingInterface {
   control?: Control<FieldValues>;
@@ -15,9 +15,9 @@ const FormRating: FC<FormRatingType> = (item: FormRatingType) => {
   return (
     <BaseFieldItem item={item}>
       <Box
-        display={"flex"}
-        justifyContent={"center"}
-        alignItems={"center"}
+        display={'flex'}
+        justifyContent={'center'}
+        alignItems={'center'}
         paddingY={5}
       >
         <Controller

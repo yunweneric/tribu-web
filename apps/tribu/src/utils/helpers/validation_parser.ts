@@ -1,7 +1,7 @@
-import * as yup from "yup";
-import { AllFormInterfacesType } from "../../data/types/all_form_types";
-import { FormFields } from "../../data/enum";
-import { generateFormName } from "./formatters";
+import * as yup from 'yup';
+import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
+import { FormFields } from '../../../../../libs/forms/src/enum';
+import { generateFormName } from './formatters';
 const generateValidationSchema = (fields: AllFormInterfacesType[]) => {
   let yupSchema = yup.object();
 
@@ -63,7 +63,7 @@ const generateValidationSchema = (fields: AllFormInterfacesType[]) => {
         break;
 
       case FormFields.CHECKBOX:
-        fieldSchema = yup.array().min(1, "Please select at least 1 options.");
+        fieldSchema = yup.array().min(1, 'Please select at least 1 options.');
         break;
 
       case FormFields.RATING:
@@ -81,7 +81,7 @@ const generateValidationSchema = (fields: AllFormInterfacesType[]) => {
         break;
 
       case FormFields.MATRIX_TABLE:
-        fieldSchema = yup.array().min(1, "Please select at least 1 options.");
+        fieldSchema = yup.array().min(1, 'Please select at least 1 options.');
         break;
 
       default:

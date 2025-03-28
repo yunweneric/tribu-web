@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { AllFormInterfacesType } from "../types/all_form_types";
+import { createSlice } from '@reduxjs/toolkit';
+import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
 
 type PreviewSlice = {
   previewItems: AllFormInterfacesType[];
@@ -12,7 +12,7 @@ const initialState: PreviewSlice = {
 };
 
 export const PreviewSlice = createSlice({
-  name: "preview",
+  name: 'preview',
   initialState,
   reducers: {
     setPreviewItems: (state, action) => {

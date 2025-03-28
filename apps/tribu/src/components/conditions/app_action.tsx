@@ -2,12 +2,15 @@ import { Typography, Box, Stack } from '@mui/material';
 import { FC } from 'react';
 import AppSelect from '../forms/base/app_select';
 import BaseContainer from './base_container';
-import { AppConditionProps } from '../../data/types/app_condition_props_type';
+import { AppConditionProps } from '../../../../../libs/forms/src/types/app_condition_props_type';
 import { useDispatch, useSelector } from 'react-redux';
 import { ActionInterface } from '../../data/interfaces';
 import { updateFormField } from '../../data/logic/form.slice';
-import { AllFormInterfacesType } from '../../data/types/all_form_types';
-import { ActionActions, actionType } from '../../data/enum/condition_actions';
+import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
+import {
+  ActionActions,
+  actionType,
+} from '../../../../../libs/forms/src/enum/condition_actions';
 import { convertActionStringToEnum } from '../../utils/helpers/condition_helper';
 import { RootState } from '../../data/store/app_store';
 const AppBranchActionComponent: FC<AppConditionProps> = ({

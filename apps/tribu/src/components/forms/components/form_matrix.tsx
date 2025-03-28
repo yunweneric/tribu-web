@@ -1,6 +1,6 @@
-import { FC } from "react";
-import { MatrixInterface } from "../../../data/interfaces";
-import BaseFieldItem from "../base/base_item";
+import { FC } from 'react';
+import { MatrixInterface } from '@tribu/forms';
+import BaseFieldItem from '../base/base_item';
 import {
   Box,
   FormControl,
@@ -9,7 +9,7 @@ import {
   RadioGroup,
   Stack,
   Typography,
-} from "@mui/material";
+} from '@mui/material';
 
 const FormMatrix: FC<MatrixInterface> = (item: MatrixInterface) => {
   return (
@@ -22,22 +22,22 @@ const FormMatrix: FC<MatrixInterface> = (item: MatrixInterface) => {
 const MatrixItems: FC<MatrixInterface> = (item: MatrixInterface) => {
   return (
     <Box paddingX={5} paddingTop={3}>
-      <Stack direction={"row"} marginBottom={2}>
-        <Box width={"30%"} />
+      <Stack direction={'row'} marginBottom={2}>
+        <Box width={'30%'} />
         <Stack
-          width={"70%"}
-          justifyContent={"flex-start"}
-          alignItems={"center"}
-          direction={"row"}
+          width={'70%'}
+          justifyContent={'flex-start'}
+          alignItems={'center'}
+          direction={'row'}
         >
           {item.columns.map((element, index) => (
-            <Box key={index} width={"30%"}>
+            <Box key={index} width={'30%'}>
               <Typography>{element.value}</Typography>
             </Box>
           ))}
         </Stack>
       </Stack>
-      <Stack direction={"column"}>
+      <Stack direction={'column'}>
         {item.rows.map((element, index) => (
           <FormControl>
             <RadioGroup
@@ -47,21 +47,21 @@ const MatrixItems: FC<MatrixInterface> = (item: MatrixInterface) => {
             >
               <Stack
                 key={index}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-                direction={"row"}
+                justifyContent={'space-between'}
+                alignItems={'center'}
+                direction={'row'}
                 marginBottom={2}
               >
-                <Box width={"30%"}>
+                <Box width={'30%'}>
                   <Typography>{element.value}</Typography>
                 </Box>
                 <Stack
-                  direction={"row"}
-                  justifyContent={"flex-start"}
-                  width={"70%"}
+                  direction={'row'}
+                  justifyContent={'flex-start'}
+                  width={'70%'}
                 >
                   {item.columns.map((element, index) => (
-                    <Box width={"30%"}>
+                    <Box width={'30%'}>
                       <FormControlLabel
                         value={element.value}
                         control={<Radio />}

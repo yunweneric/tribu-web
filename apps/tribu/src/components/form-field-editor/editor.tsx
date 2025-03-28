@@ -1,10 +1,10 @@
-import { useSelector } from "react-redux";
-import { TextInputInterface } from "../../data/interfaces";
-import { RootState } from "../../data/store/app_store";
-import { Box, Typography } from "@mui/material";
-import FormEditorRenderer from "./renderer";
-import colors from "../../utils/styles/colors.module.scss";
-import { GlobalTab } from "../../data/enum";
+import { useSelector } from 'react-redux';
+import { TextInputInterface } from '@tribu/forms';
+import { RootState } from '../../data/store/app_store';
+import { Box, Typography } from '@mui/material';
+import FormEditorRenderer from './renderer';
+import colors from '../../utils/styles/colors.module.scss';
+import { GlobalTab } from '../../../../../libs/forms/src/enum';
 
 const FormFieldEditor = () => {
   const formItem: TextInputInterface | null = useSelector(
@@ -22,12 +22,12 @@ const FormFieldEditor = () => {
     return (
       <Box
         sx={{
-          borderLeft: "1px solid",
+          borderLeft: '1px solid',
           borderColor: colors.gray,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100%",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100%',
         }}
       >
         {/* <Typography>App is in Preview Mode!</Typography> */}
@@ -39,12 +39,12 @@ const FormFieldEditor = () => {
     return (
       <Box
         sx={{
-          borderLeft: "1px solid",
+          borderLeft: '1px solid',
           borderColor: colors.gray,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100%",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100%',
         }}
       >
         <Typography>No Item selected!</Typography>
@@ -54,13 +54,13 @@ const FormFieldEditor = () => {
   return (
     <Box
       sx={{
-        borderLeft: "1px solid",
+        borderLeft: '1px solid',
         borderColor: colors.gray,
-        display: "flex",
-        justifyContent: "center",
+        display: 'flex',
+        justifyContent: 'center',
         paddingX: 5,
         paddingTop: 5,
-        height: "95%",
+        height: '95%',
       }}
     >
       <FormEditorRenderer field={formItem} />

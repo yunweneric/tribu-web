@@ -1,16 +1,16 @@
-import { Box } from "@mui/material";
-import { FormFields } from "../../data/enum";
-import FormInputRenderer from "./components/input";
-import { FC } from "react";
-import FormRadioRenderer from "./components/radio";
-import { AllFormInterfacesType } from "../../data/types/all_form_types";
-import FormTextAreaRenderer from "./components/textarea";
-import FormInputNumberRenderer from "./components/number";
-import FormRatingRenderer from "./components/rating";
-import FormSliderRenderer from "./components/slider";
-import FormMatrixRenderer from "./components/matrix";
-import FormDateFieldRenderer from "./components/datefield";
-import FormRankingRenderer from "./components/ranking";
+import { Box } from '@mui/material';
+import { FormFields } from '../../../../../libs/forms/src/enum';
+import FormInputRenderer from './components/input';
+import { FC } from 'react';
+import FormRadioRenderer from './components/radio';
+import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
+import FormTextAreaRenderer from './components/textarea';
+import FormInputNumberRenderer from './components/number';
+import FormRatingRenderer from './components/rating';
+import FormSliderRenderer from './components/slider';
+import FormMatrixRenderer from './components/matrix';
+import FormDateFieldRenderer from './components/datefield';
+import FormRankingRenderer from './components/ranking';
 
 interface FormEditorRendererProps {
   field: AllFormInterfacesType;

@@ -1,42 +1,42 @@
-import { CheckboxInterface, RadioInterface } from "../../../data/interfaces";
-import AppInput from "../../forms/base/app_input";
-import { Box, IconButton, Stack } from "@mui/material";
-import { Add } from "@mui/icons-material";
-import colors from "../../../utils/styles/colors.module.scss";
-import trash from "../../../assets/icons/trash.svg";
-import { useDispatch } from "react-redux";
+import { CheckboxInterface, RadioInterface } from '@tribu/forms';
+import AppInput from '../../forms/base/app_input';
+import { Box, IconButton, Stack } from '@mui/material';
+import { Add } from '@mui/icons-material';
+import colors from '../../../utils/styles/colors.module.scss';
+import trash from '../../../assets/icons/trash.svg';
+import { useDispatch } from 'react-redux';
 import {
   setSelectedField,
   updateFormField,
-} from "../../../data/logic/form.slice";
-import FieldIcon from "../../forms/base/field_icon";
+} from '../../../data/logic/form.slice';
+import FieldIcon from '../../forms/base/field_icon';
 
 const FormRadioRenderer = (formItem: RadioInterface | CheckboxInterface) => {
   const dispatch = useDispatch();
   return (
     <Box
-      width={"100%"}
+      width={'100%'}
       sx={{
         marginTop: 2,
-        display: formItem.elements?.length > 0 ? "block" : "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        display: formItem.elements?.length > 0 ? 'block' : 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
       {formItem.elements &&
         formItem.elements.map((item, index) => {
           return (
-            <Stack marginTop={2} direction={"row"}>
+            <Stack marginTop={2} direction={'row'}>
               <Box
                 sx={{
-                  borderTop: "1px solid",
-                  borderLeft: "1px solid",
-                  borderBottom: "1px solid",
+                  borderTop: '1px solid',
+                  borderLeft: '1px solid',
+                  borderBottom: '1px solid',
                   borderColor: colors.gray,
-                  justifyContent: "center",
-                  alignItems: "center",
+                  justifyContent: 'center',
+                  alignItems: 'center',
                   width: 50,
-                  display: "flex",
+                  display: 'flex',
                   borderTopLeftRadius: 5,
                   borderBottomLeftRadius: 5,
                 }}
@@ -83,8 +83,8 @@ const FormRadioRenderer = (formItem: RadioInterface | CheckboxInterface) => {
         })}
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "end",
+          display: 'flex',
+          justifyContent: 'end',
         }}
       >
         <IconButton
@@ -96,7 +96,7 @@ const FormRadioRenderer = (formItem: RadioInterface | CheckboxInterface) => {
           onClick={() => {
             const newElements = [
               ...formItem.elements,
-              { label: "Label", value: "" },
+              { label: 'Label', value: '' },
             ];
             const newItem = { ...formItem, ...{ elements: newElements } };
             dispatch(setSelectedField(newItem));

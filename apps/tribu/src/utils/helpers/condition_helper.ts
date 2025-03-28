@@ -3,9 +3,9 @@ import {
   ConditionActions,
   actionType,
   conditionTypes,
-} from '../../data/enum/condition_actions';
+} from '../../../../../libs/forms/src/enum/condition_actions';
 import { ActionInterface, ConditionInterface } from '../../data/interfaces';
-import { AllFormInterfacesType } from '../../data/types/all_form_types';
+import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
 
 interface UpdateFormFieldWithConditionsType {
   condition_or_action: ConditionInterface | ActionInterface;

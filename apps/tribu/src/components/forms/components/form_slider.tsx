@@ -1,11 +1,11 @@
-import { FC } from "react";
-import { SliderInterface } from "../../../data/interfaces";
-import BaseFieldItem from "../base/base_item";
-import { Box } from "@mui/material";
-import AppSlider from "../base/app_slider";
-import { generateFormName } from "../../../utils/helpers/formatters";
-import AppErrorMessage from "../base/app_error2_message";
-import { Control, Controller, FieldValues } from "react-hook-form";
+import { FC } from 'react';
+import { SliderInterface } from '@tribu/forms';
+import BaseFieldItem from '../base/base_item';
+import { Box } from '@mui/material';
+import AppSlider from '../base/app_slider';
+import { generateFormName } from '../../../utils/helpers/formatters';
+import AppErrorMessage from '../base/app_error2_message';
+import { Control, Controller, FieldValues } from 'react-hook-form';
 
 interface FormSliderType extends SliderInterface {
   control?: Control<FieldValues>;

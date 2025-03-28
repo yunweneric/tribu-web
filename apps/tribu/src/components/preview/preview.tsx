@@ -4,7 +4,7 @@ import { AppFormState } from '../../data/interfaces';
 import { Box, Stack, Typography } from '@mui/material';
 import colors from '../../utils/styles/colors.module.scss';
 import { FC, useEffect, useState } from 'react';
-import { AllFormInterfacesType } from '../../data/types/all_form_types';
+import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
 import FormRenderer from '../forms/components/form_field_renderer';
 import { useDispatch } from 'react-redux';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -18,8 +18,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import generateValidationSchema from '../../utils/helpers/validation_parser';
 import PreviewProgressIndicator from './components/progress_indicator';
 import PreviewButtons from './components/form_progress_buttons';
-import { FormFields } from '../../data/enum';
-import { ActionActions } from '../../data/enum/condition_actions';
+import { FormFields } from '../../../../../libs/forms/src/enum';
+import { ActionActions } from '../../../../../libs/forms/src/enum/condition_actions';
 import { getErrorMessage } from '../../utils/helpers/formatters';
 
 type AnimatingData = {

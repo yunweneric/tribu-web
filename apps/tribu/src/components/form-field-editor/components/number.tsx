@@ -1,16 +1,13 @@
-import { Box } from "@mui/system";
-import AppInput from "../../forms/base/app_input";
-import {
-  NumberInputInterface,
-  SliderInterface,
-} from "../../../data/interfaces";
-import { useDispatch } from "react-redux";
+import { Box } from '@mui/system';
+import AppInput from '../../forms/base/app_input';
+import { NumberInputInterface, SliderInterface } from '@tribu/forms';
+import { useDispatch } from 'react-redux';
 import {
   setSelectedField,
   updateFormField,
-} from "../../../data/logic/form.slice";
-import { Stack } from "@mui/material";
-import AppNumberInput from "../../forms/base/app_number_input";
+} from '../../../data/logic/form.slice';
+import { Stack } from '@mui/material';
+import AppNumberInput from '../../forms/base/app_number_input';
 
 const FormInputNumberRenderer = (
   formItem: NumberInputInterface | SliderInterface
@@ -18,11 +15,11 @@ const FormInputNumberRenderer = (
   const dispatch = useDispatch();
 
   return (
-    <Box width={"100%"}>
+    <Box width={'100%'}>
       <AppInput
         placeholder="Label"
         id={formItem.id}
-        value={formItem.label == "Label" ? "" : formItem.label}
+        value={formItem.label == 'Label' ? '' : formItem.label}
         onChange={(e) => {
           const updatedItem = { ...formItem, label: e.target.value };
           console.log(updatedItem);
@@ -32,7 +29,7 @@ const FormInputNumberRenderer = (
         type="text"
       />
       <Box marginBottom={2} />
-      <Stack direction={"row"} spacing={2}>
+      <Stack direction={'row'} spacing={2}>
         <AppNumberInput
           placeholder="Min"
           id={formItem.id}

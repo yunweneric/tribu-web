@@ -1,17 +1,17 @@
-import { Box } from "@mui/system";
-import AppInput from "../../forms/base/app_input";
-import { TextAreaInterface } from "../../../data/interfaces";
-import { useDispatch } from "react-redux";
-import { updateFormField } from "../../../data/logic/form.slice";
-import { FormFields } from "../../../data/enum";
-import AppTextArea from "../../forms/base/app_text_area";
+import { Box } from '@mui/system';
+import AppInput from '../../forms/base/app_input';
+import { TextAreaInterface } from '@tribu/forms';
+import { useDispatch } from 'react-redux';
+import { updateFormField } from '../../../data/logic/form.slice';
+import { FormFields } from '../../../../../../libs/forms/src/enum';
+import AppTextArea from '../../forms/base/app_text_area';
 
 const FormTextAreaRenderer = (formItem: TextAreaInterface) => {
   const dispatch = useDispatch();
 
   if (formItem.type == FormFields.PARAGRAPH)
     return (
-      <Box width={"100%"}>
+      <Box width={'100%'}>
         <AppTextArea
           {...formItem}
           hasBorder={true}
@@ -24,7 +24,7 @@ const FormTextAreaRenderer = (formItem: TextAreaInterface) => {
     );
 
   return (
-    <Box width={"100%"}>
+    <Box width={'100%'}>
       <AppInput
         placeholder="Label"
         id={formItem.id}

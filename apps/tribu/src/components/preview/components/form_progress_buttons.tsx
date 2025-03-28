@@ -1,7 +1,7 @@
-import { Box, Button } from "@mui/material";
-import { AllFormInterfacesType } from "../../../data/types/all_form_types";
-import colors from "../../../utils/styles/colors.module.scss";
-import { FC } from "react";
+import { Box, Button } from '@mui/material';
+import { AllFormInterfacesType } from '../../../../../../libs/forms/src/types/all_form_types';
+import colors from '../../../utils/styles/colors.module.scss';
+import { FC } from 'react';
 type PreviewButtonsType = {
   currentIndex: number;
   animateNext: (value: boolean) => void;
@@ -22,7 +22,7 @@ const PreviewButtons: FC<PreviewButtonsType> = ({
         variant="contained"
         onClick={() => animateNext(false)}
         sx={{
-          textTransform: "capitalize",
+          textTransform: 'capitalize',
           px: 5,
           py: 1.2,
           color: colors.white,
@@ -39,12 +39,12 @@ const PreviewButtons: FC<PreviewButtonsType> = ({
         onClick={() => animateNext(true)}
         sx={{
           color: colors.white,
-          textTransform: "capitalize",
+          textTransform: 'capitalize',
           px: 5,
           py: 1.2,
         }}
       >
-        {currentIndex == previewItems.length - 1 ? "Submit" : "Next"}
+        {currentIndex == previewItems.length - 1 ? 'Submit' : 'Next'}
       </Button>
     </Box>
   );

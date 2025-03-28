@@ -1,10 +1,10 @@
-import { Chip, Avatar, Box } from "@mui/material";
-import { FC } from "react";
-import { FormFields } from "../../data/enum";
-import AppInput from "../forms/base/app_input";
+import { Chip, Avatar, Box } from '@mui/material';
+import { FC } from 'react';
+import { FormFields } from '../../../../../libs/forms/src/enum';
+import AppInput from '../forms/base/app_input';
 
-import colors from "../../utils/styles/colors.module.scss";
-import BaseContainer from "./base_container";
+import colors from '../../utils/styles/colors.module.scss';
+import BaseContainer from './base_container';
 
 type AppQuestionProps = {
   label: string;
@@ -37,7 +37,7 @@ const AppQuestion: FC<AppQuestionProps> = ({ label, index, selectedItem }) => {
                     height: 30,
                     mr: 1,
                     fontSize: 14,
-                    backgroundColor: "#000",
+                    backgroundColor: '#000',
                   }}
                 >
                   {`Q${index}`}

@@ -10,7 +10,7 @@ import Header from '../components/header/header.component';
 import DraggableContainerComponents from '../components/drag-n-drop/draggable_container.component';
 import { Box, Stack } from '@mui/material';
 import colors from '../utils/styles/colors.module.scss';
-import { GlobalTab } from '../data/enum';
+import { GlobalTab } from '../../../../libs/forms/src/enum';
 import { RootState } from '../data/store/app_store';
 import { useSelector } from 'react-redux';
 const FormBuilder: FC = () => {

@@ -1,22 +1,22 @@
-import { FC } from "react";
-import { useDrop } from "react-dnd";
-import { TextInputInterface } from "../../data/interfaces";
-import { FormFields } from "../../data/enum";
-import FormRenderer from "../forms/components/form_field_renderer";
+import { FC } from 'react';
+import { useDrop } from 'react-dnd';
+import { TextInputInterface } from '../../data/interfaces';
+import { FormFields } from '../../../../../libs/forms/src/enum';
+import FormRenderer from '../forms/components/form_field_renderer';
 import {
   addFormField,
   setActiveSection,
   setSortedItems,
-} from "../../data/logic/form.slice";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../data/store/app_store";
-import { Box, Typography } from "@mui/material";
-import { AllFormInterfacesType } from "../../data/types/all_form_types";
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { StrictModeDroppable } from "./strick_mode_droppable";
-import { FormProvider, useForm } from "react-hook-form";
-import colors from "../../utils/styles/colors.module.scss";
-import FormDraggableWrapper from "./form_draggble_wrapper";
+} from '../../data/logic/form.slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../data/store/app_store';
+import { Box, Typography } from '@mui/material';
+import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
+import { StrictModeDroppable } from './strick_mode_droppable';
+import { FormProvider, useForm } from 'react-hook-form';
+import colors from '../../utils/styles/colors.module.scss';
+import FormDraggableWrapper from './form_draggble_wrapper';
 interface DropZoneProps {
   width?: string;
   activeSectionIndex: number;
@@ -71,14 +71,14 @@ const DropZone: FC<DropZoneProps> = ({ width, activeSectionIndex }) => {
           const hoverIndex = offSetGreater ? itemIndex + 1 : itemIndex;
 
           const results = monitor?.canDrop();
-          console.log("results", results, hoverIndex);
+          console.log('results', results, hoverIndex);
         }
       }
     },
 
     hover: (draggedItem, monitor) => {
       monitor.isOver({ shallow: true });
-      console.log("draggedItem", draggedItem);
+      console.log('draggedItem', draggedItem);
     },
 
     collect: (monitor) => {
@@ -112,8 +112,8 @@ const DropZone: FC<DropZoneProps> = ({ width, activeSectionIndex }) => {
         <Box
           ref={drop}
           sx={{
-            padding: "4rem 0",
-            borderRadius: "0.2rem",
+            padding: '4rem 0',
+            borderRadius: '0.2rem',
             border: isActive
               ? `1px dashed ${colors.primary}`
               : `3px solid ${colors.gray}`,
@@ -122,7 +122,7 @@ const DropZone: FC<DropZoneProps> = ({ width, activeSectionIndex }) => {
         >
           <Box>
             {formItems.length == 0 ? (
-              <Typography textAlign={"center"} sx={{}}>
+              <Typography textAlign={'center'} sx={{}}>
                 Drop Fields here to get started!
               </Typography>
             ) : (
@@ -132,7 +132,7 @@ const DropZone: FC<DropZoneProps> = ({ width, activeSectionIndex }) => {
                     {...provided.droppableProps}
                     ref={provided.innerRef}
                     sx={{
-                      width: "100%",
+                      width: '100%',
                     }}
                   >
                     <Box>

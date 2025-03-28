@@ -1,11 +1,11 @@
-import { FC } from "react";
-import AppTextArea from "../base/app_text_area";
-import BaseFieldItem from "../base/base_item";
-import { Control, Controller, FieldValues } from "react-hook-form";
-import AppErrorMessage from "../base/app_error2_message";
-import { generateFormName } from "../../../utils/helpers/formatters";
-import { TextAreaInterface } from "../../../data/interfaces";
-import { Typography } from "@mui/material";
+import { FC } from 'react';
+import AppTextArea from '../base/app_text_area';
+import BaseFieldItem from '../base/base_item';
+import { Control, Controller, FieldValues } from 'react-hook-form';
+import AppErrorMessage from '../base/app_error2_message';
+import { generateFormName } from '../../../utils/helpers/formatters';
+import { TextAreaInterface } from '@tribu/forms';
+import { Typography } from '@mui/material';
 
 interface FormTextAreaInterface extends TextAreaInterface {
   control?: Control<FieldValues>;
@@ -18,7 +18,7 @@ const FormParagraph: FC<FormTextAreaInterface> = (
 
   if (item.isPreview)
     return (
-      <Typography textAlign={"center"} px={10}>
+      <Typography textAlign={'center'} px={10}>
         {item.value}
       </Typography>
     );

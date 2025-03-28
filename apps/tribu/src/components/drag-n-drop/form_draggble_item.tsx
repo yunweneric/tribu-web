@@ -1,9 +1,9 @@
-import { Box } from "@mui/material";
-import { Reorder, useMotionValue } from "framer-motion";
-import FormRenderer from "../forms/components/form_field_renderer";
-import { useRaisedShadow } from "../../hooks/use_shadow";
-import { AllFormInterfacesType } from "../../data/types/all_form_types";
-import { FC } from "react";
+import { Box } from '@mui/material';
+import { Reorder, useMotionValue } from 'framer-motion';
+import FormRenderer from '../forms/components/form_field_renderer';
+import { useRaisedShadow } from '../../hooks/use_shadow';
+import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
+import { FC } from 'react';
 
 type FormDraggableItemProps = {
   item: AllFormInterfacesType;

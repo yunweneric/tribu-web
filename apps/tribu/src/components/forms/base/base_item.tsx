@@ -1,25 +1,25 @@
-import FieldIcon from "./field_icon";
-import styles from "../styles/input_field.module.scss";
-import copy from "../../../assets/icons/copy.svg";
-import trash from "../../../assets/icons/trash.svg";
-import branch from "../../../assets/icons/branch.svg";
-import { Box, Switch, Typography } from "@mui/material";
-import colors from "../../../utils/styles/colors.module.scss";
+import FieldIcon from './field_icon';
+import styles from '../styles/input_field.module.scss';
+import copy from '../../../assets/icons/copy.svg';
+import trash from '../../../assets/icons/trash.svg';
+import branch from '../../../assets/icons/branch.svg';
+import { Box, Switch, Typography } from '@mui/material';
+import colors from '../../../utils/styles/colors.module.scss';
 import {
   removeFormField,
   setActiveSection,
   setSelectedField,
   setSortedItems,
   updateFormField,
-} from "../../../data/logic/form.slice";
-import { FC, ReactNode } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../data/store/app_store";
-import { AllFormInterfacesType } from "../../../data/types/all_form_types";
-import React from "react";
-import AppModal from "../../conditions/conditional_model";
-import { FormFields } from "../../../data/enum";
-import { faker } from "@faker-js/faker";
+} from '../../../data/logic/form.slice';
+import { FC, ReactNode } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../data/store/app_store';
+import { AllFormInterfacesType } from '../../../../../../libs/forms/src/types/all_form_types';
+import React from 'react';
+import AppModal from '../../conditions/conditional_model';
+import { FormFields } from '../../../../../../libs/forms/src/enum';
+import { faker } from '@faker-js/faker';
 
 interface ReusableContainerProps {
   children: ReactNode;
@@ -45,10 +45,10 @@ const BaseFieldItem: FC<ReusableContainerProps> = ({
   if (item.isPreview == true)
     return (
       <Box
-        display={"flex"}
-        flexDirection={"column"}
-        justifyContent={"flex-start"}
-        alignItems={"start"}
+        display={'flex'}
+        flexDirection={'column'}
+        justifyContent={'flex-start'}
+        alignItems={'start'}
         marginX={10}
       >
         <Typography mb={2}>{item.label}</Typography>
@@ -57,9 +57,9 @@ const BaseFieldItem: FC<ReusableContainerProps> = ({
     );
   return (
     <Box
-      display={"flex"}
-      justifyContent={"space-between"}
-      alignItems={"center"}
+      display={'flex'}
+      justifyContent={'space-between'}
+      alignItems={'center'}
     >
       <FieldIcon
         icon={branch}
@@ -77,17 +77,17 @@ const BaseFieldItem: FC<ReusableContainerProps> = ({
         className={styles.container}
         sx={{
           borderRadius: 1,
-          border: "1px dashed",
+          border: '1px dashed',
           borderColor:
-            selectedField?.id == item.id ? colors.primary : "transparent",
+            selectedField?.id == item.id ? colors.primary : 'transparent',
         }}
       >
         <Box className={styles.input_header} marginBottom={1}>
-          <label htmlFor={"label"} className={styles.label_container}>
+          <label htmlFor={'label'} className={styles.label_container}>
             <span className={styles.index}>Q{item.index + 1}</span>
             <span className={styles.label}>{item.label}</span>
           </label>
-          <Box display="flex" alignItems={"center"}>
+          <Box display="flex" alignItems={'center'}>
             <span>*required</span>
             <span>
               <Switch
@@ -106,7 +106,7 @@ const BaseFieldItem: FC<ReusableContainerProps> = ({
             <img
               src={copy}
               alt=""
-              style={{ cursor: "pointer" }}
+              style={{ cursor: 'pointer' }}
               onClick={() => {
                 dispatch(setActiveSection(item.activeSectionIndex));
                 const newItem: AllFormInterfacesType = {

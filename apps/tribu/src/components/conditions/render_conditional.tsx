@@ -1,18 +1,18 @@
-import { Box } from "@mui/material";
-import { FormFields } from "../../data/enum";
+import { Box } from '@mui/material';
+import { FormFields } from '../../../../../libs/forms/src/enum';
 import {
   ActionInterface,
   CheckboxInterface,
   ConditionInterface,
   RadioInterface,
-} from "../../data/interfaces";
-import { AllFormInterfacesType } from "../../data/types/all_form_types";
-import AppInput from "../forms/base/app_input";
-import AppSelect from "../forms/base/app_select";
-import AppNumberInput from "../forms/base/app_number_input";
-import { useDispatch } from "react-redux";
-import { updateFormField } from "../../data/logic/form.slice";
-import AppDatePicker from "../forms/base/app_date_field";
+} from '../../data/interfaces';
+import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
+import AppInput from '../forms/base/app_input';
+import AppSelect from '../forms/base/app_select';
+import AppNumberInput from '../forms/base/app_number_input';
+import { useDispatch } from 'react-redux';
+import { updateFormField } from '../../data/logic/form.slice';
+import AppDatePicker from '../forms/base/app_date_field';
 
 type RenderConditionalFieldType = {
   formItem: AllFormInterfacesType;
@@ -80,7 +80,7 @@ const RenderConditionalField = ({
         id={condition_or_action?.id ?? formItem.id}
         onChange={(event) => updateCondition(event.target.value)}
         value={Number(condition_or_action?.value ?? 0)}
-        placeholder={condition_or_action?.value ?? ""}
+        placeholder={condition_or_action?.value ?? ''}
       />
     );
   if (formItem.type == FormFields.CHECKBOX) {
@@ -105,7 +105,7 @@ const RenderConditionalField = ({
           // updateCondition(allSelectedItems);
         }}
         items={item.elements.map((element) => element.value)}
-        value={condition_or_action.value ?? ""}
+        value={condition_or_action.value ?? ''}
       />
     );
   }

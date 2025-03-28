@@ -1,10 +1,10 @@
-import { FC } from "react";
-import AppTextArea from "../base/app_text_area";
-import BaseFieldItem from "../base/base_item";
-import { Control, Controller, FieldValues } from "react-hook-form";
-import AppErrorMessage from "../base/app_error2_message";
-import { generateFormName } from "../../../utils/helpers/formatters";
-import { TextAreaInterface } from "../../../data/interfaces";
+import { FC } from 'react';
+import AppTextArea from '../base/app_text_area';
+import BaseFieldItem from '../base/base_item';
+import { Control, Controller, FieldValues } from 'react-hook-form';
+import AppErrorMessage from '../base/app_error2_message';
+import { generateFormName } from '../../../utils/helpers/formatters';
+import { TextAreaInterface } from '@tribu/forms';
 
 interface FormTextAreaInterface extends TextAreaInterface {
   control?: Control<FieldValues>;

@@ -1,16 +1,16 @@
-import { FC } from "react";
-import BaseFieldItem from "../base/base_item";
+import { FC } from 'react';
+import BaseFieldItem from '../base/base_item';
 import {
   Box,
   FormControl,
   FormControlLabel,
   Radio,
   RadioGroup,
-} from "@mui/material";
-import { RadioInterface } from "../../../data/interfaces";
-import { Control, Controller, FieldValues } from "react-hook-form";
-import { generateFormName } from "../../../utils/helpers/formatters";
-import AppErrorMessage from "../base/app_error2_message";
+} from '@mui/material';
+import { RadioInterface } from '@tribu/forms';
+import { Control, Controller, FieldValues } from 'react-hook-form';
+import { generateFormName } from '../../../utils/helpers/formatters';
+import AppErrorMessage from '../base/app_error2_message';
 
 interface FormRadioSelectInterface extends RadioInterface {
   control?: Control<FieldValues>;
@@ -23,7 +23,7 @@ const FormRadioSelect: FC<FormRadioSelectInterface> = (
   return (
     <BaseFieldItem item={item}>
       <Box
-        display={"flex"}
+        display={'flex'}
         // justifyContent={"center"}
         // alignItems={"center"}
         // paddingY={5}

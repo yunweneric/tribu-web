@@ -1,16 +1,16 @@
-import { RankingInterface, StepLabelItem } from "../../../data/interfaces";
-import { Box, Divider, IconButton, Stack, Typography } from "@mui/material";
-import AppInput from "../../forms/base/app_input";
-import { useDispatch } from "react-redux";
+import { RankingInterface, StepLabelItem } from '@tribu/forms';
+import { Box, Divider, IconButton, Stack, Typography } from '@mui/material';
+import AppInput from '../../forms/base/app_input';
+import { useDispatch } from 'react-redux';
 import {
   setSelectedField,
   updateFormField,
-} from "../../../data/logic/form.slice";
-import AppNumberInput from "../../forms/base/app_number_input";
-import colors from "../../../utils/styles/colors.module.scss";
-import { useState } from "react";
-import { Close } from "@mui/icons-material";
-import { faker } from "@faker-js/faker";
+} from '../../../data/logic/form.slice';
+import AppNumberInput from '../../forms/base/app_number_input';
+import colors from '../../../utils/styles/colors.module.scss';
+import { useState } from 'react';
+import { Close } from '@mui/icons-material';
+import { faker } from '@faker-js/faker';
 
 type StepItem = {
   from: number;
@@ -21,11 +21,11 @@ const FormRankingRenderer = (formItem: RankingInterface) => {
   const dispatch = useDispatch();
   const [stepItem, setStepItem] = useState<StepItem | null>(null);
   return (
-    <Box width={"100%"} mb={2}>
+    <Box width={'100%'} mb={2}>
       <AppInput
         placeholder="Label"
         id={formItem.id}
-        value={formItem.label == "Label" ? "" : formItem.label}
+        value={formItem.label == 'Label' ? '' : formItem.label}
         onChange={(e) => {
           const updatedItem = { ...formItem, label: e.target.value };
           dispatch(updateFormField(updatedItem));
@@ -34,7 +34,7 @@ const FormRankingRenderer = (formItem: RankingInterface) => {
         hasBorder={true}
         type={formItem.type}
       />
-      <Stack direction={"row"} spacing={1} my={2}>
+      <Stack direction={'row'} spacing={1} my={2}>
         <AppNumberInput
           placeholder="Min"
           id={formItem.id}
@@ -86,32 +86,32 @@ const FormRankingRenderer = (formItem: RankingInterface) => {
         <Box mt={1}>
           {formItem.stepLabels.length > 0 ? (
             <Box mb={5}>
-              <Stack direction={"row"} justifyContent={"space-between"} mb={1}>
-                <Typography width={"40%"}>Label</Typography>
-                <Typography width={"20%"}>From</Typography>
-                <Typography width={"20%"}>To</Typography>
-                <Typography width={"20%"}>Action</Typography>
+              <Stack direction={'row'} justifyContent={'space-between'} mb={1}>
+                <Typography width={'40%'}>Label</Typography>
+                <Typography width={'20%'}>From</Typography>
+                <Typography width={'20%'}>To</Typography>
+                <Typography width={'20%'}>Action</Typography>
               </Stack>
               <Divider />
               {formItem.stepLabels.map((item) => {
                 return (
                   <Box>
                     <Stack
-                      direction={"row"}
-                      justifyContent={"space-between"}
+                      direction={'row'}
+                      justifyContent={'space-between'}
                       py={1}
                     >
-                      <Typography width={"40%"}> {item.name}</Typography>
-                      <Typography width={"20%"}>{item.from}</Typography>
-                      <Typography width={"20%"}>{item.to}</Typography>
+                      <Typography width={'40%'}> {item.name}</Typography>
+                      <Typography width={'20%'}>{item.from}</Typography>
+                      <Typography width={'20%'}>{item.to}</Typography>
 
-                      <Box width={"20%"}>
+                      <Box width={'20%'}>
                         <IconButton
                           aria-label="add"
                           sx={{
                             bgcolor: colors.gray,
                             p: 0.1,
-                            ":hover": {
+                            ':hover': {
                               backgroundColor: colors.primary,
                               color: colors.white,
                             },
@@ -137,7 +137,7 @@ const FormRankingRenderer = (formItem: RankingInterface) => {
               })}
             </Box>
           ) : (
-            <Box py={5} bgcolor={colors.gray} textAlign={"center"} mt={1}>
+            <Box py={5} bgcolor={colors.gray} textAlign={'center'} mt={1}>
               <Typography>No step label added!</Typography>
             </Box>
           )}
@@ -146,8 +146,8 @@ const FormRankingRenderer = (formItem: RankingInterface) => {
 
       {formItem.stepLabels.length < 3 && (
         <>
-          <Stack direction={"row"} spacing={1} my={2}>
-            <Box width={"50%"}>
+          <Stack direction={'row'} spacing={1} my={2}>
+            <Box width={'50%'}>
               <AppInput
                 placeholder="Step Name"
                 id={stepItem?.name}
@@ -159,7 +159,7 @@ const FormRankingRenderer = (formItem: RankingInterface) => {
                 type={formItem.type}
               />
             </Box>
-            <Stack direction={"row"} spacing={1} width={"50%"}>
+            <Stack direction={'row'} spacing={1} width={'50%'}>
               <AppNumberInput
                 placeholder="From"
                 id={formItem.id}
@@ -192,7 +192,7 @@ const FormRankingRenderer = (formItem: RankingInterface) => {
               />
             </Stack>
           </Stack>
-          <Box textAlign={"right"} mt={2}>
+          <Box textAlign={'right'} mt={2}>
             <IconButton
               aria-label="add"
               sx={{
@@ -200,7 +200,7 @@ const FormRankingRenderer = (formItem: RankingInterface) => {
                 px: 1.8,
                 color: colors.white,
                 borderRadius: 1,
-                ":hover": {
+                ':hover': {
                   backgroundColor: colors.primary,
                   color: colors.white,
                 },
@@ -225,11 +225,11 @@ const FormRankingRenderer = (formItem: RankingInterface) => {
                 setStepItem({
                   from: null,
                   to: null,
-                  name: "",
+                  name: '',
                 });
               }}
             >
-              <Typography variant={"caption"}>Add Step</Typography>
+              <Typography variant={'caption'}>Add Step</Typography>
             </IconButton>
           </Box>
         </>

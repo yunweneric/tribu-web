@@ -1,22 +1,22 @@
-import { Box } from "@mui/system";
-import AppInput from "../../forms/base/app_input";
-import { MatrixInterface } from "../../../data/interfaces";
-import { useDispatch } from "react-redux";
+import { Box } from '@mui/system';
+import AppInput from '../../forms/base/app_input';
+import { MatrixInterface } from '@tribu/forms';
+import { useDispatch } from 'react-redux';
 import {
   setSelectedField,
   updateFormField,
-} from "../../../data/logic/form.slice";
-import { IconButton, Stack, Typography } from "@mui/material";
-import FieldIcon from "../../forms/base/field_icon";
-import colors from "../../../utils/styles/colors.module.scss";
-import trash from "../../../assets/icons/trash.svg";
-import { Add } from "@mui/icons-material";
+} from '../../../data/logic/form.slice';
+import { IconButton, Stack, Typography } from '@mui/material';
+import FieldIcon from '../../forms/base/field_icon';
+import colors from '../../../utils/styles/colors.module.scss';
+import trash from '../../../assets/icons/trash.svg';
+import { Add } from '@mui/icons-material';
 
 const FormMatrixRenderer = (formItem: MatrixInterface) => {
   const dispatch = useDispatch();
 
   return (
-    <Box width={"100%"}>
+    <Box width={'100%'}>
       <AppInput
         placeholder="Label"
         id={formItem.id}
@@ -34,28 +34,28 @@ const FormMatrixRenderer = (formItem: MatrixInterface) => {
       <Box>
         <Typography>Rows</Typography>
         <Box
-          width={"100%"}
+          width={'100%'}
           sx={{
             marginTop: 2,
-            display: formItem.rows?.length > 0 ? "block" : "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            display: formItem.rows?.length > 0 ? 'block' : 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           {formItem.rows &&
             formItem.rows.map((item, index) => {
               return (
-                <Stack marginTop={2} direction={"row"}>
+                <Stack marginTop={2} direction={'row'}>
                   <Box
                     sx={{
-                      borderTop: "1px solid",
-                      borderLeft: "1px solid",
-                      borderBottom: "1px solid",
+                      borderTop: '1px solid',
+                      borderLeft: '1px solid',
+                      borderBottom: '1px solid',
                       borderColor: colors.gray,
-                      justifyContent: "center",
-                      alignItems: "center",
+                      justifyContent: 'center',
+                      alignItems: 'center',
                       width: 50,
-                      display: "flex",
+                      display: 'flex',
                       borderTopLeftRadius: 5,
                       borderBottomLeftRadius: 5,
                     }}
@@ -103,8 +103,8 @@ const FormMatrixRenderer = (formItem: MatrixInterface) => {
 
           <Box
             sx={{
-              display: "flex",
-              justifyContent: "end",
+              display: 'flex',
+              justifyContent: 'end',
             }}
           >
             <IconButton
@@ -116,7 +116,7 @@ const FormMatrixRenderer = (formItem: MatrixInterface) => {
               onClick={() => {
                 const newElements = [
                   ...formItem.rows,
-                  { label: "Label", value: "" },
+                  { label: 'Label', value: '' },
                 ];
                 const newItem = { ...formItem, ...{ rows: newElements } };
                 dispatch(setSelectedField(newItem));
@@ -131,28 +131,28 @@ const FormMatrixRenderer = (formItem: MatrixInterface) => {
       <Box>
         <Typography>Columns</Typography>
         <Box
-          width={"100%"}
+          width={'100%'}
           sx={{
             marginTop: 2,
-            display: formItem.columns?.length > 0 ? "block" : "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            display: formItem.columns?.length > 0 ? 'block' : 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           {formItem.columns &&
             formItem.columns.map((item, index) => {
               return (
-                <Stack marginTop={2} direction={"row"}>
+                <Stack marginTop={2} direction={'row'}>
                   <Box
                     sx={{
-                      borderTop: "1px solid",
-                      borderLeft: "1px solid",
-                      borderBottom: "1px solid",
+                      borderTop: '1px solid',
+                      borderLeft: '1px solid',
+                      borderBottom: '1px solid',
                       borderColor: colors.gray,
-                      justifyContent: "center",
-                      alignItems: "center",
+                      justifyContent: 'center',
+                      alignItems: 'center',
                       width: 50,
-                      display: "flex",
+                      display: 'flex',
                       borderTopLeftRadius: 5,
                       borderBottomLeftRadius: 5,
                     }}
@@ -200,8 +200,8 @@ const FormMatrixRenderer = (formItem: MatrixInterface) => {
 
           <Box
             sx={{
-              display: "flex",
-              justifyContent: "end",
+              display: 'flex',
+              justifyContent: 'end',
             }}
           >
             <IconButton
@@ -213,7 +213,7 @@ const FormMatrixRenderer = (formItem: MatrixInterface) => {
               onClick={() => {
                 const newElements = [
                   ...formItem.columns,
-                  { label: "Label", value: "" },
+                  { label: 'Label', value: '' },
                 ];
                 const newItem = { ...formItem, ...{ columns: newElements } };
                 dispatch(setSelectedField(newItem));

@@ -1,28 +1,28 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
-import { AppFormState } from "../interfaces";
-import { FormFields } from "../enum";
-import { AllFormInterfacesType } from "../types/all_form_types";
+import { createSlice, nanoid } from '@reduxjs/toolkit';
+import { AppFormState } from '../interfaces';
+import { FormFields } from '../../../../../libs/forms/src/enum';
+import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
 
 const initialState: AppFormState = {
-  sections: [{ formItems: [], id: "928JHAIDKWHAA-992JIH", index: 0 }],
+  sections: [{ formItems: [], id: '928JHAIDKWHAA-992JIH', index: 0 }],
   activeSection: 0,
   formTitle: {
     type: FormFields.FORM_TITLE,
-    label: "Survey Form",
-    description: "description",
-    id: "form-title",
+    label: 'Survey Form',
+    description: 'description',
+    id: 'form-title',
   },
   formDescription: {
     type: FormFields.FORM_DESCRIPTION,
-    label: "Survey Description",
-    description: "description",
-    id: "form-description",
+    label: 'Survey Description',
+    description: 'description',
+    id: 'form-description',
   },
   selectedField: null,
 };
 
 export const FormSlice = createSlice({
-  name: "form",
+  name: 'form',
   initialState,
   reducers: {
     addFormField: (state, action) => {

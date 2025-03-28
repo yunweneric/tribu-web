@@ -1,18 +1,18 @@
-import { Stack, Box } from "@mui/system";
-import { FC } from "react";
-import { AppConditionProps } from "../../data/types/app_condition_props_type";
-import AppSelect from "../forms/base/app_select";
-import BaseContainer from "./base_container";
-import RenderConditionalField from "./render_conditional";
-import { ConditionInterface } from "../../data/interfaces";
-import { useDispatch } from "react-redux";
-import { updateFormField } from "../../data/logic/form.slice";
-import { conditionTypes } from "../../data/enum/condition_actions";
+import { Stack, Box } from '@mui/system';
+import { FC } from 'react';
+import { AppConditionProps } from '../../../../../libs/forms/src/types/app_condition_props_type';
+import AppSelect from '../forms/base/app_select';
+import BaseContainer from './base_container';
+import RenderConditionalField from './render_conditional';
+import { ConditionInterface } from '../../data/interfaces';
+import { useDispatch } from 'react-redux';
+import { updateFormField } from '../../data/logic/form.slice';
+import { conditionTypes } from '../../../../../libs/forms/src/enum/condition_actions';
 import {
   updateFormFieldWithConditions,
   convertConditionStringToEnum,
-} from "../../utils/helpers/condition_helper";
-import { AllFormInterfacesType } from "../../data/types/all_form_types";
+} from '../../utils/helpers/condition_helper';
+import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
 const AppConditionStep: FC<AppConditionProps> = ({
   equality_options,
   formItem,
@@ -36,7 +36,7 @@ const AppConditionStep: FC<AppConditionProps> = ({
       componentProps={{
         component1: <Box></Box>,
         component2: (
-          <Stack direction={"row"} spacing={2}>
+          <Stack direction={'row'} spacing={2}>
             <AppSelect
               hasBorder={true}
               id={formItem.id}
@@ -50,8 +50,8 @@ const AppConditionStep: FC<AppConditionProps> = ({
             />
             <Stack
               width="70%"
-              direction={"row"}
-              alignItems={"center"}
+              direction={'row'}
+              alignItems={'center'}
               spacing={1}
             >
               <RenderConditionalField

@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { GlobalTab } from "../enum";
+import { createSlice } from '@reduxjs/toolkit';
+import { GlobalTab } from '../../../../../libs/forms/src/enum';
 
 interface TabState {
   currentGlobalTab: GlobalTab.CREATE | GlobalTab.PREVIEW | GlobalTab.SUBMISSION;
@@ -9,7 +9,7 @@ const initialState: TabState = {
   currentGlobalTab: GlobalTab.CREATE,
 };
 export const TabSlice = createSlice({
-  name: "tabs",
+  name: 'tabs',
   initialState,
   reducers: {
     setSelectedTab: (state, action) => {

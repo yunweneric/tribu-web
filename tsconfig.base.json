@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@tribu/audience": ["libs/audience/src/index.ts"],
+      "@tribu/forms": ["libs/forms/src/index.ts"],
       "@tribu/home": ["libs/home/src/index.ts"],
       "@tribu/surveys": ["libs/surveys/src/index.ts"],
       "@tribu/table": ["libs/table/src/index.ts"],

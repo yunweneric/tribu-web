@@ -1,10 +1,10 @@
-import { FC } from "react";
-import { TextInputInterface } from "../../../data/interfaces";
-import AppInput from "../base/app_input";
-import BaseFieldItem from "../base/base_item";
-import { Control, Controller, FieldValues } from "react-hook-form";
-import { generateFormName } from "../../../utils/helpers/formatters";
-import AppErrorMessage from "../base/app_error2_message";
+import { FC } from 'react';
+import { TextInputInterface } from '@tribu/forms';
+import AppInput from '../base/app_input';
+import BaseFieldItem from '../base/base_item';
+import { Control, Controller, FieldValues } from 'react-hook-form';
+import { generateFormName } from '../../../utils/helpers/formatters';
+import AppErrorMessage from '../base/app_error2_message';
 
 interface FormInputFieldInterface extends TextInputInterface {
   control?: Control<FieldValues>;

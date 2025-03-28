@@ -1,19 +1,19 @@
 enum ConditionActions {
-  EQUALTO = "Is Equal to",
-  NOTEQUALTO = "Is Not Equal to",
-  GREATERTHAN = "Is Greater than",
-  LESSTHAN = "Is Less than",
-  GREATERTHANEQUALTO = "Is Greater than or Equal to",
-  LESSTHANEQUALTO = "Is Less than or Equal to",
+  EQUALTO = 'Is Equal to',
+  NOTEQUALTO = 'Is Not Equal to',
+  GREATERTHAN = 'Is Greater than',
+  LESSTHAN = 'Is Less than',
+  GREATERTHANEQUALTO = 'Is Greater than or Equal to',
+  LESSTHANEQUALTO = 'Is Less than or Equal to',
 }
 
 enum ActionActions {
-  SKIP = "Skip To",
-  CANCEL = "Cancel",
+  SKIP = 'Skip To',
+  CANCEL = 'Cancel',
 }
 enum ConditionLinkEnum {
-  OR = "OR",
-  AND = "AND",
+  OR = 'OR',
+  AND = 'AND',
 }
 
 const conditionInputActions = [

@@ -3,8 +3,8 @@ import { useDrag } from 'react-dnd';
 import { Avatar, Box } from '@mui/material';
 
 import colors from '../../utils/styles/colors.module.scss';
-import { FormFields } from '../../data/enum';
-import { AllFormInterfacesType } from '../../data/types/all_form_types';
+import { FormFields } from '../../../../../libs/forms/src/enum';
+import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
 
 interface DraggableComponentProps {
   item: AllFormInterfacesType;

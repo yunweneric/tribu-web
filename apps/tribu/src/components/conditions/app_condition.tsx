@@ -1,25 +1,25 @@
-import { Typography, IconButton, Box, Stack } from "@mui/material";
-import { FC } from "react";
-import AppSelect from "../forms/base/app_select";
-import BaseContainer from "./base_container";
-import colors from "../../utils/styles/colors.module.scss";
-import { Add } from "@mui/icons-material";
-import { AppConditionProps } from "../../data/types/app_condition_props_type";
-import { useDispatch } from "react-redux";
-import { updateFormField } from "../../data/logic/form.slice";
-import { ConditionInterface } from "../../data/interfaces";
-import RenderConditionalField from "./render_conditional";
-import { faker } from "@faker-js/faker";
+import { Typography, IconButton, Box, Stack } from '@mui/material';
+import { FC } from 'react';
+import AppSelect from '../forms/base/app_select';
+import BaseContainer from './base_container';
+import colors from '../../utils/styles/colors.module.scss';
+import { Add } from '@mui/icons-material';
+import { AppConditionProps } from '../../../../../libs/forms/src/types/app_condition_props_type';
+import { useDispatch } from 'react-redux';
+import { updateFormField } from '../../data/logic/form.slice';
+import { ConditionInterface } from '../../data/interfaces';
+import RenderConditionalField from './render_conditional';
+import { faker } from '@faker-js/faker';
 import {
   ConditionActions,
   ConditionLinkEnum,
   conditionTypes,
-} from "../../data/enum/condition_actions";
+} from '../../../../../libs/forms/src/enum/condition_actions';
 import {
   updateFormFieldWithConditions,
   convertConditionStringToEnum,
-} from "../../utils/helpers/condition_helper";
-import { AllFormInterfacesType } from "../../data/types/all_form_types";
+} from '../../utils/helpers/condition_helper';
+import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
 
 const AppBranchConditionComponent: FC<AppConditionProps> = ({
   equality_options,
@@ -44,12 +44,12 @@ const AppBranchConditionComponent: FC<AppConditionProps> = ({
       <BaseContainer
         componentProps={{
           component1: (
-            <Typography textAlign={"center"} fontWeight={600}>
+            <Typography textAlign={'center'} fontWeight={600}>
               Condition
             </Typography>
           ),
           component2: (
-            <Stack direction={"row"} spacing={2}>
+            <Stack direction={'row'} spacing={2}>
               <AppSelect
                 hasBorder={true}
                 id={formItem.id}
@@ -63,8 +63,8 @@ const AppBranchConditionComponent: FC<AppConditionProps> = ({
               />
               <Stack
                 width="70%"
-                direction={"row"}
-                alignItems={"center"}
+                direction={'row'}
+                alignItems={'center'}
                 spacing={1}
               >
                 <RenderConditionalField
@@ -85,7 +85,7 @@ const AppBranchConditionComponent: FC<AppConditionProps> = ({
                       onClick={() => {
                         const newCondition: ConditionInterface = {
                           action: ConditionActions.EQUALTO,
-                          value: "",
+                          value: '',
                           id: faker.string.uuid(),
                         };
                         const newBranching = {

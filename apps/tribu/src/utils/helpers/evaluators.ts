@@ -1,16 +1,16 @@
-import { UseFormWatch } from "react-hook-form";
+import { UseFormWatch } from 'react-hook-form';
 import {
   ConditionActions,
   ConditionLinkEnum,
-} from "../../data/enum/condition_actions";
-import { AllFormInterfacesType } from "../../data/types/all_form_types";
-import { generateFormName } from "./formatters";
+} from '../../../../../libs/forms/src/enum/condition_actions';
+import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
+import { generateFormName } from './formatters';
 
 const evaluateConditions = (
   data: AllFormInterfacesType,
   value: string | number
 ): boolean => {
-  console.log("currentSubmittedValue", value);
+  console.log('currentSubmittedValue', value);
 
   // Iterate through each condition in the conditional array
   for (const condition of data.branching.condition) {
@@ -71,7 +71,7 @@ const evaluateCanSkip = (
   const id = previewItem.id;
   const name = generateFormName(label, id);
   const currentSubmittedValue = watch(name);
-  console.log("currentSubmittedValue", currentSubmittedValue);
+  console.log('currentSubmittedValue', currentSubmittedValue);
   const conditionValid = evaluateConditions(previewItem, currentSubmittedValue);
   return conditionValid;
 };
