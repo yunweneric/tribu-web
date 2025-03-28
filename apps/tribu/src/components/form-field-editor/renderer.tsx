@@ -3,7 +3,7 @@ import { FormFields } from '../../../../../libs/forms/src/enum';
 import FormInputRenderer from './components/input';
 import { FC } from 'react';
 import FormRadioRenderer from './components/radio';
-import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
+import { AllFormInterfacesType } from '@tribu/forms';
 import FormTextAreaRenderer from './components/textarea';
 import FormInputNumberRenderer from './components/number';
 import FormRatingRenderer from './components/rating';

@@ -2,14 +2,12 @@ import { Avatar, Box, Stack, Typography } from '@mui/material';
 import { RankingInterface } from '@tribu/forms';
 import colors from '../../../utils/styles/colors.module.scss';
 import { useState } from 'react';
-
-type RankingComponentType = {
+export type RankingComponentType = {
   formItem: RankingInterface;
   onChange: (value: number) => void;
   value?: number;
 };
-
-const RankingComponent = ({
+export const RankingComponent = ({
   formItem,
   onChange,
   value,

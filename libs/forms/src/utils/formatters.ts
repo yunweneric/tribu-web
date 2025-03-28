@@ -1,6 +1,6 @@
 import { FieldErrors, FieldValues } from 'react-hook-form';
 import { ErrorMessage } from '../types/error.types';
-import colors from '../styles/colors.module.scss';
+// import colors from '../styles/colors.module.scss';
 const generateFormName = (label: string, id: string) => {
   // console.log(label, id);
   return label.split(' ').join('') + `-${id}`;
@@ -32,24 +32,25 @@ const getErrorMessage = (
 };
 const styleFormFields = (props: any) => {
   return {
-    backgroundColor: colors.white,
-    borderRadius: !props.hasBorder ? 0 : 0.5,
-    border: !props.hasBorder ? 'none' : `1px solid ${colors.gray}`,
-    '& fieldset': {
-      border: !props.hasBorder ? 'none' : `1px solid ${colors.gray}`,
-    },
-    ':focus': {
-      border: !props.hasBorder ? 'none' : `1px solid ${colors.gray}`,
-      '& fieldset': {
-        border: !props.hasBorder ? 'none' : `1px solid ${colors.gray}`,
-      },
-    },
-    ':hover': {
-      border: !props.hasBorder ? 'none' : `1px solid ${colors.gray}`,
-      '& fieldset': {
-        border: !props.hasBorder ? 'none' : `1px solid ${colors.gray}`,
-      },
-    },
+    // backgroundColor: '#fff',
+    // border: !props.hasBorder ? 'none' : `1px solid ${colors.gray}`,
+    // boxShadow: 'none',
+    // borderRadius: !props.hasBorder ? 0 : 0.5,
+    // '& fieldset': {
+    //   border: !props.hasBorder ? 'none' : `1px solid ${colors.gray}`,
+    // },
+    // ':focus': {
+    //   border: !props.hasBorder ? 'none' : `1px solid ${colors.gray}`,
+    //   '& fieldset': {
+    //     border: !props.hasBorder ? 'none' : `1px solid ${colors.gray}`,
+    //   },
+    // },
+    // ':hover': {
+    //   border: !props.hasBorder ? 'none' : `1px solid ${colors.gray}`,
+    //   '& fieldset': {
+    //     border: !props.hasBorder ? 'none' : `1px solid ${colors.gray}`,
+    //   },
+    // },
   };
 };
 

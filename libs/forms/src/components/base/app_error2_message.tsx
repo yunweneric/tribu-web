@@ -1,11 +1,9 @@
 import { Typography } from '@mui/material';
 import { FC } from 'react';
-
-type AppErrorMessageType = {
+export type AppErrorMessageType = {
   message?: string;
 };
-
-const AppErrorMessage: FC<AppErrorMessageType> = ({
+export const AppErrorMessage: FC<AppErrorMessageType> = ({
   message,
 }: AppErrorMessageType) => {
   return (

@@ -1,13 +1,12 @@
 import { Typography } from '@mui/material';
 import { getErrorMessage } from '../../utils/formatters';
 import { useFormContext } from 'react-hook-form';
-
-type AppErrorMessageType = {
+export type AppErrorMessageType = {
   id: string;
   label: string;
   isPreview?: boolean;
 };
-const AppCustomErrorMessage = ({
+export const AppCustomErrorMessage = ({
   id,
   label,
   isPreview,

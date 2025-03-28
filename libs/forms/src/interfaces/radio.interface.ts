@@ -1,7 +1,7 @@
-import { FormFields } from "../enum";
+import { FormFields } from '../enum';
 
-import { BranchingBlockInterface } from "./index";
-import { ConditionLinkEnum } from "../enum/condition_actions";
+import { BranchingBlockInterface } from './index';
+import { ConditionLinkEnum } from '../enum/condition_actions';
 interface RadioItemInterface {
   value: string;
   label: string;
@@ -19,9 +19,7 @@ export interface RadioInterface {
   id: string;
   value: number;
   elements: RadioItemInterface[];
-
   branching?: BranchingBlockInterface;
-
   conditionLink?: ConditionLinkEnum.OR | ConditionLinkEnum.AND;
   previousItemId?: string;
 }

@@ -1,7 +1,6 @@
-import { SyntheticEvent, useEffect, useState } from "react";
-import { Rating } from "@mui/material";
-
-type AppRatingType = {
+import { SyntheticEvent, useEffect, useState } from 'react';
+import { Rating } from '@mui/material';
+export type AppRatingType = {
   max?: number | undefined;
   value: number;
   placeholder?: string | undefined;
@@ -12,9 +11,9 @@ type AppRatingType = {
     value: number | null
   ) => void;
 };
-const AppRating = ({ ...props }: AppRatingType) => {
+export const AppRating = ({ ...props }: AppRatingType) => {
   useEffect(() => {
-    if (typeof props.value == "number") {
+    if (typeof props.value == 'number') {
       setFieldValue(props.value);
     }
   }, []);

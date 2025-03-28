@@ -1,8 +1,6 @@
 import { Box } from '@mui/material';
-import colors from '../../../utils/styles/colors.module.scss';
-const FieldIcon = ({
+export const FieldIcon = ({
   icon,
-  bgColor,
   onClick,
 }: {
   icon: string;
@@ -13,7 +11,6 @@ const FieldIcon = ({
     <Box
       onClick={onClick}
       sx={{
-        backgroundColor: bgColor ?? colors.white,
         height: 40,
         width: 40,
         borderRadius: '50%',

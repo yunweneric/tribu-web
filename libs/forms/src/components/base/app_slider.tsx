@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import { Slider } from "@mui/material";
-
-type AppSliderType = {
+import { useEffect, useState } from 'react';
+import { Slider } from '@mui/material';
+export type AppSliderType = {
   min?: number | undefined;
   max?: number | undefined;
   steps?: number | undefined;
@@ -16,9 +15,9 @@ type AppSliderType = {
     activeThumb: number
   ) => void;
 };
-const AppSlider = ({ ...props }: AppSliderType) => {
+export const AppSlider = ({ ...props }: AppSliderType) => {
   useEffect(() => {
-    if (typeof props.value == "number") {
+    if (typeof props.value == 'number') {
       setFieldValue(props.value);
     }
   }, []);

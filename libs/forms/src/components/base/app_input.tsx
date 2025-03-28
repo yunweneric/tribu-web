@@ -2,8 +2,7 @@ import { InputAdornment, TextField } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
 import { styleFormFields } from '../../utils/formatters';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-
-type AppInputType = {
+export type AppInputType = {
   placeholder?: string | undefined;
   type: string | undefined;
   id: string | undefined;
@@ -21,8 +20,7 @@ type AppInputType = {
   minRows?: number;
   startAdornment?: JSX.Element;
 };
-
-const AppInput: FC<AppInputType> = ({ ...props }: AppInputType) => {
+export const AppInput: FC<AppInputType> = ({ ...props }: AppInputType) => {
   useEffect(() => {
     // console.log("props.value", props.value, typeof props.value);
 

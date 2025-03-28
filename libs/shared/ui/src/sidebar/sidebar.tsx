@@ -38,7 +38,7 @@ export const Sidebar: FC<React.HTMLAttributes<HTMLDivElement>> = (props) => {
         />
         <div className="mt-20 flex flex-col gap-y-5 grow">
           {sidebarItems.map((item) => {
-            return <SidebarItem {...item} />;
+            return <SidebarItem {...item} key={item.label} />;
           })}
         </div>
         <div className="flex items-center justify-center">

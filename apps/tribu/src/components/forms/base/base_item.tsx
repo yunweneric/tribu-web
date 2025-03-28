@@ -15,7 +15,7 @@ import {
 import { FC, ReactNode } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../data/store/app_store';
-import { AllFormInterfacesType } from '../../../../../../libs/forms/src/types/all_form_types';
+import { AllFormInterfacesType } from '@tribu/forms';
 import React from 'react';
 import AppModal from '../../conditions/conditional_model';
 import { FormFields } from '../../../../../../libs/forms/src/enum';

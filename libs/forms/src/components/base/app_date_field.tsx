@@ -4,10 +4,8 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import colors from '../../../utils/styles/colors.module.scss';
 import { roundUpToMidnight } from '../../utils/formatters';
-
-type AppDatePicker = {
+export type AppDatePicker = {
   id: string | undefined;
   onChange?: (value: Date) => Date;
   hasBorder?: boolean;
@@ -27,7 +25,6 @@ export default function AppDatePicker(props: AppDatePicker) {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DatePicker', 'DatePicker']}>
         <DatePicker
-          // format="MM-DD-YYYY"
           format="DD-MM-YYYY"
           value={initialValue}
           minDate={props.minDate}
@@ -36,26 +33,13 @@ export default function AppDatePicker(props: AppDatePicker) {
             setValue(newValue);
             if (props.onChange) {
               const newDate = dayjs(newValue);
-              // newDate.toDate().setHours(24, 0, 0, 0);
               const updatedDate = roundUpToMidnight(newDate.toDate());
               props.onChange(updatedDate);
             }
           }}
-          sx={{
-            width: props.width ?? '100%',
-            backgroundColor: colors.white,
-            borderRadius: 2,
-            // border: hasBorder ? "none" : `1px solid ${colors.grayBorder}`,
-            '& fieldset': {
-              border: props.hasBorder
-                ? `1px solid ${colors.grayBorder}`
-                : 'none',
-            },
-            ':focus': {
-              border: `1px solid ${colors.primary}`,
-              '& fieldset': { border: `1px solid ${colors.grayBorder}` },
-            },
-          }}
+          className={`w-${props.width ?? 'full'} bg-white rounded-md ${
+            props.hasBorder ? 'border border-gray-300' : ''
+          } focus-within:border focus-within:border-primary`}
         />
       </DemoContainer>
     </LocalizationProvider>

@@ -7,7 +7,7 @@ import {
 import { useEffect, useState } from 'react';
 import { styleFormFields } from '../../utils/formatters';
 
-type AppSelectType = {
+export type AppSelectType = {
   id: string | undefined;
   hasBorder?: boolean;
   value?: string | number | readonly string[] | undefined;
@@ -17,7 +17,7 @@ type AppSelectType = {
   width?: string;
   prefix?: string;
 };
-const AppSelect = ({ ...props }: AppSelectType) => {
+export const AppSelect = ({ ...props }: AppSelectType) => {
   useEffect(() => {
     if (typeof props.value == 'string') {
       setFieldValue(props.value);
@@ -35,7 +35,7 @@ const AppSelect = ({ ...props }: AppSelectType) => {
           setFieldValue(e.target.value);
         }}
         inputProps={{ 'aria-label': 'Without label' }}
-        sx={styleFormFields(props)}
+        className="border-1 border-gray-50 bg-primary-300"
       >
         {props.items &&
           props.items.map((e, index) => (

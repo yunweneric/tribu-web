@@ -1,5 +1,5 @@
-import { Box } from "@mui/material";
-import colors from "../../../utils/styles/colors.module.scss";
+import { Box } from '@mui/material';
+import colors from '../../../utils/styles/colors.module.scss';
 const FieldIcon = ({
   icon,
   bgColor,
@@ -16,12 +16,12 @@ const FieldIcon = ({
         backgroundColor: bgColor ?? colors.white,
         height: 40,
         width: 40,
-        borderRadius: "50%",
-        margin: "0 1rem",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        cursor: "pointer",
+        borderRadius: '50%',
+        margin: '0 1rem',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        cursor: 'pointer',
       }}
     >
       <img src={icon} alt="" width={20} height={20} />

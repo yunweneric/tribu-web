@@ -1,3 +1,4 @@
+import { AllFormInterfacesType, FormFields } from '@tribu/forms';
 import {
   Age,
   Children,
@@ -7,58 +8,128 @@ import {
   Language,
   MaritalStatus,
 } from '@tribu/targets';
-export const demographicData: Field[] = [
+export const demographicData: AllFormInterfacesType[] = [
   {
+    id: '',
+    index: 0,
+    activeSectionIndex: 0,
+    selectedElements: [],
+    name: 'Age',
+    icon: 'Age',
     label: 'Age',
-    type: 'radio',
+    placeholder: 'Age',
+    value: '',
+    type: FormFields.CHECKBOX,
     required: true,
-    values: Object.values(Age),
+    elements: Object.values(Age).map((item) => {
+      return {
+        value: item,
+        label: item,
+      };
+    }),
   },
   {
-    label: 'children',
-    type: 'checkbox',
+    id: '',
+    index: 0,
+    activeSectionIndex: 0,
+    selectedElements: [],
+    name: 'Children',
+    placeholder: 'Children',
+    icon: 'Children',
+    label: 'Children',
+    value: '',
+    type: FormFields.CHECKBOX,
     required: true,
-    values: Object.values(Children),
+    elements: Object.values(Children).map((item) => {
+      return {
+        value: item,
+        label: item,
+      };
+    }),
   },
   {
     label: 'Income Level',
-    type: 'radio',
+    placeholder: 'Income Level',
     required: true,
-    values: Object.values(IncomeDefault),
+    id: '',
+    index: 0,
+    activeSectionIndex: 0,
+    value: 0,
+    name: 'Children',
+    icon: 'Children',
+    type: FormFields.RADIO,
+    elements: Object.values(IncomeDefault).map((item) => {
+      return {
+        value: item,
+        label: item,
+      };
+    }),
   },
-  {
-    label: 'Income Level',
-    type: 'radio',
-    required: true,
-    values: Object.values(IncomeDefault),
-  },
+
   {
     label: 'Educational Level',
-    type: 'radio',
+    placeholder: 'Educational Level',
     required: true,
-    values: Object.values(Education),
+    id: '',
+    index: 0,
+    activeSectionIndex: 0,
+    value: 0,
+    name: 'Children',
+    icon: 'Children',
+    type: FormFields.RADIO,
+    elements: Object.values(Education).map((item) => {
+      return {
+        value: item,
+        label: item,
+      };
+    }),
   },
-  {
-    label: 'Educational Level',
-    type: 'radio',
-    required: true,
-    values: Object.values(MaritalStatus),
-  },
+
   {
     label: 'Household Size',
-    type: 'input',
+    placeholder: 'Household Size',
+    id: '',
+    index: 0,
+    activeSectionIndex: 0,
+    name: 'Household Size',
+    icon: 'Household Size',
+    value: '',
+    type: FormFields.INPUT,
     required: true,
   },
   {
+    placeholder: 'Ethnicity',
     label: 'Ethnicity',
-    type: 'radio',
     required: true,
-    values: Object.values(Ethnicity),
+    id: '',
+    index: 0,
+    activeSectionIndex: 0,
+    value: 0,
+    name: 'Children',
+    icon: 'Children',
+    type: FormFields.RADIO,
+    elements: Object.values(Ethnicity).map((item) => {
+      return {
+        value: item,
+        label: item,
+      };
+    }),
   },
   {
     label: 'Language',
-    type: 'radio',
     required: true,
-    values: Object.values(Language),
+    id: '',
+    index: 0,
+    activeSectionIndex: 0,
+    value: 0,
+    name: 'Children',
+    icon: 'Children',
+    type: FormFields.RADIO,
+    elements: Object.values(Language).map((item) => {
+      return {
+        value: item,
+        label: item,
+      };
+    }),
   },
 ];

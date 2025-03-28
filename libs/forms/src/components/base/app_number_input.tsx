@@ -1,8 +1,7 @@
 import { TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { styleFormFields } from '../../utils/formatters';
-
-type AppNumberInputType = {
+export type AppNumberInputType = {
   placeholder?: string | undefined;
   id: string | undefined;
   hasBorder?: boolean;
@@ -14,8 +13,7 @@ type AppNumberInputType = {
     | React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
     | undefined;
 };
-
-const AppNumberInput = ({ ...props }: AppNumberInputType) => {
+export const AppNumberInput = ({ ...props }: AppNumberInputType) => {
   useEffect(() => {
     // if (typeof props.value == "number") {
     //   if (props.value != 0) setFieldValue(props.value);
