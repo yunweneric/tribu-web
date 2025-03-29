@@ -8,3 +8,4 @@ export * from './base/app_select';
 export * from './base/app_slider';
 export * from './base/app_text_area';
 export * from './base/field_icon';
+export * from './base/app_multiselect';

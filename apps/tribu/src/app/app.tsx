@@ -9,7 +9,7 @@ import { AnimatePresence } from 'framer-motion';
 export function App() {
   const navigate = useNavigate();
   useEffect(() => {
-    navigate('/dashboard');
+    // navigate('/dashboard');
   }, []);
 
   return (

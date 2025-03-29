@@ -11,11 +11,15 @@ export type AppSelectType = {
   id: string | undefined;
   hasBorder?: boolean;
   value?: string | number | readonly string[] | undefined;
-  onChange: (event: SelectChangeEvent<string>, child: React.ReactNode) => void;
+  onChange: (
+    event: SelectChangeEvent<string | number | readonly string[]>,
+    child: React.ReactNode
+  ) => void;
   items: string[];
   fullWidth?: boolean;
   width?: string;
   prefix?: string;
+  label?: string;
 };
 export const AppSelect = ({ ...props }: AppSelectType) => {
   useEffect(() => {
@@ -23,12 +27,15 @@ export const AppSelect = ({ ...props }: AppSelectType) => {
       setFieldValue(props.value);
     }
   }, [props.value]);
-  const [fieldValue, setFieldValue] = useState<string>('');
+  const [fieldValue, setFieldValue] = useState<
+    string | number | readonly string[]
+  >('');
 
   return (
     <FormControl fullWidth={props.fullWidth} sx={{ width: props.width }}>
       <Select
-        displayEmpty
+        // displayEmpty
+        label={props.label}
         value={fieldValue}
         onChange={(e, child) => {
           props.onChange(e, child);

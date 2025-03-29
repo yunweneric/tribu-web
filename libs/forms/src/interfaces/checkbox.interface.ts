@@ -8,16 +8,16 @@ export interface FormItemElementInterface {
 }
 export interface CheckboxInterface {
   type: FormFields.CHECKBOX;
-  index: number;
   id: string;
   name: string;
   label: string;
   placeholder?: string;
   required?: boolean;
+  index: number;
   icon?: string | undefined;
   activeSectionIndex: number;
   isPreview?: boolean;
-  value: string | number | readonly string[] | undefined;
+  value: readonly number[] | readonly string[] | undefined;
   elements: FormItemElementInterface[];
   selectedElements: FormItemElementInterface[];
   branching?: BranchingBlockInterface;

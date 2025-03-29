@@ -1,5 +1,3 @@
-import { Age, DemographicDto } from '@tribu/targets';
-import { demographicFormData } from '../data/demographic_form_data';
 import {
   AllFormInterfacesType,
   AppInput,
@@ -7,15 +5,20 @@ import {
   AppSelect,
   AppMultiSelect,
 } from '@tribu/forms';
-interface DemographicProps {
-  data?: DemographicDto;
-  updateDemoGraphics: (data: DemographicDto) => undefined;
+
+interface AudienceGenericFormProps<T> {
+  data?: T;
+  formFields: AllFormInterfacesType[];
+  updateAudienceGenericForm: (data: T) => void;
 }
-const Demographic = ({ data, updateDemoGraphics }: DemographicProps) => {
+
+const AudienceGenericFormForm = <T,>({
+  data,
+  updateAudienceGenericForm,
+  formFields,
+}: AudienceGenericFormProps<T>) => {
   const generateField = (field: AllFormInterfacesType) => {
-    const value = data
-      ? (data[field['name'] as keyof DemographicDto] as string)
-      : '';
+    const value = data ? (data[field['name'] as keyof T] as string) : '';
 
     switch (field.type) {
       case FormFields.INPUT:
@@ -24,12 +27,13 @@ const Demographic = ({ data, updateDemoGraphics }: DemographicProps) => {
             <p>{field.label}</p>
             <AppInput
               {...field}
-              value={value}
+              // value={value}
               onChange={(e) => {
-                updateDemoGraphics({
+                // console.log(e);
+                updateAudienceGenericForm({
                   ...data,
                   [field.name]: e.target.value,
-                });
+                } as T);
               }}
             />
           </>
@@ -45,10 +49,10 @@ const Demographic = ({ data, updateDemoGraphics }: DemographicProps) => {
               fullWidth={true}
               value={value}
               onChange={(e) => {
-                updateDemoGraphics({
+                updateAudienceGenericForm({
                   ...data,
                   [field.name]: e.target.value,
-                });
+                } as T);
               }}
             />
           </>
@@ -64,10 +68,10 @@ const Demographic = ({ data, updateDemoGraphics }: DemographicProps) => {
               fullWidth={true}
               value={[value]}
               onChange={(e) => {
-                updateDemoGraphics({
+                updateAudienceGenericForm({
                   ...data,
                   [field.name]: e,
-                });
+                } as T);
               }}
             />
           </>
@@ -78,9 +82,10 @@ const Demographic = ({ data, updateDemoGraphics }: DemographicProps) => {
     }
     return <></>;
   };
+
   return (
     <div className="w-full">
-      {...demographicFormData.map((field, key) => {
+      {formFields.map((field, key) => {
         return (
           <div className="mb-3" key={key}>
             {generateField(field)}
@@ -91,4 +96,4 @@ const Demographic = ({ data, updateDemoGraphics }: DemographicProps) => {
   );
 };
 
-export default Demographic;
+export default AudienceGenericFormForm;

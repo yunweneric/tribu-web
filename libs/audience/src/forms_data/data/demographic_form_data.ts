@@ -8,18 +8,18 @@ import {
   Language,
   MaritalStatus,
 } from '@tribu/targets';
-export const demographicData: AllFormInterfacesType[] = [
+export const demographicFormData: AllFormInterfacesType[] = [
   {
     id: '',
     index: 0,
     activeSectionIndex: 0,
-    selectedElements: [],
-    name: 'Age',
-    icon: 'Age',
+    // selectedElements: [],
+    name: 'age',
+    icon: 'age',
     label: 'Age',
     placeholder: 'Age',
     value: '',
-    type: FormFields.CHECKBOX,
+    type: FormFields.RADIO,
     required: true,
     elements: Object.values(Age).map((item) => {
       return {
@@ -32,13 +32,13 @@ export const demographicData: AllFormInterfacesType[] = [
     id: '',
     index: 0,
     activeSectionIndex: 0,
-    selectedElements: [],
-    name: 'Children',
+    // selectedElements: [],
+    name: 'children',
     placeholder: 'Children',
     icon: 'Children',
     label: 'Children',
     value: '',
-    type: FormFields.CHECKBOX,
+    type: FormFields.RADIO,
     required: true,
     elements: Object.values(Children).map((item) => {
       return {
@@ -55,8 +55,8 @@ export const demographicData: AllFormInterfacesType[] = [
     index: 0,
     activeSectionIndex: 0,
     value: 0,
-    name: 'Children',
-    icon: 'Children',
+    name: 'income',
+    icon: 'income',
     type: FormFields.RADIO,
     elements: Object.values(IncomeDefault).map((item) => {
       return {
@@ -74,8 +74,8 @@ export const demographicData: AllFormInterfacesType[] = [
     index: 0,
     activeSectionIndex: 0,
     value: 0,
-    name: 'Children',
-    icon: 'Children',
+    name: 'education_level',
+    icon: 'education_level',
     type: FormFields.RADIO,
     elements: Object.values(Education).map((item) => {
       return {
@@ -91,7 +91,7 @@ export const demographicData: AllFormInterfacesType[] = [
     id: '',
     index: 0,
     activeSectionIndex: 0,
-    name: 'Household Size',
+    name: 'household_size',
     icon: 'Household Size',
     value: '',
     type: FormFields.INPUT,
@@ -105,8 +105,8 @@ export const demographicData: AllFormInterfacesType[] = [
     index: 0,
     activeSectionIndex: 0,
     value: 0,
-    name: 'Children',
-    icon: 'Children',
+    name: 'ethnicity',
+    icon: 'ethnicity',
     type: FormFields.RADIO,
     elements: Object.values(Ethnicity).map((item) => {
       return {
@@ -122,8 +122,8 @@ export const demographicData: AllFormInterfacesType[] = [
     index: 0,
     activeSectionIndex: 0,
     value: 0,
-    name: 'Children',
-    icon: 'Children',
+    name: 'language',
+    icon: 'language',
     type: FormFields.RADIO,
     elements: Object.values(Language).map((item) => {
       return {

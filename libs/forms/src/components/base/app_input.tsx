@@ -4,6 +4,7 @@ import { styleFormFields } from '../../utils/formatters';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 export type AppInputType = {
   placeholder?: string | undefined;
+  label?: string | undefined;
   type: string | undefined;
   id: string | undefined;
   hasBorder?: boolean;
@@ -34,6 +35,7 @@ export const AppInput: FC<AppInputType> = ({ ...props }: AppInputType) => {
     <TextField
       type={props.type}
       fullWidth
+      label={props.label}
       variant="outlined"
       id={props.id}
       sx={styleFormFields(props)}
@@ -51,36 +53,6 @@ export const AppInput: FC<AppInputType> = ({ ...props }: AppInputType) => {
         type: props.type,
         style: { ...props.styles },
       }}
-    />
-  );
-  return (
-    <TextField
-      type={props.type}
-      fullWidth
-      variant="outlined"
-      id={props.id}
-      inputProps={{
-        // startAdornment: props.startAdornment,
-
-        maxLength: props.maxLength,
-        minLength: props.minLength,
-        type: props.type,
-
-        style: { ...props.styles },
-
-        startAdornment: (
-          <InputAdornment position="start">
-            <AccountCircle />
-          </InputAdornment>
-        ),
-      }}
-      placeholder={props.placeholder}
-      onChange={(e) => {
-        props.onChange && props.onChange(e);
-        setFieldValue(e.target.value);
-      }}
-      value={fieldValue}
-      sx={styleFormFields(props)}
     />
   );
 };
