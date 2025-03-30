@@ -1,7 +1,7 @@
-import { FormFields } from "../enum";
+import { FormFields } from '../enum';
 
-import { BranchingBlockInterface } from "./index";
-import { ConditionLinkEnum } from "../enum/condition_actions";
+import { BranchingBlockInterface } from './index';
+import { ConditionLinkEnum } from '../enum/condition_actions';
 export interface NumberInputInterface {
   type: FormFields.NUMBER_INPUT;
   name: string;
@@ -14,7 +14,7 @@ export interface NumberInputInterface {
   max?: number;
   activeSectionIndex: number;
   id: string;
-  value?: number | readonly number[] | undefined;
+  value?: number | undefined;
 
   branching?: BranchingBlockInterface;
 

@@ -5,7 +5,7 @@ export type AppNumberInputType = {
   placeholder?: string | undefined;
   id: string | undefined;
   hasBorder?: boolean;
-  value?: number | null;
+  value?: number | undefined;
   max?: number;
   min?: number;
   isPreview?: boolean;

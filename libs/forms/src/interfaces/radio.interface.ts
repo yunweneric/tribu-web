@@ -17,7 +17,7 @@ export interface RadioInterface {
   index: number;
   activeSectionIndex: number;
   id: string;
-  value: number | string;
+  value?: number | string | undefined;
   elements: RadioItemInterface[];
   branching?: BranchingBlockInterface;
   conditionLink?: ConditionLinkEnum.OR | ConditionLinkEnum.AND;

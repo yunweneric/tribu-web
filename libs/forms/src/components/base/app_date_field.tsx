@@ -5,17 +5,17 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { roundUpToMidnight } from '../../utils/formatters';
-export type AppDatePicker = {
+export type AppDatePickerProps = {
   id: string | undefined;
   onChange?: (value: Date) => Date;
   hasBorder?: boolean;
-  value?: string | number;
+  value?: Date | undefined;
   width?: string;
   minDate?: Dayjs;
   maxDate?: Dayjs;
 };
 
-export default function AppDatePicker(props: AppDatePicker) {
+export const AppDatePicker = (props: AppDatePickerProps) => {
   const [initialValue, setValue] = React.useState<Dayjs | null>(dayjs(null));
   React.useEffect(() => {
     setValue(dayjs(props.value));
@@ -44,4 +44,4 @@ export default function AppDatePicker(props: AppDatePicker) {
       </DemoContainer>
     </LocalizationProvider>
   );
-}
+};

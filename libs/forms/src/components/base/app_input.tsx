@@ -38,7 +38,10 @@ export const AppInput: FC<AppInputType> = ({ ...props }: AppInputType) => {
       label={props.label}
       variant="outlined"
       id={props.id}
-      sx={styleFormFields(props)}
+      // sx={styleFormFields(props)}
+      sx={{
+        py: 1.5,
+      }}
       value={fieldValue}
       placeholder={props.placeholder}
       onChange={(e) => {

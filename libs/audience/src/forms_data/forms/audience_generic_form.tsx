@@ -4,6 +4,8 @@ import {
   FormFields,
   AppSelect,
   AppMultiSelect,
+  AppNumberInput,
+  AppDatePicker,
 } from '@tribu/forms';
 
 interface AudienceGenericFormProps<T> {
@@ -23,58 +25,77 @@ const AudienceGenericFormForm = <T,>({
     switch (field.type) {
       case FormFields.INPUT:
         return (
-          <>
-            <p>{field.label}</p>
-            <AppInput
-              {...field}
-              // value={value}
-              onChange={(e) => {
-                // console.log(e);
-                updateAudienceGenericForm({
-                  ...data,
-                  [field.name]: e.target.value,
-                } as T);
-              }}
-            />
-          </>
+          <AppInput
+            {...field}
+            // value={value}
+            onChange={(e) => {
+              // console.log(e);
+              updateAudienceGenericForm({
+                ...data,
+                [field.name]: e.target.value,
+              } as T);
+            }}
+          />
+        );
+      case FormFields.NUMBER_INPUT:
+        return (
+          <AppNumberInput
+            {...field}
+            // value={value}
+            onChange={(e) => {
+              updateAudienceGenericForm({
+                ...data,
+                [field.name]: e.target.value,
+              } as T);
+            }}
+          />
+        );
+
+      case FormFields.DATE_TIME:
+        return (
+          <AppDatePicker
+            {...field}
+            // value={value}
+            onChange={(e) => {
+              updateAudienceGenericForm({
+                ...data,
+                [field.name]: e,
+              } as T);
+              return e;
+            }}
+          />
         );
 
       case FormFields.RADIO:
         return (
-          <>
-            <p>{field.label}</p>
-            <AppSelect
-              items={field.elements.map((e) => e.value)}
-              {...field}
-              fullWidth={true}
-              value={value}
-              onChange={(e) => {
-                updateAudienceGenericForm({
-                  ...data,
-                  [field.name]: e.target.value,
-                } as T);
-              }}
-            />
-          </>
+          <AppSelect
+            items={field.elements.map((e) => e.value)}
+            {...field}
+            fullWidth={true}
+            value={value}
+            onChange={(e) => {
+              updateAudienceGenericForm({
+                ...data,
+                [field.name]: e.target.value,
+              } as T);
+            }}
+          />
         );
 
       case FormFields.CHECKBOX:
         return (
-          <>
-            <p>{field.label}</p>
-            <AppMultiSelect
-              items={field.elements.map((e) => e.value)}
-              {...field}
-              fullWidth={true}
-              value={[value]}
-              onChange={(e) => {
-                updateAudienceGenericForm({
-                  ...data,
-                  [field.name]: e,
-                } as T);
-              }}
-            />
-          </>
+          <AppMultiSelect
+            items={field.elements.map((e) => e.value)}
+            {...field}
+            fullWidth={true}
+            value={[value]}
+            onChange={(e) => {
+              updateAudienceGenericForm({
+                ...data,
+                [field.name]: e,
+              } as T);
+            }}
+          />
         );
 
       default:
@@ -88,6 +109,7 @@ const AudienceGenericFormForm = <T,>({
       {formFields.map((field, key) => {
         return (
           <div className="mb-3" key={key}>
+            <p>{field.label}</p>
             {generateField(field)}
           </div>
         );

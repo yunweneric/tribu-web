@@ -5,6 +5,7 @@ import { SocialDataDto } from './social-data.dto';
 import { ILocationDto } from './location.dto';
 import { IBehavioral } from './behavioral.dto';
 import { IDeviceDto } from './device.dto';
+import { TransactionDataDto } from './transactional_data.dto';
 
 export interface PersonaDto {
   location?: ILocationDto;
@@ -15,6 +16,7 @@ export interface PersonaDto {
   weatherAndClimate?: WeatherAndClimateDto;
   socialData?: SocialDataDto;
   audienceSize?: number;
+  transactionalData?: TransactionDataDto;
 }
 
 export interface UpdatePersonaDto extends Partial<PersonaDto> {}

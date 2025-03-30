@@ -3,19 +3,27 @@ import React from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { demographicFormData } from '../forms_data/data/demographic_form_data';
 import { AllFormInterfacesType } from '@tribu/forms';
-import { DemographicDto, PersonaDto, PsychographicsDto } from '@tribu/targets';
+import {
+  DemographicDto,
+  PersonaDto,
+  PsychographicsDto,
+  TransactionDataDto,
+} from '@tribu/targets';
 import { psychographicFormData } from '../forms_data/data/psychographic_form_data';
 import AudienceGenericFormForm from '../forms_data/forms/audience_generic_form';
 import { IBehavioral } from 'libs/targets/src/interfaces/behavioral.dto';
 import { behavioralFormData } from '../forms_data/data/behavior_form_data';
+import { WeatherAndClimateDto } from 'libs/targets/src/interfaces/weather-and-climate.dto';
+import { weatherAndClimateFormData } from '../forms_data/data/weather_and_climate_form_data';
+import { transactionFormData } from '../forms_data/data/transaction_form_data';
 
 enum Parameters {
   Demographics = 'Demographics',
   Psychographics = 'Psychographics',
   Behavior = 'Behavior',
-  WeatherAndClimateDto = 'Weather And ClimateDto',
+  WeatherAndClimate = 'Weather And Climate',
+  TransactionalData = 'Transactional Data',
   DeviceType = 'Device type',
-  OffLimits = 'Off Limits',
   Location = 'Location',
 }
 
@@ -28,7 +36,9 @@ export const NewAudienceGroup = () => {
   const formData: FormStructure[] = [
     { data: demographicFormData, title: Parameters.Demographics },
     { data: psychographicFormData, title: Parameters.Psychographics },
-    { data: demographicFormData, title: Parameters.Behavior },
+    { data: behavioralFormData, title: Parameters.Behavior },
+    { data: weatherAndClimateFormData, title: Parameters.WeatherAndClimate },
+    { data: transactionFormData, title: Parameters.TransactionalData },
     { data: demographicFormData, title: Parameters.DeviceType },
     { data: demographicFormData, title: Parameters.Location },
   ];
@@ -73,6 +83,26 @@ export const NewAudienceGroup = () => {
             }}
           />
         );
+      case Parameters.WeatherAndClimate:
+        return (
+          <AudienceGenericFormForm<WeatherAndClimateDto>
+            data={formDataValue?.weatherAndClimate}
+            formFields={weatherAndClimateFormData}
+            updateAudienceGenericForm={(data) => {
+              setFormDataValue({ ...formDataValue, weatherAndClimate: data });
+            }}
+          />
+        );
+      case Parameters.TransactionalData:
+        return (
+          <AudienceGenericFormForm<TransactionDataDto>
+            data={formDataValue?.transactionalData}
+            formFields={transactionFormData}
+            updateAudienceGenericForm={(data) => {
+              setFormDataValue({ ...formDataValue, transactionalData: data });
+            }}
+          />
+        );
 
       default:
         break;
@@ -95,7 +125,7 @@ export const NewAudienceGroup = () => {
               {formData.map((parameter, index) => (
                 <div
                   key={`{${parameter}-x-${index}`}
-                  className={`py-2 cursor-pointer pl-2 text-sm ${
+                  className={`py-4 cursor-pointer pl-2 text-sm ${
                     currentParameter.title === parameter.title
                       ? 'bg-gray-100 border-r-primary-500 border-r-2'
                       : ''
@@ -234,6 +264,65 @@ const GenerateChipPreview = ({
                     updatePersona({
                       ...persona,
                       behavioral: updatedDemographic,
+                    });
+                  }}
+                />
+              }
+            />
+          );
+        })
+      );
+
+    case Parameters.WeatherAndClimate:
+      return (
+        persona.weatherAndClimate &&
+        Object.keys(persona.weatherAndClimate).map((key, index) => {
+          const item = key as keyof typeof persona.weatherAndClimate;
+          return (
+            <Chip
+              label={persona.weatherAndClimate?.[item]?.toString() || ''}
+              key={`${item}-y-${index}`}
+              additionClasses="bg-gray-50 text-gray-800 font-light px-4  border border-gray-100 text-sm hover:border-gray-100"
+              icon={
+                <IoMdClose
+                  className="hover:bg-gray-100 rounded-full w-6 h-6 p-1 "
+                  onClick={() => {
+                    const updatedWeatherAndClimate = {
+                      ...persona.weatherAndClimate,
+                    };
+                    delete updatedWeatherAndClimate[item];
+                    updatePersona({
+                      ...persona,
+                      weatherAndClimate: updatedWeatherAndClimate,
+                    });
+                  }}
+                />
+              }
+            />
+          );
+        })
+      );
+    case Parameters.TransactionalData:
+      return (
+        persona.transactionalData &&
+        Object.keys(persona.transactionalData).map((key, index) => {
+          const item = key as keyof typeof persona.transactionalData;
+          return (
+            <Chip
+              label={persona.transactionalData?.[item]?.toString() || ''}
+              key={`${item}-y-${index}`}
+              additionClasses="bg-gray-50 text-gray-800 font-light px-4  border border-gray-100 text-sm hover:border-gray-100"
+              icon={
+                <IoMdClose
+                  className="hover:bg-gray-100 rounded-full w-6 h-6 p-1 "
+                  onClick={() => {
+                    const updatedTransactionalData = {
+                      ...persona.transactionalData,
+                    };
+                    delete updatedTransactionalData[item];
+                    updatePersona({
+                      ...persona,
+                      transactionalData: updatedTransactionalData,
                     });
                   }}
                 />
