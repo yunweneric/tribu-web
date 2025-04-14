@@ -6,12 +6,16 @@ import {
   AppMultiSelect,
   AppNumberInput,
   AppDatePicker,
+  FormDateField,
+  FormNumberField,
+  FormRadioSelect,
+  FormCheckBox,
 } from '@tribu/forms';
 import { Control, FieldValues, Path } from 'react-hook-form';
 
 interface AudienceGenericFormProps<T extends FieldValues> {
   data?: T;
-  control: Control<FieldValues>;
+  control: any;
   formFields: AllFormInterfacesType[];
   updateAudienceGenericForm: (data: T) => void;
 }
@@ -40,47 +44,49 @@ const AudienceGenericForm = <T extends FieldValues>({
             type={FormFields.INPUT}
             name={field.name}
             control={control}
-            onChange={(e) => handleChange(field.name, e.target.value)}
+            onChange={(e: any) => handleChange(field.name, e.target.value)}
           />
         );
 
       case FormFields.NUMBER_INPUT:
         return (
-          <AppNumberInput
+          <FormNumberField
             {...field}
+            control={control}
             onChange={(e) => handleChange(field.name, e.target.value)}
           />
         );
 
       case FormFields.DATE_TIME:
         return (
-          <AppDatePicker
+          <FormDateField
             {...field}
-            // onChange={(e) => handleChange(field.name, e)}
+            control={control}
+            // onChange={(e: any) => handleChange(field.name, e)}
           />
         );
 
       case FormFields.RADIO:
         return (
-          <AppSelect
-            items={field.elements.map((e) => e.value)}
+          <FormRadioSelect
+            // items={field.elements}
             {...field}
-            fullWidth
             value={value}
+            control={control}
             onChange={(e) => handleChange(field.name, e.target.value)}
           />
         );
 
-      case FormFields.CHECKBOX:
-        return (
-          <AppMultiSelect
-            items={field.elements.map((e) => e.value)}
-            {...field}
-            fullWidth
-            value={Array.isArray(value) ? value : [value]}
-            onChange={(e) => handleChange(field.name, e)}
-          />
-        );
+      // case FormFields.CHECKBOX:
+      //   return (
+      //     <FormCheckBox
+      //       control={control}
+      //       // items={field.elements.map((e) => e.value)}
+      //       {...field}
+      //       value={Array.isArray(value) ? value : [value]}
+      //       onChange={(e) => handleChange(field.name, e)}
+      //     />
+      //   );
 
       default:
         return (

@@ -22,4 +22,7 @@ export interface RadioInterface {
   branching?: BranchingBlockInterface;
   conditionLink?: ConditionLinkEnum.OR | ConditionLinkEnum.AND;
   previousItemId?: string;
+  onChange?:
+    | ((event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void)
+    | undefined;
 }

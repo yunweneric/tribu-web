@@ -20,7 +20,9 @@ export const FormInputField = (item: FormInputFieldInterface) => {
             <AppInput
               {...item}
               hasBorder={item.isPreview}
-              onChange={onChange}
+              onChange={(e) => {
+                onChange(e);
+              }}
               value={value}
             />
             <AppErrorMessage message={error?.message} />

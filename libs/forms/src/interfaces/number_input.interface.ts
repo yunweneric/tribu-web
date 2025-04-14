@@ -15,10 +15,11 @@ export interface NumberInputInterface {
   activeSectionIndex: number;
   id: string;
   value?: number | undefined;
-
   branching?: BranchingBlockInterface;
-
   conditionLink?: ConditionLinkEnum.OR | ConditionLinkEnum.AND;
   previousItemId?: string;
   isPreview?: boolean;
+  onChange?:
+    | React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
+    | undefined;
 }

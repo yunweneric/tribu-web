@@ -22,4 +22,7 @@ export interface TextInputInterface {
   branching?: BranchingBlockInterface;
   conditionLink?: ConditionLinkEnum.OR | ConditionLinkEnum.AND;
   previousItemId?: string;
+  onChange?:
+    | React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
+    | undefined;
 }
