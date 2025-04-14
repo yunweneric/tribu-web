@@ -1,31 +1,35 @@
+import {
+  AllFormInterfacesType,
+  FormCheckBox,
+  FormDateField,
+  FormFields,
+  FormInputField,
+  FormMatrix,
+  FormNumberField,
+  FormParagraph,
+  FormRadioSelect,
+  FormRankingField,
+  FormRating,
+  FormSlider,
+  FormTextArea,
+  TextAreaInterface,
+  TextInputInterface,
+} from '@tribu/forms';
 import { FC } from 'react';
-import { FormFields } from '../../../../../../libs/forms/src/enum';
-import FormInputField from './form_input_field';
-import FormTextArea from './form_textarea';
-import FormSlider from './form_slider';
-import FormRating from './form_rating';
-import FormRadioSelect from './form_radio';
-import FormCheckBox from './form_checkboxes';
-import { AllFormInterfacesType } from '../../../../../../libs/forms/src/types/all_form_types';
-import FormNumberField from './form_number_field';
 import FormDivider from './form_divider';
-import FormMatrix from './form_matrix';
-import FormDateField from './form_date_field';
-import FormRankingField from './form_ranking';
-import FormParagraph from './form_paragraph';
 
 const FormFieldRenderer: FC<AllFormInterfacesType> = (
   item: AllFormInterfacesType
 ) => {
   switch (item.type) {
     case FormFields.INPUT:
-      return <FormInputField {...item} />;
+      return <FormInputField {...(item as TextInputInterface)} />;
 
     case FormFields.TEXTAREA:
       return <FormTextArea {...item} />;
 
     case FormFields.PARAGRAPH:
-      return <FormParagraph {...item} />;
+      return <FormParagraph {...(item as TextAreaInterface)} />;
 
     case FormFields.NUMBER_INPUT:
       return <FormNumberField {...item} />;

@@ -29,6 +29,7 @@ export const AppNumberInput = ({ ...props }: AppNumberInputType) => {
       variant="outlined"
       id={props.id}
       type="number"
+      size="small"
       inputProps={{ max: props.max, min: props.min }}
       placeholder={props.placeholder}
       onChange={(e) => {

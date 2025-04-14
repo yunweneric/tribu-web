@@ -1,10 +1,8 @@
 import { Chip, Avatar, Box } from '@mui/material';
 import { FC } from 'react';
-import { FormFields } from '../../../../../libs/forms/src/enum';
-import AppInput from '../forms/base/app_input';
-
 import colors from '../../utils/styles/colors.module.scss';
 import BaseContainer from './base_container';
+import { AppInput, FormFields } from '@tribu/forms';
 
 type AppQuestionProps = {
   label: string;

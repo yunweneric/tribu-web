@@ -1,4 +1,3 @@
-import FieldIcon from './field_icon';
 import styles from '../styles/input_field.module.scss';
 import copy from '../../../assets/icons/copy.svg';
 import trash from '../../../assets/icons/trash.svg';
@@ -15,7 +14,7 @@ import {
 import { FC, ReactNode } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../data/store/app_store';
-import { AllFormInterfacesType } from '@tribu/forms';
+import { AllFormInterfacesType, FieldIcon } from '@tribu/forms';
 import React from 'react';
 import AppModal from '../../conditions/conditional_model';
 import { FormFields } from '../../../../../../libs/forms/src/enum';

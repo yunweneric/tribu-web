@@ -8,7 +8,6 @@ import {
   Stepper,
   Typography,
 } from '@mui/material';
-import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
 import colors from '../../utils/styles/colors.module.scss';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
@@ -17,20 +16,21 @@ import { useDispatch } from 'react-redux';
 import { setActiveSection, updateFormField } from '../../data/logic/form.slice';
 import AppQuestion from './app_question';
 import AppConditionStep from './app_condition_step';
-import { BranchingBlockInterface } from '../../data/interfaces';
 import { faker } from '@faker-js/faker';
 import AppBranchActionComponent from './app_action';
 import AppBranchConditionComponent from './app_condition';
 import SimpleListMenu from './condition_menu';
-import { FormFields } from '../../../../../libs/forms/src/enum';
+import { Close } from '@mui/icons-material';
 import {
+  AllFormInterfacesType,
+  BranchingBlockInterface,
   ActionActions,
   ConditionActions,
   actionSelectOptions,
   conditionInputActions,
   conditionSelectActions,
-} from '../../../../../libs/forms/src/enum/condition_actions';
-import { Close } from '@mui/icons-material';
+  FormFields,
+} from '@tribu/forms';
 
 type AppModalProps = {
   open: boolean;
@@ -42,13 +42,13 @@ const AppModal: FC<AppModalProps> = ({ open, handleClose, selectedItem }) => {
   const { sections } = useSelector((state: RootState) => state.form);
 
   const allBranchingFormItem = sections[
-    selectedItem.activeSectionIndex
+    selectedItem!.activeSectionIndex
   ].formItems.filter((item) => item.branching != null);
 
   const dispatch = useDispatch();
 
   const handleForm = () => {
-    if (selectedItem.branching == null) {
+    if (selectedItem?.branching == null) {
       const branch: BranchingBlockInterface = {
         id: faker.string.uuid(),
         condition: [
@@ -65,7 +65,7 @@ const AppModal: FC<AppModalProps> = ({ open, handleClose, selectedItem }) => {
         },
       };
       const newItem = { ...selectedItem, branching: branch };
-      dispatch(setActiveSection(newItem.activeSectionIndex));
+      // dispatch(setActiveSection(newItem.activeSectionIndex));
       dispatch(updateFormField(newItem));
     } else {
       console.log('Proceeding ...');
@@ -193,7 +193,7 @@ const AppModal: FC<AppModalProps> = ({ open, handleClose, selectedItem }) => {
                             justifyContent={'center'}
                           >
                             <SimpleListMenu
-                              initialOption={formItem.conditionLink}
+                              initialOption={formItem.conditionLink!}
                               onChangeOption={(option) => {
                                 const newItem: AllFormInterfacesType = {
                                   ...formItem,
@@ -210,13 +210,13 @@ const AppModal: FC<AppModalProps> = ({ open, handleClose, selectedItem }) => {
                         key={index}
                         formItem={formItem}
                         equality_options={getOptions(formItem.type)}
-                        condition_or_action={formItem.branching.condition[0]}
+                        condition_or_action={formItem.branching!.condition[0]}
                       />
-                      {formItem.branching.condition.length > 1 && (
+                      {formItem.branching!.condition.length > 1 && (
                         <Step>
                           <AppConditionStep
                             condition_or_action={
-                              formItem.branching.condition[1]
+                              formItem.branching!.condition[1]
                             }
                             equality_options={getOptions(formItem.type)}
                             formItem={formItem}
@@ -266,10 +266,10 @@ const AppModal: FC<AppModalProps> = ({ open, handleClose, selectedItem }) => {
             variant="contained"
             sx={{ color: colors.white, textTransform: 'capitalize' }}
             onClick={
-              selectedItem.branching == null ? handleForm : handleProceed
+              selectedItem?.branching == null ? handleForm : handleProceed
             }
           >
-            {selectedItem.branching == null ? 'Add Condition' : 'Proceed'}
+            {selectedItem?.branching == null ? 'Add Condition' : 'Proceed'}
           </Button>
         </Box>
       </Box>

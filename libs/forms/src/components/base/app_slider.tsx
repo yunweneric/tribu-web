@@ -26,6 +26,7 @@ export const AppSlider = ({ ...props }: AppSliderType) => {
 
   return (
     <Slider
+      size="small"
       itemID={props.id}
       aria-label={props.placeholder}
       id={props.label}

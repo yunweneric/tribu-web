@@ -5,6 +5,7 @@ import DataTable, {
   TableStyles,
 } from 'react-data-table-component';
 import TableLoader from './table_loader';
+
 const customStyles: TableStyles = {
   table: {
     style: {

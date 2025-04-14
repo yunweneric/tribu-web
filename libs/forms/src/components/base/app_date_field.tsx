@@ -29,6 +29,11 @@ export const AppDatePicker = (props: AppDatePickerProps) => {
           value={initialValue}
           minDate={props.minDate}
           maxDate={props.maxDate}
+          slotProps={{
+            textField: {
+              size: 'small',
+            },
+          }}
           onChange={(newValue) => {
             setValue(newValue);
             if (props.onChange) {

@@ -4,11 +4,7 @@ import Menu from '@mui/material/Menu';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import colors from '../../utils/styles/colors.module.scss';
 import { Button, Typography } from '@mui/material';
-import {
-  ConditionLinkEnum,
-  conditionLinks,
-} from '../../../../../libs/forms/src/enum/condition_actions';
-
+import { ConditionLinkEnum, conditionLinks } from '@tribu/forms';
 const options = conditionLinks;
 
 type SimpleListMenuType = {

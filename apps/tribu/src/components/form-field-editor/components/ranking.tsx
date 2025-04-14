@@ -1,12 +1,15 @@
-import { RankingInterface, StepLabelItem } from '@tribu/forms';
+import {
+  AppInput,
+  AppNumberInput,
+  RankingInterface,
+  StepLabelItem,
+} from '@tribu/forms';
 import { Box, Divider, IconButton, Stack, Typography } from '@mui/material';
-import AppInput from '../../forms/base/app_input';
 import { useDispatch } from 'react-redux';
 import {
   setSelectedField,
   updateFormField,
 } from '../../../data/logic/form.slice';
-import AppNumberInput from '../../forms/base/app_number_input';
 import colors from '../../../utils/styles/colors.module.scss';
 import { useState } from 'react';
 import { Close } from '@mui/icons-material';
@@ -15,11 +18,11 @@ import { faker } from '@faker-js/faker';
 type StepItem = {
   from: number;
   to: number;
-  name: string | null;
+  name?: string;
 };
 const FormRankingRenderer = (formItem: RankingInterface) => {
   const dispatch = useDispatch();
-  const [stepItem, setStepItem] = useState<StepItem | null>(null);
+  const [stepItem, setStepItem] = useState<StepItem | undefined>();
   return (
     <Box width={'100%'} mb={2}>
       <AppInput
@@ -65,7 +68,7 @@ const FormRankingRenderer = (formItem: RankingInterface) => {
       <AppNumberInput
         placeholder="Step"
         id={formItem.id}
-        value={formItem.steps.length == 0 ? null : formItem.steps.length}
+        value={formItem.steps.length == 0 ? undefined : formItem.steps.length}
         max={10}
         min={3}
         onChange={(e) => {
@@ -153,7 +156,7 @@ const FormRankingRenderer = (formItem: RankingInterface) => {
                 id={stepItem?.name}
                 value={stepItem?.name}
                 onChange={(e) =>
-                  setStepItem({ ...stepItem, name: e.target.value })
+                  setStepItem({ ...stepItem!, name: e.target.value as string })
                 }
                 hasBorder={true}
                 type={formItem.type}
@@ -168,7 +171,7 @@ const FormRankingRenderer = (formItem: RankingInterface) => {
                 value={stepItem?.from}
                 onChange={(e) =>
                   setStepItem({
-                    ...stepItem,
+                    ...stepItem!,
                     from:
                       Number(e.target.value) == 0 ? 1 : Number(e.target.value),
                   })
@@ -183,7 +186,7 @@ const FormRankingRenderer = (formItem: RankingInterface) => {
                 max={10}
                 onChange={(e) =>
                   setStepItem({
-                    ...stepItem,
+                    ...stepItem!,
                     to:
                       Number(e.target.value) == 0 ? 1 : Number(e.target.value),
                   })
@@ -207,9 +210,9 @@ const FormRankingRenderer = (formItem: RankingInterface) => {
               }}
               onClick={() => {
                 const newLabel: StepLabelItem = {
-                  name: stepItem.name,
-                  from: stepItem.from,
-                  to: stepItem.to,
+                  name: stepItem!.name!,
+                  from: stepItem!.from,
+                  to: stepItem!.to,
                   id: faker.string.uuid(),
                 };
                 const stepLabels: StepLabelItem[] = [
@@ -222,11 +225,7 @@ const FormRankingRenderer = (formItem: RankingInterface) => {
                   stepLabels: stepLabels,
                 };
                 dispatch(updateFormField(updatedItem));
-                setStepItem({
-                  from: null,
-                  to: null,
-                  name: '',
-                });
+                setStepItem(undefined);
               }}
             >
               <Typography variant={'caption'}>Add Step</Typography>

@@ -1,6 +1,6 @@
 import React, { InputHTMLAttributes, ReactNode } from 'react';
 
-export interface AppInputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface AppUIInputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: ReactNode;
   additionalClasses?: string;
   hint?: string;
@@ -8,7 +8,7 @@ export interface AppInputProps extends InputHTMLAttributes<HTMLInputElement> {
   inputClasses?: string;
 }
 
-export const AppInput: React.FC<AppInputProps> = ({
+export const AppUIInput: React.FC<AppUIInputProps> = ({
   icon,
   additionalClasses,
   inputClasses,
@@ -30,4 +30,4 @@ export const AppInput: React.FC<AppInputProps> = ({
   );
 };
 
-export default AppInput;
+export default AppUIInput;

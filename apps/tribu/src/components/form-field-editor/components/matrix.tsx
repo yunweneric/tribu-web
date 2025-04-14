@@ -1,6 +1,5 @@
 import { Box } from '@mui/system';
-import AppInput from '../../forms/base/app_input';
-import { MatrixInterface } from '@tribu/forms';
+import { MatrixInterface, AppInput } from '@tribu/forms';
 import { useDispatch } from 'react-redux';
 import {
   setSelectedField,

@@ -1,13 +1,16 @@
 import { Box } from '@mui/system';
-import AppInput from '../../forms/base/app_input';
-import { NumberInputInterface, SliderInterface } from '@tribu/forms';
+import {
+  NumberInputInterface,
+  AppInput,
+  SliderInterface,
+  AppNumberInput,
+} from '@tribu/forms';
 import { useDispatch } from 'react-redux';
 import {
   setSelectedField,
   updateFormField,
 } from '../../../data/logic/form.slice';
 import { Stack } from '@mui/material';
-import AppNumberInput from '../../forms/base/app_number_input';
 
 const FormInputNumberRenderer = (
   formItem: NumberInputInterface | SliderInterface

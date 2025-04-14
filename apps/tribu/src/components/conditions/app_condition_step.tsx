@@ -1,6 +1,5 @@
 import { Stack, Box } from '@mui/system';
 import { FC } from 'react';
-import AppSelect from '../forms/base/app_select';
 import BaseContainer from './base_container';
 import RenderConditionalField from './render_conditional';
 import { useDispatch } from 'react-redux';
@@ -9,6 +8,7 @@ import { conditionTypes } from '../../../../../libs/forms/src/enum/condition_act
 import {
   AllFormInterfacesType,
   AppConditionProps,
+  AppSelect,
   ConditionInterface,
   convertConditionStringToEnum,
   updateFormFieldWithConditions,
@@ -40,8 +40,8 @@ const AppConditionStep: FC<AppConditionProps> = ({
             <AppSelect
               hasBorder={true}
               id={formItem.id}
-              onChange={(event, child) => {
-                console.log(event, child);
+              onChange={(event: any) => {
+                // console.log(event, child);
                 updateConditionSelectField(event.target.value);
               }}
               items={equality_options}

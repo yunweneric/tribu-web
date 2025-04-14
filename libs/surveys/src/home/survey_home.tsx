@@ -1,8 +1,8 @@
-import { AppButton, AppInput } from '@tribu/ui';
+import { AppButton, AppUIInput } from '@tribu/ui';
 import { IoMdAdd } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 import { CiSearch } from 'react-icons/ci';
-import { AppTable } from '@tribu/table';
+// import { AppTable } from '@tribu/table';
 
 type counterItem = {
   id: number;
@@ -57,7 +57,7 @@ export const SurveyHome = () => {
       </div>
       <div className="flex justify-between mt-10">
         <div className="w-1/3">
-          <AppInput
+          <AppUIInput
             icon={
               <CiSearch className="absolute left-2 text-gray-400 scale-150" />
             }
@@ -75,7 +75,7 @@ export const SurveyHome = () => {
           additionalClassName="rounded-sm"
         />
       </div>
-      <AppTable className="mt-10" />
+      {/* <AppTable className="mt-10" /> */}
     </div>
   );
 };

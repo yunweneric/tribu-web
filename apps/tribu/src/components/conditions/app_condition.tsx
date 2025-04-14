@@ -1,6 +1,5 @@
 import { Typography, IconButton, Box, Stack } from '@mui/material';
 import { FC } from 'react';
-import AppSelect from '../forms/base/app_select';
 import BaseContainer from './base_container';
 import colors from '../../utils/styles/colors.module.scss';
 import { Add } from '@mui/icons-material';
@@ -11,6 +10,7 @@ import { faker } from '@faker-js/faker';
 import {
   AllFormInterfacesType,
   AppConditionProps,
+  AppSelect,
   ConditionActions,
   ConditionInterface,
   ConditionLinkEnum,
@@ -51,7 +51,7 @@ const AppBranchConditionComponent: FC<AppConditionProps> = ({
               <AppSelect
                 hasBorder={true}
                 id={formItem.id}
-                onChange={(event) => {
+                onChange={(event: any) => {
                   console.log(event);
                   updateConditionSelectField(event.target.value);
                 }}

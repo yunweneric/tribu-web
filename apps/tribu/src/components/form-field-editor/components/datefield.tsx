@@ -1,5 +1,4 @@
 import { Box } from '@mui/system';
-import AppInput from '../../forms/base/app_input';
 import { useDispatch } from 'react-redux';
 import { updateFormField } from '../../../data/logic/form.slice';
 import { SelectChangeEvent, Stack } from '@mui/material';
@@ -7,11 +6,10 @@ import colors from '../../../utils/styles/colors.module.scss';
 import FieldIcon from '../../forms/base/field_icon';
 import clock from '../../../assets/icons/clock.svg';
 import calendar from '../../../assets/icons/calendar.svg';
-import AppSelect from '../../forms/base/app_select';
 import { ReactNode } from 'react';
 import CustomDateField from './custom_datefield';
 import { Dayjs } from 'dayjs';
-import { TextDateInterface } from '@tribu/forms';
+import { AppInput, AppSelect, TextDateInterface } from '@tribu/forms';
 
 const FormDateFieldRenderer = (formItem: TextDateInterface) => {
   const dispatch = useDispatch();
@@ -21,7 +19,7 @@ const FormDateFieldRenderer = (formItem: TextDateInterface) => {
       <AppInput
         placeholder="Label"
         id={formItem.id}
-        value={formItem.value}
+        value={formItem.value ? formItem.value.toISOString() : ''}
         onChange={(e) => {
           const updatedItem = { ...formItem, label: e.target.value };
           dispatch(updateFormField(updatedItem));
@@ -76,8 +74,13 @@ const FormDateFieldRenderer = (formItem: TextDateInterface) => {
             id={'time-format'}
             value={'24H'}
             width="100%"
-            onChange={(event: SelectChangeEvent<string>, child: ReactNode) => {
-              console.log(event, child);
+            onChange={(
+              event: SelectChangeEvent<string | number | readonly string[]>,
+              child: ReactNode
+            ) => {
+              const value = event.target.value as string; // Explicitly cast to string
+              console.log(value, child);
+              return;
             }}
             items={['24H', '12H']}
           />

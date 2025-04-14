@@ -1,10 +1,10 @@
 import { InputAdornment, TextField } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
+import { styleFormFields } from '../../utils/formatters';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { styleFormFields } from '@tribu/forms';
-
-type AppInputType = {
+export type AppInputType = {
   placeholder?: string | undefined;
+  label?: string | undefined;
   type: string | undefined;
   id: string | undefined;
   hasBorder?: boolean;
@@ -21,8 +21,7 @@ type AppInputType = {
   minRows?: number;
   startAdornment?: JSX.Element;
 };
-
-const AppInput: FC<AppInputType> = ({ ...props }: AppInputType) => {
+export const AppInput = ({ ...props }: AppInputType) => {
   useEffect(() => {
     // console.log("props.value", props.value, typeof props.value);
 
@@ -36,9 +35,14 @@ const AppInput: FC<AppInputType> = ({ ...props }: AppInputType) => {
     <TextField
       type={props.type}
       fullWidth
+      label={props.label}
       variant="outlined"
+      size="small"
       id={props.id}
-      sx={styleFormFields(props)}
+      // sx={styleFormFields(props)}
+      sx={{
+        py: 1.5,
+      }}
       value={fieldValue}
       placeholder={props.placeholder}
       onChange={(e) => {
@@ -53,36 +57,6 @@ const AppInput: FC<AppInputType> = ({ ...props }: AppInputType) => {
         type: props.type,
         style: { ...props.styles },
       }}
-    />
-  );
-  return (
-    <TextField
-      type={props.type}
-      fullWidth
-      variant="outlined"
-      id={props.id}
-      inputProps={{
-        // startAdornment: props.startAdornment,
-
-        maxLength: props.maxLength,
-        minLength: props.minLength,
-        type: props.type,
-
-        style: { ...props.styles },
-
-        startAdornment: (
-          <InputAdornment position="start">
-            <AccountCircle />
-          </InputAdornment>
-        ),
-      }}
-      placeholder={props.placeholder}
-      onChange={(e) => {
-        props.onChange && props.onChange(e);
-        setFieldValue(e.target.value);
-      }}
-      value={fieldValue}
-      sx={styleFormFields(props)}
     />
   );
 };

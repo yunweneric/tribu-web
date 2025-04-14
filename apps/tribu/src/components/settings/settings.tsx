@@ -6,12 +6,11 @@ import {
   List,
   Stack,
   Typography,
-} from "@mui/material";
-import AppSelect from "../forms/base/app_select";
-import { Add, ColorLens, People, TuneRounded } from "@mui/icons-material";
-import colors from "../../utils/styles/colors.module.scss";
-import avatarImage from "../../assets/images/avatar.png";
-import AppTextArea from "../forms/base/app_text_area";
+} from '@mui/material';
+import { Add, ColorLens, People, TuneRounded } from '@mui/icons-material';
+import colors from '../../utils/styles/colors.module.scss';
+import avatarImage from '../../assets/images/avatar.png';
+import { AppSelect, AppTextArea } from '@tribu/forms';
 const SettingsTab = () => {
   return (
     <Box paddingX={2} paddingY={2}>
@@ -25,7 +24,7 @@ const SettingsTab = () => {
 const TermsAndConditions = () => {
   return (
     <Box
-      border={"1px solid"}
+      border={'1px solid'}
       borderColor={colors.gray}
       py={1}
       borderRadius={2}
@@ -33,10 +32,10 @@ const TermsAndConditions = () => {
     >
       <Button
         variant="text"
-        sx={{ color: "#000", textTransform: "capitalize", ml: 2, fontSize: 16 }}
+        sx={{ color: '#000', textTransform: 'capitalize', ml: 2, fontSize: 16 }}
         startIcon={
           <Avatar sx={{ bgcolor: colors.gray }} variant="square">
-            <TuneRounded sx={{ color: "#000" }} />
+            <TuneRounded sx={{ color: '#000' }} />
           </Avatar>
         }
       >
@@ -45,11 +44,11 @@ const TermsAndConditions = () => {
       <Divider sx={{ borderColor: colors.gray, marginY: 1 }} />
 
       <AppTextArea
-        placeholder={"Terms and conditions"}
-        id={"terms"}
+        placeholder={'Terms and conditions'}
+        id={'terms'}
         hasBorder={false}
         maxLength={500}
-        onChange={(e) => {
+        onChange={(e: any) => {
           console.log(e);
         }}
       />
@@ -59,21 +58,21 @@ const TermsAndConditions = () => {
 const ThemeData = () => {
   const themeColors: { name: string; code: string }[] = [
     {
-      name: "Main Color",
-      code: "#0CAF60",
+      name: 'Main Color',
+      code: '#0CAF60',
     },
     {
-      name: "Background Color",
-      code: "#1A73E8",
+      name: 'Background Color',
+      code: '#1A73E8',
     },
     {
-      name: "Font Color",
-      code: "#13191E",
+      name: 'Font Color',
+      code: '#13191E',
     },
   ];
   return (
     <Box
-      border={"1px solid"}
+      border={'1px solid'}
       borderColor={colors.gray}
       paddingY={1}
       borderRadius={2}
@@ -81,10 +80,10 @@ const ThemeData = () => {
     >
       <Button
         variant="text"
-        sx={{ color: "#000", textTransform: "capitalize", ml: 2, fontSize: 16 }}
+        sx={{ color: '#000', textTransform: 'capitalize', ml: 2, fontSize: 16 }}
         startIcon={
           <Avatar sx={{ bgcolor: colors.gray }} variant="square">
-            <ColorLens sx={{ color: "#000" }} />
+            <ColorLens sx={{ color: '#000' }} />
           </Avatar>
         }
       >
@@ -96,15 +95,15 @@ const ThemeData = () => {
       {themeColors.map((item, index) => {
         return (
           <Stack
-            direction={"row"}
+            direction={'row'}
             key={index}
-            justifyContent={"start"}
-            alignItems={"center"}
+            justifyContent={'start'}
+            alignItems={'center'}
             mb={1}
             py={1}
           >
-            <Box width={"40%"}>
-              <Typography textAlign={"end"}>{item.name}</Typography>
+            <Box width={'40%'}>
+              <Typography textAlign={'end'}>{item.name}</Typography>
             </Box>
             <Box width={30} height={30} bgcolor={item.code} mx={2} />
             <Typography>{item.code}</Typography>
@@ -115,20 +114,20 @@ const ThemeData = () => {
         <Divider sx={{ borderColor: colors.gray, marginY: 1 }} />
         <Stack
           mx={2}
-          direction={"row"}
-          justifyContent={"end"}
-          alignItems={"center"}
+          direction={'row'}
+          justifyContent={'end'}
+          alignItems={'center'}
           py={2}
         >
           <Typography mr={2}>Font Family</Typography>
           <AppSelect
             hasBorder={true}
-            id={"Times New Romans"}
+            id={'Times New Romans'}
             onChange={(event, child) => {
               console.log(event, child);
             }}
-            items={["Times New Romans"]}
-            value={"Times New Romans"}
+            items={['Times New Romans']}
+            value={'Times New Romans'}
             width="60%"
           />
         </Stack>
@@ -139,24 +138,24 @@ const ThemeData = () => {
 const Audience = () => {
   return (
     <Box
-      border={"1px solid"}
+      border={'1px solid'}
       borderColor={colors.gray}
       paddingY={1}
       borderRadius={2}
       mb={2}
     >
-      <Stack justifyContent={"space-between"} direction={"row"} paddingX={2}>
+      <Stack justifyContent={'space-between'} direction={'row'} paddingX={2}>
         <Button
           variant="text"
           sx={{
-            color: "#000",
-            textTransform: "capitalize",
+            color: '#000',
+            textTransform: 'capitalize',
             ml: 2,
             fontSize: 16,
           }}
           startIcon={
             <Avatar sx={{ bgcolor: colors.gray }} variant="square">
-              <People sx={{ color: "#000" }} />
+              <People sx={{ color: '#000' }} />
             </Avatar>
           }
         >
@@ -170,12 +169,12 @@ const Audience = () => {
       <Box paddingX={2}>
         <AppSelect
           hasBorder={true}
-          id={"High school girls"}
+          id={'High school girls'}
           onChange={(event, child) => {
             console.log(event, child);
           }}
-          items={["High school girls"]}
-          value={"High school girls"}
+          items={['High school girls']}
+          value={'High school girls'}
           fullWidth={true}
           width="100%"
         />
@@ -188,39 +187,39 @@ const Audience = () => {
 };
 const UserCard = () => {
   const items: { title: string; desc: string }[] = [
-    { title: "Name", desc: "High schools Girl Campaign" },
-    { title: "Age", desc: "18-25" },
-    { title: "Location", desc: "Douala, Cameroon" },
-    { title: "Interest", desc: "Sports" },
+    { title: 'Name', desc: 'High schools Girl Campaign' },
+    { title: 'Age', desc: '18-25' },
+    { title: 'Location', desc: 'Douala, Cameroon' },
+    { title: 'Interest', desc: 'Sports' },
   ];
   return (
     <Box
       paddingX={1}
       paddingY={1}
-      border={"2px solid"}
+      border={'2px solid'}
       borderColor={colors.gray}
       borderRadius={2}
     >
-      <Stack direction={"row"} justifyContent={"start"} alignItems={"center"}>
+      <Stack direction={'row'} justifyContent={'start'} alignItems={'center'}>
         <img src={avatarImage} width={80} />
         <Box marginLeft={1}>
           <List dense>
             {items.map((item, index) => (
               <Stack
-                direction={"row"}
-                alignItems={"center"}
+                direction={'row'}
+                alignItems={'center'}
                 key={index}
                 marginBottom={1}
               >
                 <Typography
                   width={50}
-                  textAlign={"left"}
+                  textAlign={'left'}
                   fontSize={12}
                   marginRight={2}
                 >
                   {item.title}
                 </Typography>
-                <Typography textAlign={"left"} fontSize={14} fontWeight={500}>
+                <Typography textAlign={'left'} fontSize={14} fontWeight={500}>
                   {item.desc}
                 </Typography>
               </Stack>

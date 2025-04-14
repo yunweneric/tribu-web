@@ -1,4 +1,4 @@
-import { AppButton, AppInput } from '@tribu/ui';
+import { AppButton, AppUIInput } from '@tribu/ui';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 export const SurveyTemplates = () => {
@@ -12,7 +12,7 @@ export const SurveyTemplates = () => {
         <div className="lg:w-1/3 bg-secondary-100 h-screen"></div>
         <div className="h-screen w-full lg:w-2/3">
           <div className="w-[70%] ml-20 mt-20">
-            <AppInput
+            <AppUIInput
               placeholder="Enter campaign Name"
               label="Enter campaign Name"
               additionalClasses="mt-20"

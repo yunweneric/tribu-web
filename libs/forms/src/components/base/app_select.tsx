@@ -47,6 +47,7 @@ export const AppSelect = ({ ...props }: AppSelectType) => {
       <Select
         // displayEmpty
         label={props.label}
+        size="small"
         value={fieldValue}
         onChange={(e, child) => {
           props.onChange(e, child);

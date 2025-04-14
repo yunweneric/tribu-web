@@ -12,7 +12,7 @@ export type AppTextAreaType = {
     | undefined;
   isPreview?: boolean;
 };
-export const AppTextArea: FC<AppTextAreaType> = ({ ...props }) => {
+export const AppTextArea = ({ ...props }) => {
   useEffect(() => {
     if (typeof props.value == 'string') {
       setFieldValue(props.value);
@@ -23,6 +23,7 @@ export const AppTextArea: FC<AppTextAreaType> = ({ ...props }) => {
   return (
     <TextField
       fullWidth
+      size="small"
       variant="outlined"
       id={props.id}
       multiline

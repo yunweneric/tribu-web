@@ -1,12 +1,11 @@
 import { Box } from '@mui/system';
-import AppInput from '../../forms/base/app_input';
-import { RatingInterface } from '@tribu/forms';
+
+import { RatingInterface, AppNumberInput, AppInput } from '@tribu/forms';
 import { useDispatch } from 'react-redux';
 import {
   setSelectedField,
   updateFormField,
 } from '../../../data/logic/form.slice';
-import AppNumberInput from '../../forms/base/app_number_input';
 
 const FormRatingRenderer = (formItem: RatingInterface) => {
   const dispatch = useDispatch();

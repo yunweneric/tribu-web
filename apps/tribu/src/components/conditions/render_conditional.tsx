@@ -1,18 +1,18 @@
 import { Box } from '@mui/material';
-import { FormFields } from '../../../../../libs/forms/src/enum';
-import {
-  ActionInterface,
-  CheckboxInterface,
-  ConditionInterface,
-  RadioInterface,
-} from '../../data/interfaces';
-import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
-import AppInput from '../forms/base/app_input';
-import AppSelect from '../forms/base/app_select';
-import AppNumberInput from '../forms/base/app_number_input';
 import { useDispatch } from 'react-redux';
 import { updateFormField } from '../../data/logic/form.slice';
-import AppDatePicker from '../forms/base/app_date_field';
+import {
+  ActionInterface,
+  AllFormInterfacesType,
+  AppDatePicker,
+  AppInput,
+  AppNumberInput,
+  AppSelect,
+  CheckboxInterface,
+  ConditionInterface,
+  FormFields,
+  RadioInterface,
+} from '@tribu/forms';
 
 type RenderConditionalFieldType = {
   formItem: AllFormInterfacesType;
@@ -25,7 +25,7 @@ const RenderConditionalField = ({
   const dispatch = useDispatch();
 
   const updateCondition = (value: string) => {
-    const currentConditions = formItem.branching.condition.filter(
+    const currentConditions = formItem.branching!.condition.filter(
       (item) => item.id == condition_or_action?.id
     );
 
@@ -41,7 +41,7 @@ const RenderConditionalField = ({
     };
 
     const updateConditions: ConditionInterface[] =
-      formItem.branching.condition.map((item) => {
+      formItem.branching!.condition.map((item) => {
         if (item.id == currentCondition?.id) {
           return newCondition;
         }
@@ -51,7 +51,7 @@ const RenderConditionalField = ({
     const newFormItem: AllFormInterfacesType = {
       ...formItem,
       branching: {
-        ...formItem.branching,
+        ...formItem.branching!,
         condition: updateConditions,
       },
     };
@@ -65,8 +65,8 @@ const RenderConditionalField = ({
         type={formItem.type}
         id={condition_or_action?.id}
         onChange={(event) => updateCondition(event.target.value)}
-        value={condition_or_action?.value}
-        placeholder={condition_or_action?.value}
+        value={condition_or_action?.value ?? ''}
+        placeholder={condition_or_action?.value ?? ''}
       />
     );
   if (
@@ -91,7 +91,7 @@ const RenderConditionalField = ({
         id={item.id}
         fullWidth={true}
         onChange={(event) => {
-          updateCondition(event.target.value);
+          updateCondition(event.target.value as string);
 
           // const allSelectedItems = [...item.selectedElements];
           // const otherItems: FormItemElementInterface = allSelectedItems.filter(
@@ -105,7 +105,7 @@ const RenderConditionalField = ({
           // updateCondition(allSelectedItems);
         }}
         items={item.elements.map((element) => element.value)}
-        value={condition_or_action.value ?? ''}
+        value={condition_or_action?.value ?? ''}
       />
     );
   }
@@ -116,9 +116,11 @@ const RenderConditionalField = ({
         hasBorder={true}
         id={item.id}
         fullWidth={true}
-        onChange={(event) => updateCondition(event.target.value)}
+        onChange={(event) =>
+          updateCondition((event.target.value as string) ?? '')
+        }
         items={item.elements.map((element) => element.value)}
-        value={condition_or_action.value}
+        value={condition_or_action?.value ?? ''}
       />
     );
   }
@@ -135,7 +137,7 @@ const RenderConditionalField = ({
           return newValue;
         }}
         hasBorder={true}
-        value={condition_or_action.value as string}
+        // value={(condition_or_action?.value as string) ?? ''}
         width="100%"
       />
     );

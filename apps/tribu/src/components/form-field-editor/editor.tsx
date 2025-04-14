@@ -5,6 +5,7 @@ import { Box, Typography } from '@mui/material';
 import FormEditorRenderer from './renderer';
 import colors from '../../utils/styles/colors.module.scss';
 import { GlobalTab } from '../../../../../libs/forms/src/enum';
+import BaseFieldItem from '../forms/base/base_item';
 
 const FormFieldEditor = () => {
   const formItem: TextInputInterface | null = useSelector(

@@ -3,7 +3,11 @@ import { FormFields } from '../../../../../libs/forms/src/enum';
 import FormInputRenderer from './components/input';
 import { FC } from 'react';
 import FormRadioRenderer from './components/radio';
-import { AllFormInterfacesType } from '@tribu/forms';
+import {
+  AllFormInterfacesType,
+  TextAreaInterface,
+  TextInputInterface,
+} from '@tribu/forms';
 import FormTextAreaRenderer from './components/textarea';
 import FormInputNumberRenderer from './components/number';
 import FormRatingRenderer from './components/rating';
@@ -19,7 +23,7 @@ interface FormEditorRendererProps {
 const FormEditorRenderer: FC<FormEditorRendererProps> = ({ field }) => {
   switch (field.type) {
     case FormFields.INPUT:
-      return <FormInputRenderer {...field} />;
+      return <FormInputRenderer {...(field as TextInputInterface)} />;
 
     case FormFields.NUMBER_INPUT:
       return <FormInputNumberRenderer {...field} />;
@@ -37,7 +41,7 @@ const FormEditorRenderer: FC<FormEditorRendererProps> = ({ field }) => {
       return <FormTextAreaRenderer {...field} />;
 
     case FormFields.PARAGRAPH:
-      return <FormTextAreaRenderer {...field} />;
+      return <FormTextAreaRenderer {...(field as TextAreaInterface)} />;
 
     case FormFields.RADIO:
       return <FormRadioRenderer {...field} />;

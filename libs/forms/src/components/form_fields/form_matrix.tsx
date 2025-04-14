@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { MatrixInterface } from '@tribu/forms';
-import BaseFieldItem from '../base/base_item';
 import {
   Box,
   FormControl,
@@ -10,13 +9,8 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-
-const FormMatrix: FC<MatrixInterface> = (item: MatrixInterface) => {
-  return (
-    <BaseFieldItem item={item}>
-      <MatrixItems {...item} />
-    </BaseFieldItem>
-  );
+export const FormMatrix = (item: MatrixInterface) => {
+  return <MatrixItems {...item} />;
 };
 
 const MatrixItems: FC<MatrixInterface> = (item: MatrixInterface) => {

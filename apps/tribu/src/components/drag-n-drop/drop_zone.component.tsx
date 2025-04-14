@@ -1,8 +1,6 @@
 import { FC } from 'react';
 import { useDrop } from 'react-dnd';
-import { TextInputInterface } from '../../data/interfaces';
 import { FormFields } from '../../../../../libs/forms/src/enum';
-import FormRenderer from '../forms/components/form_field_renderer';
 import {
   addFormField,
   setActiveSection,
@@ -17,6 +15,9 @@ import { StrictModeDroppable } from './strick_mode_droppable';
 import { FormProvider, useForm } from 'react-hook-form';
 import colors from '../../utils/styles/colors.module.scss';
 import FormDraggableWrapper from './form_draggble_wrapper';
+import { TextInputInterface } from '@tribu/forms';
+import FormFieldRenderer from '../forms/components/form_field_renderer';
+import BaseFieldItem from '../forms/base/base_item';
 interface DropZoneProps {
   width?: string;
   activeSectionIndex: number;
@@ -145,7 +146,9 @@ const DropZone: FC<DropZoneProps> = ({ width, activeSectionIndex }) => {
 
                         return (
                           <FormDraggableWrapper key={index} index={index}>
-                            <FormRenderer key={index} {...element} />
+                            <BaseFieldItem item={element}>
+                              <FormFieldRenderer key={index} {...element} />
+                            </BaseFieldItem>
                           </FormDraggableWrapper>
                         );
                       })}

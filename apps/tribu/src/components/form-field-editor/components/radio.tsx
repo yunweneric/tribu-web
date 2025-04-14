@@ -1,5 +1,4 @@
-import { CheckboxInterface, RadioInterface } from '@tribu/forms';
-import AppInput from '../../forms/base/app_input';
+import { CheckboxInterface, AppInput, RadioInterface } from '@tribu/forms';
 import { Box, IconButton, Stack } from '@mui/material';
 import { Add } from '@mui/icons-material';
 import colors from '../../../utils/styles/colors.module.scss';
@@ -63,7 +62,7 @@ const FormRadioRenderer = (formItem: RadioInterface | CheckboxInterface) => {
                 type="text"
                 hasBorder={true}
                 id={item.value}
-                onChange={(e) => {
+                onChange={(e: any) => {
                   const newField = {
                     label: item.label,
                     value: e.target.value,

@@ -11,8 +11,8 @@ import {
 } from '../../data/logic/form.slice';
 import { GlobalTab } from '../../../../../libs/forms/src/enum';
 import FormPreview from '../preview/preview';
-import AppInput from '../forms/base/app_input';
 import { useEffect, useRef } from 'react';
+import { AppInput } from '@tribu/forms';
 
 const SurveyComponent = () => {
   const dispatch = useDispatch();

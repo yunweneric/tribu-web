@@ -1,10 +1,8 @@
 import { Box } from '@mui/system';
-import AppInput from '../../forms/base/app_input';
-import { TextAreaInterface } from '@tribu/forms';
+import { TextAreaInterface, AppTextArea, AppInput } from '@tribu/forms';
 import { useDispatch } from 'react-redux';
 import { updateFormField } from '../../../data/logic/form.slice';
 import { FormFields } from '../../../../../../libs/forms/src/enum';
-import AppTextArea from '../../forms/base/app_text_area';
 
 const FormTextAreaRenderer = (formItem: TextAreaInterface) => {
   const dispatch = useDispatch();
@@ -15,7 +13,7 @@ const FormTextAreaRenderer = (formItem: TextAreaInterface) => {
         <AppTextArea
           {...formItem}
           hasBorder={true}
-          onChange={(e) => {
+          onChange={(e: any) => {
             const updatedItem = { ...formItem, value: e.target.value };
             dispatch(updateFormField(updatedItem));
           }}

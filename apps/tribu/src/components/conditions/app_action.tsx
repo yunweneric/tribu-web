@@ -1,17 +1,18 @@
 import { Typography, Box, Stack } from '@mui/material';
 import { FC } from 'react';
-import AppSelect from '../forms/base/app_select';
 import BaseContainer from './base_container';
-import { AppConditionProps } from '../../../../../libs/forms/src/types/app_condition_props_type';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateFormField } from '../../data/logic/form.slice';
-import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
+import { RootState } from '../../data/store/app_store';
 import {
   ActionActions,
+  ActionInterface,
   actionType,
-} from '../../../../../libs/forms/src/enum/condition_actions';
-import { RootState } from '../../data/store/app_store';
-import { ActionInterface, convertActionStringToEnum } from '@tribu/forms';
+  AllFormInterfacesType,
+  AppConditionProps,
+  AppSelect,
+  convertActionStringToEnum,
+} from '@tribu/forms';
 const AppBranchActionComponent: FC<AppConditionProps> = ({
   equality_options,
   formItem,
@@ -73,7 +74,7 @@ const AppBranchActionComponent: FC<AppConditionProps> = ({
                 hasBorder={true}
                 id={formItem.id}
                 onChange={(event) => {
-                  updateActionSelectField(event.target.value, true);
+                  updateActionSelectField(event.target.value as string, true);
                 }}
                 items={equality_options}
                 value={formItem.branching?.action?.action ?? ''}
@@ -95,7 +96,10 @@ const AppBranchActionComponent: FC<AppConditionProps> = ({
                     id={formItem.id}
                     prefix="Block "
                     onChange={(event) => {
-                      updateActionSelectField(event.target.value, false);
+                      updateActionSelectField(
+                        event.target.value as string,
+                        false
+                      );
                     }}
                     items={sectionItems}
                     value={formItem.branching?.action.value ?? ''}

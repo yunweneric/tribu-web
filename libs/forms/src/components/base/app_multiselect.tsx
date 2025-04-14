@@ -44,6 +44,7 @@ export const AppMultiSelect = ({ ...props }: AppMultiSelectType) => {
       <Select
         multiple
         displayEmpty
+        size="small"
         label={props.label}
         value={fieldValue}
         onChange={handleChange}

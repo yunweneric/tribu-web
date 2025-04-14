@@ -1,4 +1,4 @@
-import { AppButton, AppInput } from '@tribu/ui';
+import { AppButton, AppUIInput } from '@tribu/ui';
 import { CiSearch } from 'react-icons/ci';
 import { IoMdAdd } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
@@ -62,7 +62,7 @@ export const AudienceHome = () => {
     <div className="w-[85%] mx-auto mt-20">
       <div className="flex justify-between mt-10">
         <div className="w-1/3">
-          <AppInput
+          <AppUIInput
             icon={
               <CiSearch className="absolute left-2 text-gray-400 scale-150" />
             }
