@@ -7,21 +7,20 @@ import { AppInput } from '../base/app_input';
 interface FormInputFieldInterface extends TextInputInterface {
   control?: Control<FieldValues>;
 }
-export const FormInputField = (item: FormInputFieldInterface) => {
-  const name = generateFormName(item.label, item.id);
-
+export const FormInputField = (props: FormInputFieldInterface) => {
   return (
     <Controller
-      name={name}
-      control={item.control}
+      name={props.name}
+      control={props.control}
       render={({ field: { onChange, value }, fieldState: { error } }) => {
         return (
           <>
             <AppInput
-              {...item}
-              hasBorder={item.isPreview}
+              {...props}
+              hasBorder={props.isPreview}
               onChange={(e) => {
                 onChange(e);
+                if (props.onChange) props?.onChange(e);
               }}
               value={value}
             />

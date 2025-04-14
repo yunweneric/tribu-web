@@ -5,13 +5,12 @@ import {
   SelectChangeEvent,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { styleFormFields } from '../../utils/formatters';
 
 export type AppSelectType = {
   id: string | undefined;
   hasBorder?: boolean;
   value?: string | number | readonly string[] | undefined;
-  onChange: (
+  onChange?: (
     event: SelectChangeEvent<string | number | readonly string[]>,
     child: React.ReactNode
   ) => void;
@@ -37,7 +36,6 @@ export const AppSelect = ({ ...props }: AppSelectType) => {
       sx={{ width: props.width }}
       className="flex flex-col"
     >
-      {' '}
       <label
         htmlFor="email"
         className="block text-sm/6 font-medium text-gray-900"
@@ -46,11 +44,12 @@ export const AppSelect = ({ ...props }: AppSelectType) => {
       </label>
       <Select
         // displayEmpty
-        label={props.label}
+        // label={props.label}
+        placeholder={props.label}
         size="small"
         value={fieldValue}
         onChange={(e, child) => {
-          props.onChange(e, child);
+          if (props.onChange) props.onChange(e, child);
           setFieldValue(e.target.value);
         }}
         inputProps={{ 'aria-label': 'Without label' }}

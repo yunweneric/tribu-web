@@ -8,20 +8,21 @@ import AppErrorMessage from '../base/app_error2_message';
 interface NumberInputInterfaceInterface extends NumberInputInterface {
   control?: Control<FieldValues>;
 }
-export const FormNumberField = (item: NumberInputInterfaceInterface) => {
-  const name = generateFormName(item.label, item.id);
-
+export const FormNumberField = (props: NumberInputInterfaceInterface) => {
   return (
     <Controller
-      name={name}
-      control={item.control}
+      name={props.name}
+      control={props.control}
       render={({ field: { onChange, value }, fieldState: { error } }) => {
         return (
           <>
             <AppNumberInput
-              {...item}
-              hasBorder={item.isPreview}
-              onChange={onChange}
+              {...props}
+              hasBorder={props.isPreview}
+              onChange={(e) => {
+                onChange(e);
+                if (props.onChange) props?.onChange(e);
+              }}
               value={value}
             />
 

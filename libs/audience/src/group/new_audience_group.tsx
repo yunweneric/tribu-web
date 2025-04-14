@@ -17,6 +17,7 @@ import { WeatherAndClimateDto } from 'libs/targets/src/interfaces/weather-and-cl
 import { weatherAndClimateFormData } from '../forms_data/data/weather_and_climate_form_data';
 import { transactionFormData } from '../forms_data/data/transaction_form_data';
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 enum Parameters {
   Demographics = 'Demographics',
@@ -58,7 +59,7 @@ export const NewAudienceGroup = () => {
     control,
     formState: { errors },
   } = useForm({
-    resolver: validationSchema,
+    resolver: yupResolver(validationSchema),
   });
 
   const [currentParameter, setCurrentParameter] = React.useState<FormStructure>(

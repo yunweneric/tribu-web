@@ -1,6 +1,5 @@
 import * as yup from 'yup';
 import { AllFormInterfacesType } from '../types/all_form_types';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { FormFields } from '../enum';
 import { generateFormName } from './formatters';
 
@@ -101,7 +100,7 @@ export const generateValidationSchema = (fields: AllFormInterfacesType[]) => {
     }
   });
 
-  return yupResolver(yupSchema);
+  return yupSchema;
 };
 
 export default generateValidationSchema;

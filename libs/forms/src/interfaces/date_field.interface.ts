@@ -18,7 +18,7 @@ export interface TextDateInterface {
   activeSectionIndex: number;
   value?: Date | undefined;
   branching?: BranchingBlockInterface;
-
   conditionLink?: ConditionLinkEnum.OR | ConditionLinkEnum.AND;
   previousItemId?: string;
+  onChange?: ((value: Date) => Date) | undefined;
 }

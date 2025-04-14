@@ -2,6 +2,7 @@ import { FormFields } from '../enum';
 
 import { BranchingBlockInterface } from './index';
 import { ConditionLinkEnum } from '../enum/condition_actions';
+import { SelectChangeEvent } from '@mui/material';
 interface RadioItemInterface {
   value: string;
   label: string;
@@ -23,6 +24,9 @@ export interface RadioInterface {
   conditionLink?: ConditionLinkEnum.OR | ConditionLinkEnum.AND;
   previousItemId?: string;
   onChange?:
-    | ((event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void)
+    | ((
+        event: SelectChangeEvent<string | number | readonly string[]>,
+        child: React.ReactNode
+      ) => void)
     | undefined;
 }

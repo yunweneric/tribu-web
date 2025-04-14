@@ -6,21 +6,26 @@ import { RadioInterface } from '../../interfaces';
 interface FormSelectInterface extends RadioInterface {
   control?: Control<FieldValues>;
 }
-export const FormSelect = (item: FormSelectInterface) => {
+export const FormSelect = (props: FormSelectInterface) => {
   return (
     <Controller
-      name={item.name}
-      control={item.control}
+      name={props.name}
+      control={props.control}
       render={({ field: { onChange, value }, fieldState: { error } }) => {
         return (
           <>
             <AppSelect
-              {...item}
-              items={item.elements.map((i) => i.value)}
-              hasBorder={item.isPreview}
+              {...props}
+              items={props.elements.map((i) => i.value)}
+              hasBorder={props.isPreview}
               fullWidth
-              onChange={(e) => {
+              onChange={(e, child) => {
                 onChange(e);
+                if (props.onChange)
+                  props?.onChange(
+                    e as unknown as React.ChangeEvent<HTMLInputElement>,
+                    child as boolean
+                  );
               }}
               value={value}
             />

@@ -41,11 +41,17 @@ export const AppMultiSelect = ({ ...props }: AppMultiSelectType) => {
 
   return (
     <FormControl fullWidth={props.fullWidth} sx={{ width: props.width }}>
+      <label
+        htmlFor="email"
+        className="block text-sm/6 font-medium text-gray-900"
+      >
+        {props.label}
+      </label>
       <Select
         multiple
         displayEmpty
         size="small"
-        label={props.label}
+        // label={props.label}
         value={fieldValue}
         onChange={handleChange}
         inputProps={{ 'aria-label': 'Without label' }}
