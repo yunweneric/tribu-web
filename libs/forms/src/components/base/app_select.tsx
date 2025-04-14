@@ -32,7 +32,18 @@ export const AppSelect = ({ ...props }: AppSelectType) => {
   >('');
 
   return (
-    <FormControl fullWidth={props.fullWidth} sx={{ width: props.width }}>
+    <FormControl
+      fullWidth={props.fullWidth}
+      sx={{ width: props.width }}
+      className="flex flex-col"
+    >
+      {' '}
+      <label
+        htmlFor="email"
+        className="block text-sm/6 font-medium text-gray-900"
+      >
+        {props.label}
+      </label>
       <Select
         // displayEmpty
         label={props.label}
@@ -42,7 +53,7 @@ export const AppSelect = ({ ...props }: AppSelectType) => {
           setFieldValue(e.target.value);
         }}
         inputProps={{ 'aria-label': 'Without label' }}
-        className="border-1 border-gray-50 bg-primary-300"
+        className="border-1 border-gray-50 "
       >
         {props.items &&
           props.items.map((e, index) => (

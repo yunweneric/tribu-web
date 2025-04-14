@@ -48,7 +48,7 @@ export const AppMultiSelect = ({ ...props }: AppMultiSelectType) => {
         value={fieldValue}
         onChange={handleChange}
         inputProps={{ 'aria-label': 'Without label' }}
-        className="border-1 border-gray-50 bg-primary-300"
+        className="border-1 border-gray-50 "
         renderValue={(selected) => (
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
             {selected.map((value) => (

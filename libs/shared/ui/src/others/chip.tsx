@@ -5,7 +5,7 @@ export interface ChipProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   additionClasses?: string;
   icon?: ReactNode;
 }
-export const Chip: React.FC<ChipProps> = ({
+export const AppChip: React.FC<ChipProps> = ({
   label,
   additionClasses,
   ...props
@@ -23,4 +23,4 @@ export const Chip: React.FC<ChipProps> = ({
   );
 };
 
-export default Chip;
+export default AppChip;

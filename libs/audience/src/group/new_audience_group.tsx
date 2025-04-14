@@ -1,4 +1,4 @@
-import { AppButton, Chip } from '@tribu/ui';
+import { AppButton, AppChip } from '@tribu/ui';
 import React from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { demographicFormData } from '../forms_data/data/demographic_form_data';
@@ -16,6 +16,7 @@ import { behavioralFormData } from '../forms_data/data/behavior_form_data';
 import { WeatherAndClimateDto } from 'libs/targets/src/interfaces/weather-and-climate.dto';
 import { weatherAndClimateFormData } from '../forms_data/data/weather_and_climate_form_data';
 import { transactionFormData } from '../forms_data/data/transaction_form_data';
+import { useForm } from 'react-hook-form';
 
 enum Parameters {
   Demographics = 'Demographics',
@@ -33,6 +34,11 @@ type FormStructure = {
 };
 
 export const NewAudienceGroup = () => {
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
   const formData: FormStructure[] = [
     { data: demographicFormData, title: Parameters.Demographics },
     { data: psychographicFormData, title: Parameters.Psychographics },
@@ -58,6 +64,7 @@ export const NewAudienceGroup = () => {
           <AudienceGenericFormForm<DemographicDto>
             data={formDataValue?.demographic}
             formFields={demographicFormData}
+            control={control}
             updateAudienceGenericForm={(data) => {
               setFormDataValue({ ...formDataValue, demographic: data });
             }}
@@ -68,6 +75,7 @@ export const NewAudienceGroup = () => {
           <AudienceGenericFormForm<PsychographicsDto>
             data={formDataValue?.psychographics}
             formFields={psychographicFormData}
+            control={control}
             updateAudienceGenericForm={(data) => {
               setFormDataValue({ ...formDataValue, psychographics: data });
             }}
@@ -78,6 +86,7 @@ export const NewAudienceGroup = () => {
           <AudienceGenericFormForm<IBehavioral>
             data={formDataValue?.behavioral}
             formFields={behavioralFormData}
+            control={control}
             updateAudienceGenericForm={(data) => {
               setFormDataValue({ ...formDataValue, behavioral: data });
             }}
@@ -88,6 +97,7 @@ export const NewAudienceGroup = () => {
           <AudienceGenericFormForm<WeatherAndClimateDto>
             data={formDataValue?.weatherAndClimate}
             formFields={weatherAndClimateFormData}
+            control={control}
             updateAudienceGenericForm={(data) => {
               setFormDataValue({ ...formDataValue, weatherAndClimate: data });
             }}
@@ -96,6 +106,7 @@ export const NewAudienceGroup = () => {
       case Parameters.TransactionalData:
         return (
           <AudienceGenericFormForm<TransactionDataDto>
+            control={control}
             data={formDataValue?.transactionalData}
             formFields={transactionFormData}
             updateAudienceGenericForm={(data) => {
@@ -114,69 +125,77 @@ export const NewAudienceGroup = () => {
       </div>
     );
   };
-  console.log(formDataValue);
+
+  const onSubmit = (data: any) => {
+    console.log('data', data);
+  };
+
+  console.log('errors', errors);
 
   return (
-    <div>
-      <div className="w-full h-[88vh]">
-        <div className="flex w-[90%] mx-auto  border-b-gray-100">
-          <div className="flex w-1/2">
-            <div className="w-1/4 py-10">
-              {formData.map((parameter, index) => (
-                <div
-                  key={`{${parameter}-x-${index}`}
-                  className={`py-4 cursor-pointer pl-2 text-sm ${
-                    currentParameter.title === parameter.title
-                      ? 'bg-gray-100 border-r-primary-500 border-r-2'
-                      : ''
-                  }`}
-                  onClick={() => setCurrentParameter(parameter)}
-                >
-                  {parameter.title}
-                </div>
-              ))}
-            </div>
-            <div className="border-l border-gray-50 px-12 py-10 grow overflow-y-scroll h-[80vh]">
-              <GenerateForm />
-            </div>
-          </div>
-          <div className="flex w-1/2 h-[80vh] overflow-y-auto">
-            <div className="flex flex-col w-full">
-              {Object.values(Parameters).map((parameter, index) => (
-                <div
-                  className="flex w-full border-b  border-gray-100 grow"
-                  key={`{${parameter}-${index}`}
-                >
+    <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <div>
+        <div className="w-full h-[88vh]">
+          <div className="flex w-[90%] mx-auto  border-b-gray-100">
+            <div className="flex w-1/2">
+              <div className="w-1/4 py-10">
+                {formData.map((parameter, index) => (
                   <div
-                    className={`flex w-1/4 cursor-pointer text-sm items-center bg-gray-50 px-5`}
+                    key={`{${parameter}-x-${index}`}
+                    className={`py-4 cursor-pointer pl-2 text-sm ${
+                      currentParameter.title === parameter.title
+                        ? 'bg-gray-100 border-r-primary-500 border-r-2'
+                        : ''
+                    }`}
+                    onClick={() => setCurrentParameter(parameter)}
                   >
-                    {parameter}
+                    {parameter.title}
                   </div>
-                  <div className="flex w-full flex-wrap   py-4 items-center px-5 gap-x-2 gap-y-2">
-                    {formDataValue && (
-                      <GenerateChipPreview
-                        persona={formDataValue}
-                        parameter={parameter}
-                        updatePersona={(data) => {
-                          setFormDataValue(data);
-                        }}
-                      />
-                    )}
+                ))}
+              </div>
+              <div className="border-l border-gray-50 px-12 py-10 grow overflow-y-scroll h-[80vh]">
+                <GenerateForm />
+              </div>
+            </div>
+            <div className="flex w-1/2 h-[80vh] overflow-y-auto">
+              <div className="flex flex-col w-full">
+                {Object.values(Parameters).map((parameter, index) => (
+                  <div
+                    className="flex w-full border-b  border-gray-100 grow"
+                    key={`{${parameter}-${index}`}
+                  >
+                    <div
+                      className={`flex w-1/4 cursor-pointer text-sm items-center bg-gray-50 px-5`}
+                    >
+                      {parameter}
+                    </div>
+                    <div className="flex w-full flex-wrap   py-4 items-center px-5 gap-x-2 gap-y-2">
+                      {formDataValue && (
+                        <GenerateChipPreview
+                          persona={formDataValue}
+                          parameter={parameter}
+                          updatePersona={(data) => {
+                            setFormDataValue(data);
+                          }}
+                        />
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-        <div className="border-b border-b-gray-50 w-full"></div>
-        <div className="flex justify-end w-[90%] mx-auto mt-5">
-          <AppButton
-            label="Save"
-            additionalClassName="rounded-none w-32 justify-center item-center"
-          />
+          <div className="border-b border-b-gray-50 w-full"></div>
+          <div className="flex justify-end w-[90%] mx-auto mt-5">
+            <AppButton
+              label="Save"
+              type="submit"
+              additionalClassName="rounded-none w-32 justify-center item-center"
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 const GenerateChipPreview = ({
@@ -197,7 +216,7 @@ const GenerateChipPreview = ({
         Object.keys(persona.demographic).map((key, index) => {
           const item = key as keyof typeof persona.demographic;
           return (
-            <Chip
+            <AppChip
               label={persona.demographic?.[item]?.toString() || ''}
               key={`${item}-y-${index}`}
               additionClasses="bg-gray-50 text-gray-800 font-light px-4  border border-gray-100 text-sm hover:border-gray-100"
@@ -224,7 +243,7 @@ const GenerateChipPreview = ({
         Object.keys(persona.psychographics).map((key, index) => {
           const item = key as keyof typeof persona.psychographics;
           return (
-            <Chip
+            <AppChip
               label={persona.psychographics?.[item]?.toString() || ''}
               key={`${item}-y-${index}`}
               additionClasses="bg-gray-50 text-gray-800 font-light px-4  border border-gray-100 text-sm hover:border-gray-100"
@@ -251,7 +270,7 @@ const GenerateChipPreview = ({
         Object.keys(persona.behavioral).map((key, index) => {
           const item = key as keyof typeof persona.behavioral;
           return (
-            <Chip
+            <AppChip
               label={persona.behavioral?.[item]?.toString() || ''}
               key={`${item}-y-${index}`}
               additionClasses="bg-gray-50 text-gray-800 font-light px-4  border border-gray-100 text-sm hover:border-gray-100"
@@ -279,7 +298,7 @@ const GenerateChipPreview = ({
         Object.keys(persona.weatherAndClimate).map((key, index) => {
           const item = key as keyof typeof persona.weatherAndClimate;
           return (
-            <Chip
+            <AppChip
               label={persona.weatherAndClimate?.[item]?.toString() || ''}
               key={`${item}-y-${index}`}
               additionClasses="bg-gray-50 text-gray-800 font-light px-4  border border-gray-100 text-sm hover:border-gray-100"
@@ -308,7 +327,7 @@ const GenerateChipPreview = ({
         Object.keys(persona.transactionalData).map((key, index) => {
           const item = key as keyof typeof persona.transactionalData;
           return (
-            <Chip
+            <AppChip
               label={persona.transactionalData?.[item]?.toString() || ''}
               key={`${item}-y-${index}`}
               additionClasses="bg-gray-50 text-gray-800 font-light px-4  border border-gray-100 text-sm hover:border-gray-100"

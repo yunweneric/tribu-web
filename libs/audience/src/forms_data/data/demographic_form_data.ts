@@ -93,8 +93,7 @@ export const demographicFormData: AllFormInterfacesType[] = [
     activeSectionIndex: 0,
     name: 'household_size',
     icon: 'Household Size',
-    value: '',
-    type: FormFields.INPUT,
+    type: FormFields.NUMBER_INPUT,
     required: true,
   },
   {
@@ -121,10 +120,11 @@ export const demographicFormData: AllFormInterfacesType[] = [
     id: '',
     index: 0,
     activeSectionIndex: 0,
-    value: 0,
+    value: [],
+    selectedElements: [],
     name: 'language',
     icon: 'language',
-    type: FormFields.RADIO,
+    type: FormFields.CHECKBOX,
     elements: Object.values(Language).map((item) => {
       return {
         value: item,

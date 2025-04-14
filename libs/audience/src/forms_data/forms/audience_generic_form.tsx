@@ -6,18 +6,23 @@ import {
   AppMultiSelect,
   AppNumberInput,
   AppDatePicker,
+  InputField,
+  SelectField,
+  MultiSelectField,
 } from '@tribu/forms';
 
 interface AudienceGenericFormProps<T> {
   data?: T;
   formFields: AllFormInterfacesType[];
   updateAudienceGenericForm: (data: T) => void;
+  control: any;
 }
 
 const AudienceGenericFormForm = <T,>({
   data,
   updateAudienceGenericForm,
   formFields,
+  control,
 }: AudienceGenericFormProps<T>) => {
   const generateField = (field: AllFormInterfacesType) => {
     const value = data ? (data[field['name'] as keyof T] as string) : '';
@@ -25,27 +30,40 @@ const AudienceGenericFormForm = <T,>({
     switch (field.type) {
       case FormFields.INPUT:
         return (
-          <AppInput
+          <InputField
             {...field}
-            // value={value}
+            control={control}
+            rules={{
+              required: 'Password is required',
+              minLength: {
+                value: 6,
+                message: 'Password must be at least 6 characters',
+              },
+            }}
             onChange={(e) => {
-              // console.log(e);
               updateAudienceGenericForm({
                 ...data,
-                [field.name]: e.target.value,
+                [field.name]: e,
               } as T);
             }}
           />
         );
       case FormFields.NUMBER_INPUT:
         return (
-          <AppNumberInput
+          <InputField
             {...field}
-            // value={value}
+            control={control}
+            rules={{
+              required: 'Password is required',
+              minLength: {
+                value: 6,
+                message: 'Password must be at least 6 characters',
+              },
+            }}
             onChange={(e) => {
               updateAudienceGenericForm({
                 ...data,
-                [field.name]: e.target.value,
+                [field.name]: e,
               } as T);
             }}
           />
@@ -68,15 +86,16 @@ const AudienceGenericFormForm = <T,>({
 
       case FormFields.RADIO:
         return (
-          <AppSelect
-            items={field.elements.map((e) => e.value)}
+          <SelectField
             {...field}
+            control={control}
+            options={field.elements.map((e) => e.value)}
             fullWidth={true}
             value={value}
             onChange={(e) => {
               updateAudienceGenericForm({
                 ...data,
-                [field.name]: e.target.value,
+                [field.name]: e,
               } as T);
             }}
           />
@@ -84,11 +103,12 @@ const AudienceGenericFormForm = <T,>({
 
       case FormFields.CHECKBOX:
         return (
-          <AppMultiSelect
-            items={field.elements.map((e) => e.value)}
+          <MultiSelectField
             {...field}
+            control={control}
+            options={field.elements.map((e) => e.value)}
             fullWidth={true}
-            value={[value]}
+            // value={value}
             onChange={(e) => {
               updateAudienceGenericForm({
                 ...data,
@@ -101,7 +121,11 @@ const AudienceGenericFormForm = <T,>({
       default:
         break;
     }
-    return <></>;
+    return (
+      <p className="text-sm border rounded-md px-3 py-2 border-red-500">
+        <strong> {field.type} field</strong> type not generated!
+      </p>
+    );
   };
 
   return (
@@ -109,7 +133,6 @@ const AudienceGenericFormForm = <T,>({
       {formFields.map((field, key) => {
         return (
           <div className="mb-3" key={key}>
-            <p>{field.label}</p>
             {generateField(field)}
           </div>
         );
