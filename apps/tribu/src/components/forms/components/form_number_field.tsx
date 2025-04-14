@@ -3,7 +3,7 @@ import { NumberInputInterface } from '@tribu/forms';
 import BaseFieldItem from '../base/base_item';
 import AppNumberInput from '../base/app_number_input';
 import { Control, Controller, FieldValues } from 'react-hook-form';
-import { generateFormName } from '../../../utils/helpers/formatters';
+import { generateFormName } from '@tribu/forms';
 import AppErrorMessage from '../base/app_error2_message';
 
 interface NumberInputInterfaceInterface extends NumberInputInterface {

@@ -1,11 +1,11 @@
-import * as React from "react";
-import dayjs, { Dayjs } from "dayjs";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import colors from "../../../utils/styles/colors.module.scss";
-import { roundUpToMidnight } from "../../../utils/helpers/formatters";
+import * as React from 'react';
+import dayjs, { Dayjs } from 'dayjs';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import colors from '../../../utils/styles/colors.module.scss';
+import { roundUpToMidnight } from '@tribu/forms';
 
 type AppDatePicker = {
   id: string | undefined;
@@ -25,7 +25,7 @@ export default function AppDatePicker(props: AppDatePicker) {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={["DatePicker", "DatePicker"]}>
+      <DemoContainer components={['DatePicker', 'DatePicker']}>
         <DatePicker
           // format="MM-DD-YYYY"
           format="DD-MM-YYYY"
@@ -42,18 +42,18 @@ export default function AppDatePicker(props: AppDatePicker) {
             }
           }}
           sx={{
-            width: props.width ?? "100%",
+            width: props.width ?? '100%',
             backgroundColor: colors.white,
             borderRadius: 2,
             // border: hasBorder ? "none" : `1px solid ${colors.grayBorder}`,
-            "& fieldset": {
+            '& fieldset': {
               border: props.hasBorder
                 ? `1px solid ${colors.grayBorder}`
-                : "none",
+                : 'none',
             },
-            ":focus": {
+            ':focus': {
               border: `1px solid ${colors.primary}`,
-              "& fieldset": { border: `1px solid ${colors.grayBorder}` },
+              '& fieldset': { border: `1px solid ${colors.grayBorder}` },
             },
           }}
         />

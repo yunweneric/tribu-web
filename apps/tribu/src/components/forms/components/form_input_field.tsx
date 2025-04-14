@@ -3,7 +3,7 @@ import { TextInputInterface } from '@tribu/forms';
 import AppInput from '../base/app_input';
 import BaseFieldItem from '../base/base_item';
 import { Control, Controller, FieldValues } from 'react-hook-form';
-import { generateFormName } from '../../../utils/helpers/formatters';
+import { generateFormName } from '@tribu/forms';
 import AppErrorMessage from '../base/app_error2_message';
 
 interface FormInputFieldInterface extends TextInputInterface {

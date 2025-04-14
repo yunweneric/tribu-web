@@ -4,7 +4,7 @@ import BaseFieldItem from '../base/base_item';
 import AppDatePicker from '../base/app_date_field';
 import { Control, Controller, FieldValues } from 'react-hook-form';
 import AppErrorMessage from '../base/app_error2_message';
-import { generateFormName } from '../../../utils/helpers/formatters';
+import { generateFormName } from '@tribu/forms';
 
 interface FormDateFieldInterface extends TextDateInterface {
   control?: Control<FieldValues>;

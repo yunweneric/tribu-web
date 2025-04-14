@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { RadioInterface } from '@tribu/forms';
 import { Control, Controller, FieldValues } from 'react-hook-form';
-import { generateFormName } from '../../../utils/helpers/formatters';
+import { generateFormName } from '@tribu/forms';
 import AppErrorMessage from '../base/app_error2_message';
 
 interface FormRadioSelectInterface extends RadioInterface {

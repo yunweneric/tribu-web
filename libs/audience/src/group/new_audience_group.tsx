@@ -1,8 +1,8 @@
 import { AppButton, AppChip } from '@tribu/ui';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { demographicFormData } from '../forms_data/data/demographic_form_data';
-import { AllFormInterfacesType } from '@tribu/forms';
+import { AllFormInterfacesType, generateValidationSchema } from '@tribu/forms';
 import {
   DemographicDto,
   PersonaDto,
@@ -34,11 +34,6 @@ type FormStructure = {
 };
 
 export const NewAudienceGroup = () => {
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm();
   const formData: FormStructure[] = [
     { data: demographicFormData, title: Parameters.Demographics },
     { data: psychographicFormData, title: Parameters.Psychographics },
@@ -48,6 +43,23 @@ export const NewAudienceGroup = () => {
     { data: demographicFormData, title: Parameters.DeviceType },
     { data: demographicFormData, title: Parameters.Location },
   ];
+  const [validationSchema, setValidationSchema] = useState<any>();
+
+  const schema = generateValidationSchema(
+    formData.map((item) => item.data).flat()
+  );
+
+  useEffect(() => {
+    setValidationSchema(schema);
+  }, []);
+
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
+    resolver: validationSchema,
+  });
 
   const [currentParameter, setCurrentParameter] = React.useState<FormStructure>(
     formData[0]

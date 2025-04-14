@@ -1,7 +1,7 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
-import { AppFormState } from '../interfaces';
 import { FormFields } from '../../../../../libs/forms/src/enum';
 import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
+import { AppFormState } from '@tribu/forms';
 
 const initialState: AppFormState = {
   sections: [{ formItems: [], id: '928JHAIDKWHAA-992JIH', index: 0 }],

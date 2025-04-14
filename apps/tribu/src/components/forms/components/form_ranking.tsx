@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { RankingInterface } from '@tribu/forms';
 import BaseFieldItem from '../base/base_item';
 import { Control, Controller, FieldValues } from 'react-hook-form';
-import { generateFormName } from '../../../utils/helpers/formatters';
+import { generateFormName } from '@tribu/forms';
 import AppErrorMessage from '../base/app_error2_message';
 import RankingComponent from '../base/app_ranking';
 import { Box } from '@mui/material';

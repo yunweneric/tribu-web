@@ -3,8 +3,7 @@ import AppTextArea from '../base/app_text_area';
 import BaseFieldItem from '../base/base_item';
 import { Control, Controller, FieldValues } from 'react-hook-form';
 import AppErrorMessage from '../base/app_error2_message';
-import { generateFormName } from '../../../utils/helpers/formatters';
-import { TextAreaInterface } from '@tribu/forms';
+import { generateFormName, TextAreaInterface } from '@tribu/forms';
 import { Typography } from '@mui/material';
 
 interface FormTextAreaInterface extends TextAreaInterface {

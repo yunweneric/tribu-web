@@ -4,15 +4,14 @@ import AppSelect from '../forms/base/app_select';
 import BaseContainer from './base_container';
 import { AppConditionProps } from '../../../../../libs/forms/src/types/app_condition_props_type';
 import { useDispatch, useSelector } from 'react-redux';
-import { ActionInterface } from '../../data/interfaces';
 import { updateFormField } from '../../data/logic/form.slice';
 import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
 import {
   ActionActions,
   actionType,
 } from '../../../../../libs/forms/src/enum/condition_actions';
-import { convertActionStringToEnum } from '../../utils/helpers/condition_helper';
 import { RootState } from '../../data/store/app_store';
+import { ActionInterface, convertActionStringToEnum } from '@tribu/forms';
 const AppBranchActionComponent: FC<AppConditionProps> = ({
   equality_options,
   formItem,
@@ -50,6 +49,8 @@ const AppBranchActionComponent: FC<AppConditionProps> = ({
     const newFormItem: AllFormInterfacesType = {
       ...formItem,
       branching: {
+        id: formItem.branching?.id || '',
+        condition: formItem.branching?.condition || [],
         ...formItem.branching,
         action: updatedAction,
       },
@@ -75,14 +76,14 @@ const AppBranchActionComponent: FC<AppConditionProps> = ({
                   updateActionSelectField(event.target.value, true);
                 }}
                 items={equality_options}
-                value={formItem.branching.action?.action}
+                value={formItem.branching?.action?.action ?? ''}
                 width={
-                  formItem.branching.action.action == ActionActions.SKIP
+                  formItem.branching?.action.action == ActionActions.SKIP
                     ? '30%'
                     : '100%'
                 }
               />
-              {formItem.branching.action.action == ActionActions.SKIP && (
+              {formItem.branching?.action.action == ActionActions.SKIP && (
                 <Stack
                   width="70%"
                   direction={'row'}
@@ -97,7 +98,7 @@ const AppBranchActionComponent: FC<AppConditionProps> = ({
                       updateActionSelectField(event.target.value, false);
                     }}
                     items={sectionItems}
-                    value={formItem.branching.action.value}
+                    value={formItem.branching?.action.value ?? ''}
                     width="100%"
                   />
                 </Stack>

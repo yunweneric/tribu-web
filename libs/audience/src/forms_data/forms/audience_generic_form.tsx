@@ -1,71 +1,54 @@
 import {
   AllFormInterfacesType,
-  AppInput,
+  FormInputField,
   FormFields,
   AppSelect,
   AppMultiSelect,
   AppNumberInput,
   AppDatePicker,
-  InputField,
-  SelectField,
-  MultiSelectField,
 } from '@tribu/forms';
+import { Control, FieldValues, Path } from 'react-hook-form';
 
-interface AudienceGenericFormProps<T> {
+interface AudienceGenericFormProps<T extends FieldValues> {
   data?: T;
+  control: Control<FieldValues>;
   formFields: AllFormInterfacesType[];
   updateAudienceGenericForm: (data: T) => void;
-  control: any;
 }
 
-const AudienceGenericFormForm = <T,>({
+const AudienceGenericForm = <T extends FieldValues>({
   data,
   updateAudienceGenericForm,
   formFields,
   control,
 }: AudienceGenericFormProps<T>) => {
   const generateField = (field: AllFormInterfacesType) => {
-    const value = data ? (data[field['name'] as keyof T] as string) : '';
+    const value = data ? (data[field.name as keyof T] as string) : '';
+
+    const handleChange = (fieldName: string, fieldValue: any) => {
+      updateAudienceGenericForm({
+        ...data,
+        [fieldName]: fieldValue,
+      } as T);
+    };
 
     switch (field.type) {
       case FormFields.INPUT:
         return (
-          <InputField
+          <FormInputField
             {...field}
+            type={FormFields.INPUT}
+            name={field.name}
             control={control}
-            rules={{
-              required: 'Password is required',
-              minLength: {
-                value: 6,
-                message: 'Password must be at least 6 characters',
-              },
-            }}
-            onChange={(e) => {
-              updateAudienceGenericForm({
-                ...data,
-                [field.name]: e,
-              } as T);
-            }}
+            onChange={(e) => handleChange(field.name, e.target.value)}
           />
         );
+
       case FormFields.NUMBER_INPUT:
         return (
-          <InputField
+          <AppNumberInput
             {...field}
-            control={control}
-            rules={{
-              required: 'Password is required',
-              minLength: {
-                value: 6,
-                message: 'Password must be at least 6 characters',
-              },
-            }}
-            onChange={(e) => {
-              updateAudienceGenericForm({
-                ...data,
-                [field.name]: e,
-              } as T);
-            }}
+            onChange={(e) => handleChange(field.name, e.target.value)}
           />
         );
 
@@ -73,72 +56,50 @@ const AudienceGenericFormForm = <T,>({
         return (
           <AppDatePicker
             {...field}
-            // value={value}
-            onChange={(e) => {
-              updateAudienceGenericForm({
-                ...data,
-                [field.name]: e,
-              } as T);
-              return e;
-            }}
+            // onChange={(e) => handleChange(field.name, e)}
           />
         );
 
       case FormFields.RADIO:
         return (
-          <SelectField
+          <AppSelect
+            items={field.elements.map((e) => e.value)}
             {...field}
-            control={control}
-            options={field.elements.map((e) => e.value)}
-            fullWidth={true}
+            fullWidth
             value={value}
-            onChange={(e) => {
-              updateAudienceGenericForm({
-                ...data,
-                [field.name]: e,
-              } as T);
-            }}
+            onChange={(e) => handleChange(field.name, e.target.value)}
           />
         );
 
       case FormFields.CHECKBOX:
         return (
-          <MultiSelectField
+          <AppMultiSelect
+            items={field.elements.map((e) => e.value)}
             {...field}
-            control={control}
-            options={field.elements.map((e) => e.value)}
-            fullWidth={true}
-            // value={value}
-            onChange={(e) => {
-              updateAudienceGenericForm({
-                ...data,
-                [field.name]: e,
-              } as T);
-            }}
+            fullWidth
+            value={Array.isArray(value) ? value : [value]}
+            onChange={(e) => handleChange(field.name, e)}
           />
         );
 
       default:
-        break;
+        return (
+          <p className="text-sm border rounded-md px-3 py-2 border-red-500">
+            <strong>{field.type}</strong> field type not supported!
+          </p>
+        );
     }
-    return (
-      <p className="text-sm border rounded-md px-3 py-2 border-red-500">
-        <strong> {field.type} field</strong> type not generated!
-      </p>
-    );
   };
 
   return (
     <div className="w-full">
-      {formFields.map((field, key) => {
-        return (
-          <div className="mb-3" key={key}>
-            {generateField(field)}
-          </div>
-        );
-      })}
+      {formFields.map((field, key) => (
+        <div className="mb-3" key={key}>
+          {generateField(field)}
+        </div>
+      ))}
     </div>
   );
 };
 
-export default AudienceGenericFormForm;
+export default AudienceGenericForm;

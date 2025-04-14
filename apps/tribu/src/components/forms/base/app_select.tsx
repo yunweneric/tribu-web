@@ -3,9 +3,9 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
-} from "@mui/material";
-import { useEffect, useState } from "react";
-import { styleFormFields } from "../../../utils/helpers/formatters";
+} from '@mui/material';
+import { styleFormFields } from '@tribu/forms';
+import { useEffect, useState } from 'react';
 
 type AppSelectType = {
   id: string | undefined;
@@ -19,11 +19,11 @@ type AppSelectType = {
 };
 const AppSelect = ({ ...props }: AppSelectType) => {
   useEffect(() => {
-    if (typeof props.value == "string") {
+    if (typeof props.value == 'string') {
       setFieldValue(props.value);
     }
   }, [props.value]);
-  const [fieldValue, setFieldValue] = useState<string>("");
+  const [fieldValue, setFieldValue] = useState<string>('');
 
   return (
     <FormControl fullWidth={props.fullWidth} sx={{ width: props.width }}>
@@ -34,7 +34,7 @@ const AppSelect = ({ ...props }: AppSelectType) => {
           props.onChange(e, child);
           setFieldValue(e.target.value);
         }}
-        inputProps={{ "aria-label": "Without label" }}
+        inputProps={{ 'aria-label': 'Without label' }}
         sx={styleFormFields(props)}
       >
         {props.items &&

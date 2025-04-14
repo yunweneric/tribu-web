@@ -1,7 +1,7 @@
-import { InputAdornment, TextField } from "@mui/material";
-import { FC, useEffect, useState } from "react";
-import { styleFormFields } from "../../../utils/helpers/formatters";
-import AccountCircle from "@mui/icons-material/AccountCircle";
+import { InputAdornment, TextField } from '@mui/material';
+import { FC, useEffect, useState } from 'react';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import { styleFormFields } from '@tribu/forms';
 
 type AppInputType = {
   placeholder?: string | undefined;
@@ -26,7 +26,7 @@ const AppInput: FC<AppInputType> = ({ ...props }: AppInputType) => {
   useEffect(() => {
     // console.log("props.value", props.value, typeof props.value);
 
-    if (typeof props.value == "string") {
+    if (typeof props.value == 'string') {
       setFieldValue(props.value);
     }
   }, [props.value]);

@@ -1,6 +1,6 @@
-import { TextField } from "@mui/material";
-import { FC, useEffect, useState } from "react";
-import { styleFormFields } from "../../../utils/helpers/formatters";
+import { TextField } from '@mui/material';
+import { styleFormFields } from '@tribu/forms';
+import { FC, useEffect, useState } from 'react';
 
 type AppTextAreaType = {
   placeholder?: string | undefined;
@@ -15,11 +15,11 @@ type AppTextAreaType = {
 };
 const AppTextArea: FC<AppTextAreaType> = ({ ...props }) => {
   useEffect(() => {
-    if (typeof props.value == "string") {
+    if (typeof props.value == 'string') {
       setFieldValue(props.value);
     }
   }, [props.value]);
-  const [fieldValue, setFieldValue] = useState<string>("");
+  const [fieldValue, setFieldValue] = useState<string>('');
 
   return (
     <TextField

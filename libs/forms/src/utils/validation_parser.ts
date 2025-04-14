@@ -1,8 +1,10 @@
 import * as yup from 'yup';
 import { AllFormInterfacesType } from '../types/all_form_types';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { FormFields } from '../enum';
 import { generateFormName } from './formatters';
-const generateValidationSchema = (fields: AllFormInterfacesType[]) => {
+
+export const generateValidationSchema = (fields: AllFormInterfacesType[]) => {
   let yupSchema = yup.object();
 
   fields.forEach((field) => {
@@ -92,10 +94,6 @@ const generateValidationSchema = (fields: AllFormInterfacesType[]) => {
       fieldSchema = fieldSchema?.required(`${field.label} is required`);
     }
 
-    // yupSchema = yupSchema.shape({
-    //   [generateFormName(field.label, field.id)]: fieldSchema,
-    // });
-
     if (fieldSchema) {
       yupSchema = yupSchema.shape({
         [generateFormName(field.label, field.id)]: fieldSchema,
@@ -103,7 +101,7 @@ const generateValidationSchema = (fields: AllFormInterfacesType[]) => {
     }
   });
 
-  return yupSchema;
+  return yupResolver(yupSchema);
 };
 
 export default generateValidationSchema;

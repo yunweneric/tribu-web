@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { getErrorMessage } from '../../../utils/helpers/formatters';
+import { getErrorMessage } from '@tribu/forms';
 import { useFormContext } from 'react-hook-form';
 
 type AppErrorMessageType = {

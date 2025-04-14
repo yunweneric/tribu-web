@@ -10,7 +10,7 @@ import {
 import { CheckboxInterface, FormItemElementInterface } from '@tribu/forms';
 import { Control, Controller, FieldValues } from 'react-hook-form';
 import AppErrorMessage from '../base/app_error2_message';
-import { generateFormName } from '../../../utils/helpers/formatters';
+import { generateFormName } from '@tribu/forms';
 interface FormCheckBoxInterface extends CheckboxInterface {
   control?: Control<FieldValues>;
 }

@@ -1,6 +1,6 @@
-import { TextField } from "@mui/material";
-import { useEffect, useState } from "react";
-import { styleFormFields } from "../../../utils/helpers/formatters";
+import { TextField } from '@mui/material';
+import { styleFormFields } from '@tribu/forms';
+import { useEffect, useState } from 'react';
 
 type AppNumberInputType = {
   placeholder?: string | undefined;
@@ -20,7 +20,7 @@ const AppNumberInput = ({ ...props }: AppNumberInputType) => {
     // if (typeof props.value == "number") {
     //   if (props.value != 0) setFieldValue(props.value);
     setFieldValue(props.value ?? null);
-    console.log("Re-rendering", props.value);
+    console.log('Re-rendering', props.value);
     // }
   }, [props.value]);
   const [fieldValue, setFieldValue] = useState<number | null>(null);
@@ -38,7 +38,7 @@ const AppNumberInput = ({ ...props }: AppNumberInputType) => {
         props.onChange && props.onChange(e);
         setFieldValue(val);
       }}
-      value={fieldValue ?? ""}
+      value={fieldValue ?? ''}
       sx={styleFormFields(props)}
     />
   );

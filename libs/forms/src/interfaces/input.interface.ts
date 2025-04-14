@@ -1,7 +1,8 @@
-import { FormFields } from "../enum";
+import { FormFields } from '../enum';
 
-import { BranchingBlockInterface } from "./index";
-import { ConditionLinkEnum } from "../enum/condition_actions";
+import { BranchingBlockInterface } from './index';
+import { ConditionLinkEnum } from '../enum/condition_actions';
+import { extend } from 'dayjs';
 export interface TextInputInterface {
   type: FormFields.INPUT;
   name: string;
@@ -18,9 +19,7 @@ export interface TextInputInterface {
   activeSectionIndex: number;
   isPreview?: boolean;
   value?: string | number | readonly string[] | undefined | number;
-
   branching?: BranchingBlockInterface;
-
   conditionLink?: ConditionLinkEnum.OR | ConditionLinkEnum.AND;
   previousItemId?: string;
 }

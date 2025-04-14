@@ -4,22 +4,20 @@ import AppSelect from '../forms/base/app_select';
 import BaseContainer from './base_container';
 import colors from '../../utils/styles/colors.module.scss';
 import { Add } from '@mui/icons-material';
-import { AppConditionProps } from '../../../../../libs/forms/src/types/app_condition_props_type';
 import { useDispatch } from 'react-redux';
 import { updateFormField } from '../../data/logic/form.slice';
-import { ConditionInterface } from '../../data/interfaces';
 import RenderConditionalField from './render_conditional';
 import { faker } from '@faker-js/faker';
 import {
+  AllFormInterfacesType,
+  AppConditionProps,
   ConditionActions,
+  ConditionInterface,
   ConditionLinkEnum,
   conditionTypes,
-} from '../../../../../libs/forms/src/enum/condition_actions';
-import {
-  updateFormFieldWithConditions,
   convertConditionStringToEnum,
-} from '../../utils/helpers/condition_helper';
-import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
+  updateFormFieldWithConditions,
+} from '@tribu/forms';
 
 const AppBranchConditionComponent: FC<AppConditionProps> = ({
   equality_options,
@@ -30,13 +28,13 @@ const AppBranchConditionComponent: FC<AppConditionProps> = ({
   const updateConditionSelectField = (value: string) => {
     const actionEnum: conditionTypes | null =
       convertConditionStringToEnum(value);
+    const newFormItem: AllFormInterfacesType | undefined =
+      updateFormFieldWithConditions({
+        condition_or_action: condition_or_action,
+        formItem: formItem,
+        newAction: actionEnum == null ? undefined : actionEnum,
+      });
 
-    const newFormItem: AllFormInterfacesType = updateFormFieldWithConditions({
-      condition_or_action: condition_or_action,
-      newValue: null,
-      formItem: formItem,
-      newAction: actionEnum,
-    });
     dispatch(updateFormField(newFormItem));
   };
   return (
@@ -58,7 +56,7 @@ const AppBranchConditionComponent: FC<AppConditionProps> = ({
                   updateConditionSelectField(event.target.value);
                 }}
                 items={equality_options}
-                value={condition_or_action.action}
+                value={condition_or_action?.action}
                 width="30%"
               />
               <Stack
@@ -74,7 +72,7 @@ const AppBranchConditionComponent: FC<AppConditionProps> = ({
                   }
                 />
 
-                {formItem.branching.condition.length == 1 && (
+                {formItem.branching?.condition.length == 1 && (
                   <Box>
                     <IconButton
                       aria-label="add"
@@ -89,9 +87,9 @@ const AppBranchConditionComponent: FC<AppConditionProps> = ({
                           id: faker.string.uuid(),
                         };
                         const newBranching = {
-                          ...formItem.branching,
+                          ...formItem.branching!,
                           condition: [
-                            ...formItem.branching.condition,
+                            ...formItem.branching!.condition,
                             newCondition,
                           ],
                         };

@@ -8,9 +8,9 @@ import { ActionInterface, ConditionInterface } from '..//interfaces';
 import { AllFormInterfacesType } from '../types/all_form_types';
 
 interface UpdateFormFieldWithConditionsType {
-  condition_or_action: ConditionInterface | ActionInterface;
+  condition_or_action: ConditionInterface | ActionInterface | undefined;
   newValue?: string;
-  newAction?: conditionTypes | actionType;
+  newAction?: conditionTypes | actionType | undefined;
   formItem: AllFormInterfacesType;
 }
 
