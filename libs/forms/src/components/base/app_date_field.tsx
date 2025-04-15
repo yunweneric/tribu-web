@@ -13,6 +13,7 @@ export type AppDatePickerProps = {
   width?: string;
   minDate?: Dayjs;
   maxDate?: Dayjs;
+  label?: string;
 };
 
 export const AppDatePicker = (props: AppDatePickerProps) => {
@@ -22,31 +23,49 @@ export const AppDatePicker = (props: AppDatePickerProps) => {
   }, [props.value]);
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={['DatePicker', 'DatePicker']}>
-        <DatePicker
-          format="DD-MM-YYYY"
-          value={initialValue}
-          minDate={props.minDate}
-          maxDate={props.maxDate}
-          slotProps={{
-            textField: {
-              size: 'small',
-            },
-          }}
-          onChange={(newValue) => {
-            setValue(newValue);
-            if (props.onChange) {
-              const newDate = dayjs(newValue);
-              const updatedDate = roundUpToMidnight(newDate.toDate());
-              props.onChange(updatedDate);
-            }
-          }}
-          className={`w-${props.width ?? 'full'} bg-white rounded-md ${
-            props.hasBorder ? 'border border-gray-300' : ''
-          } focus-within:border focus-within:border-primary`}
-        />
-      </DemoContainer>
-    </LocalizationProvider>
+    <>
+      {props.label && (
+        <label
+          htmlFor="email"
+          className="block text-sm font-medium text-gray-900"
+        >
+          {props.label}
+        </label>
+      )}
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DemoContainer components={['DatePicker', 'DatePicker']}>
+          <DatePicker
+            format="DD-MM-YYYY"
+            value={initialValue}
+            minDate={props.minDate}
+            maxDate={props.maxDate}
+            slotProps={{
+              textField: {
+                size: 'small',
+              },
+            }}
+            onChange={(newValue) => {
+              setValue(newValue);
+              if (props.onChange) {
+                const newDate = dayjs(newValue);
+                const updatedDate = roundUpToMidnight(newDate.toDate());
+                props.onChange(updatedDate);
+              }
+            }}
+            className={`w-${props.width ?? 'full'} bg-white rounded-md ${
+              props.hasBorder ? 'border border-gray-300' : ''
+            } focus-within:border focus-within:border-primary text-sm`}
+            sx={{
+              '& .MuiFormLabel-root': {
+                fontSize: '0.875rem',
+              },
+              '& input::placeholder': {
+                fontSize: '0.875rem',
+              },
+            }}
+          />
+        </DemoContainer>
+      </LocalizationProvider>
+    </>
   );
 };

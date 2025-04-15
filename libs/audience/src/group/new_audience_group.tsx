@@ -59,7 +59,7 @@ export const NewAudienceGroup = () => {
     control,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(validationSchema),
+    // resolver: yupResolver(validationSchema),
   });
 
   const [currentParameter, setCurrentParameter] = React.useState<FormStructure>(

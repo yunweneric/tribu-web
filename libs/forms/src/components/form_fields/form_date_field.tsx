@@ -16,9 +16,10 @@ export const FormDateField = (props: FormDateFieldInterface) => {
           <>
             <AppDatePicker
               hasBorder={props.isPreview}
-              id={props.id}
               minDate={props.minDate}
               maxDate={props.maxDate}
+              {...props}
+              id={props.id}
               onChange={(date) => {
                 // const newDate = dayjs(date);
                 onChange(date);

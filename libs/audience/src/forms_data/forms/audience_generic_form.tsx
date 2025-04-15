@@ -62,7 +62,10 @@ const AudienceGenericForm = <T extends FieldValues>({
             {...field}
             name={name}
             control={control}
-            // onChange={(e: any) => handleChange(field.name, e)}
+            onChange={(e: Date) => {
+              handleChange(field.name, e.toDateString());
+              return e;
+            }}
           />
         );
 

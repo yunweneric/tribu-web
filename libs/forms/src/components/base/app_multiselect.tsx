@@ -55,7 +55,7 @@ export const AppMultiSelect = ({ ...props }: AppMultiSelectType) => {
         value={fieldValue}
         onChange={handleChange}
         inputProps={{ 'aria-label': 'Without label' }}
-        className="border-1 border-gray-50 "
+        className="border-1 border-gray-50"
         renderValue={(selected) => (
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
             {selected.map((value) => (
@@ -66,7 +66,9 @@ export const AppMultiSelect = ({ ...props }: AppMultiSelectType) => {
       >
         {props.placeholder && (
           <MenuItem disabled value="">
-            <em>{props.placeholder}</em>
+            <em className="text-gray-500 text-sm">
+              Select {props.placeholder}
+            </em>
           </MenuItem>
         )}
         {props.items &&

@@ -61,10 +61,10 @@ export const AppInput = ({ ...props }: AppInputType) => {
         }}
         sx={{
           '& .MuiFormLabel-root': {
-            fontSize: '0.8rem',
+            fontSize: '0.875rem',
           },
           '& input::placeholder': {
-            fontSize: '0.8rem',
+            fontSize: '0.875rem',
           },
         }}
       />

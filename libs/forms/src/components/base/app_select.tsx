@@ -43,8 +43,7 @@ export const AppSelect = ({ ...props }: AppSelectType) => {
         {props.label}
       </label>
       <Select
-        // displayEmpty
-        // label={props.label}
+        displayEmpty
         placeholder={props.label}
         size="small"
         value={fieldValue}
@@ -55,6 +54,11 @@ export const AppSelect = ({ ...props }: AppSelectType) => {
         inputProps={{ 'aria-label': 'Without label' }}
         className="border-1 border-gray-50 "
       >
+        {props.label && (
+          <MenuItem disabled value="">
+            <em className="text-gray-500 text-sm">Select {props.label}</em>
+          </MenuItem>
+        )}
         {props.items &&
           props.items.map((e, index) => (
             <MenuItem key={index} value={e} sx={{ fontSize: 14 }}>
