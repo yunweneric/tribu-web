@@ -9,8 +9,8 @@ import { generateFormName } from '@tribu/forms';
 interface FormRatingType extends RatingInterface {
   control?: Control<FieldValues>;
 }
-export const FormRating = (item: FormRatingType) => {
-  const name = generateFormName(item.label, item.id);
+export const FormRating = (props: FormRatingType) => {
+  const name = props.name ?? generateFormName(props.label, props.id);
   return (
     <Box
       display={'flex'}
@@ -20,11 +20,11 @@ export const FormRating = (item: FormRatingType) => {
     >
       <Controller
         name={name}
-        control={item.control}
+        control={props.control}
         render={({ field: { onChange, value }, fieldState: { error } }) => {
           return (
             <Box>
-              <AppRating {...item} onChange={onChange} value={value} />
+              <AppRating {...props} onChange={onChange} value={value} />
               <AppErrorMessage message={error?.message} />
             </Box>
           );

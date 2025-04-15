@@ -9,18 +9,18 @@ import { Box } from '@mui/material';
 interface FormInputFieldInterface extends RankingInterface {
   control?: Control<FieldValues>;
 }
-export const FormRankingField = (item: FormInputFieldInterface) => {
-  const name = generateFormName(item.label, item.id);
+export const FormRankingField = (props: FormInputFieldInterface) => {
+  const name = props.name ?? generateFormName(props.label, props.id);
 
   return (
     <Controller
       name={name}
-      control={item.control}
+      control={props.control}
       render={({ field: { onChange, value }, fieldState: { error } }) => {
         return (
           <Box px={2} py={4}>
             <RankingComponent
-              formItem={item}
+              formItem={props}
               onChange={(val) => {
                 onChange(val);
               }}

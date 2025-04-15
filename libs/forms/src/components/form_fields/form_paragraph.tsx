@@ -8,25 +8,25 @@ import { Typography } from '@mui/material';
 interface FormTextAreaInterface extends TextAreaInterface {
   control?: Control<FieldValues>;
 }
-export const FormParagraph = (item: FormTextAreaInterface) => {
-  const name = generateFormName(item.label, item.id);
+export const FormParagraph = (props: FormTextAreaInterface) => {
+  const name = props.name ?? generateFormName(props.label, props.id);
 
-  if (item.isPreview)
+  if (props.isPreview)
     return (
       <Typography textAlign={'center'} px={10}>
-        {item.value}
+        {props.value}
       </Typography>
     );
   return (
     <Controller
       name={name}
-      control={item.control}
+      control={props.control}
       render={({ field: { onChange, value }, fieldState: { error } }) => {
         return (
           <>
             <AppTextArea
-              {...item}
-              hasBorder={item.isPreview}
+              {...props}
+              hasBorder={props.isPreview}
               onChange={onChange}
               value={value}
             />

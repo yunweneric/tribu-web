@@ -9,8 +9,8 @@ import { Control, Controller, FieldValues } from 'react-hook-form';
 interface FormSliderType extends SliderInterface {
   control?: Control<FieldValues>;
 }
-export const FormSlider = (item: FormSliderType) => {
-  const name = generateFormName(item.label, item.id);
+export const FormSlider = (props: FormSliderType) => {
+  const name = props.name ?? generateFormName(props.label, props.id);
 
   return (
     <Box
@@ -21,11 +21,11 @@ export const FormSlider = (item: FormSliderType) => {
     >
       <Controller
         name={name}
-        control={item.control}
+        control={props.control}
         render={({ field: { onChange, value }, fieldState: { error } }) => {
           return (
             <>
-              <AppSlider {...item} onChange={onChange} value={value} />
+              <AppSlider {...props} onChange={onChange} value={value} />
               <AppErrorMessage message={error?.message} />
             </>
           );

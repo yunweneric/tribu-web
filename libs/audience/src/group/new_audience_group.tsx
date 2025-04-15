@@ -2,7 +2,11 @@ import { AppButton, AppChip } from '@tribu/ui';
 import React, { useEffect, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { demographicFormData } from '../forms_data/data/demographic_form_data';
-import { AllFormInterfacesType, generateValidationSchema } from '@tribu/forms';
+import {
+  AllFormInterfacesType,
+  generateFormName,
+  generateValidationSchema,
+} from '@tribu/forms';
 import {
   DemographicDto,
   PersonaDto,
@@ -47,7 +51,16 @@ export const NewAudienceGroup = () => {
   const [validationSchema, setValidationSchema] = useState<any>();
 
   const schema = generateValidationSchema(
-    formData.map((item) => item.data).flat()
+    formData
+      .map((item) =>
+        item.data.map((field) => {
+          return {
+            ...field,
+            name: generateFormName(item.title, field.label),
+          };
+        })
+      )
+      .flat()
   );
 
   useEffect(() => {
@@ -77,6 +90,7 @@ export const NewAudienceGroup = () => {
           <AudienceGenericFormForm<DemographicDto>
             data={formDataValue?.demographic}
             formFields={demographicFormData}
+            formTitle={Parameters.Demographics}
             control={control}
             updateAudienceGenericForm={(data) => {
               setFormDataValue({ ...formDataValue, demographic: data });
@@ -89,6 +103,7 @@ export const NewAudienceGroup = () => {
             data={formDataValue?.psychographics}
             formFields={psychographicFormData}
             control={control}
+            formTitle={Parameters.Psychographics}
             updateAudienceGenericForm={(data) => {
               setFormDataValue({ ...formDataValue, psychographics: data });
             }}
@@ -100,6 +115,7 @@ export const NewAudienceGroup = () => {
             data={formDataValue?.behavioral}
             formFields={behavioralFormData}
             control={control}
+            formTitle={Parameters.Behavior}
             updateAudienceGenericForm={(data) => {
               setFormDataValue({ ...formDataValue, behavioral: data });
             }}
@@ -111,6 +127,7 @@ export const NewAudienceGroup = () => {
             data={formDataValue?.weatherAndClimate}
             formFields={weatherAndClimateFormData}
             control={control}
+            formTitle={Parameters.WeatherAndClimate}
             updateAudienceGenericForm={(data) => {
               setFormDataValue({ ...formDataValue, weatherAndClimate: data });
             }}
@@ -122,6 +139,7 @@ export const NewAudienceGroup = () => {
             control={control}
             data={formDataValue?.transactionalData}
             formFields={transactionFormData}
+            formTitle={Parameters.TransactionalData}
             updateAudienceGenericForm={(data) => {
               setFormDataValue({ ...formDataValue, transactionalData: data });
             }}
@@ -139,11 +157,30 @@ export const NewAudienceGroup = () => {
     );
   };
 
-  const onSubmit = (data: any) => {
-    console.log('data', data);
+  const onSubmit = (data: Record<string, any>) => {
+    // console.log('data', data);
+
+    const groupedData: Record<string, any> = {};
+
+    Object.entries(data).forEach(([key, value]) => {
+      const [category, attribute] = key.split('-');
+      // Format keys by replacing spaces with underscores and making them lowercase
+      const formattedCategory = category.toLowerCase().replace(/\s+/g, '_');
+      const formattedAttribute = attribute.toLowerCase().replace(/\s+/g, '_');
+
+      if (!groupedData[formattedCategory]) {
+        groupedData[formattedCategory] = {};
+      }
+      groupedData[formattedCategory][formattedAttribute] = value;
+      // console.log('groupedData', value);
+    });
+
+    console.log('groupedData', groupedData);
+    return groupedData;
+    // };
   };
 
-  console.log('errors', errors);
+  // console.log('errors', errors);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>

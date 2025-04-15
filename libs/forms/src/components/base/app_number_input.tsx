@@ -22,7 +22,7 @@ export const AppNumberInput = ({ ...props }: AppNumberInputType) => {
     // if (typeof props.value == "number") {
     //   if (props.value != 0) setFieldValue(props.value);
     setFieldValue(props.value ?? null);
-    console.log('Re-rendering', props.value);
+    // console.log('Re-rendering', props.value);
     // }
   }, [props.value]);
   const [fieldValue, setFieldValue] = useState<number | null>(null);

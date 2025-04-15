@@ -14,8 +14,8 @@ import AppErrorMessage from '../base/app_error2_message';
 interface FormRadioSelectInterface extends RadioInterface {
   control?: Control<FieldValues>;
 }
-export const FormRadioSelect = (item: FormRadioSelectInterface) => {
-  const name = generateFormName(item.label, item.id);
+export const FormRadioSelect = (props: FormRadioSelectInterface) => {
+  const name = props.name ?? generateFormName(props.label, props.id);
 
   return (
     <Box
@@ -26,7 +26,7 @@ export const FormRadioSelect = (item: FormRadioSelectInterface) => {
     >
       <FormControl>
         <Controller
-          control={item.control}
+          control={props.control}
           name={name}
           render={({ fieldState: { error }, field }) => {
             return (
@@ -36,21 +36,21 @@ export const FormRadioSelect = (item: FormRadioSelectInterface) => {
                   defaultValue="female"
                   name="radio-buttons-group"
                 >
-                  {item.elements &&
-                    item.elements.map((item, index) => {
+                  {props.elements &&
+                    props.elements.map((props, index) => {
                       return (
                         <FormControlLabel
-                          value={item.value}
+                          value={props.value}
                           control={
                             <Radio
                               onChange={(e) => {
-                                if (e.target.value == item.value)
-                                  field.onChange(item.value);
+                                if (e.target.value == props.value)
+                                  field.onChange(props.value);
                               }}
-                              checked={field.value == item.value}
+                              checked={field.value == props.value}
                             />
                           }
-                          label={item.value}
+                          label={props.value}
                           key={index}
                         />
                       );

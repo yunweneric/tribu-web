@@ -95,10 +95,12 @@ export const generateValidationSchema = (fields: AllFormInterfacesType[]) => {
 
     if (fieldSchema) {
       yupSchema = yupSchema.shape({
-        [generateFormName(field.label, field.id)]: fieldSchema,
+        [generateFormName(field.label, field.id, field.name)]: fieldSchema,
+        // [field.name]: fieldSchema,
       });
     }
   });
+  // console.log('yupSchema', yupSchema);
 
   return yupSchema;
 };

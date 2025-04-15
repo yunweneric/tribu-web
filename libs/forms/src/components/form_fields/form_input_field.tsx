@@ -8,9 +8,11 @@ interface FormInputFieldInterface extends TextInputInterface {
   control?: Control<FieldValues>;
 }
 export const FormInputField = (props: FormInputFieldInterface) => {
+  const name = props.name ?? generateFormName(props.label, props.id);
+
   return (
     <Controller
-      name={props.name}
+      name={name}
       control={props.control}
       render={({ field: { onChange, value }, fieldState: { error } }) => {
         return (

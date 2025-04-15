@@ -1,20 +1,26 @@
 import { FieldErrors, FieldValues } from 'react-hook-form';
 import { ErrorMessage } from '../types/error.types';
 // import colors from '../styles/colors.module.scss';
-const generateFormName = (label: string, id: string) => {
+const generateFormName = (label: string, id: string, name?: string) => {
   // console.log(label, id);
-  return label.split(' ').join('') + `-${id}`;
+  // if (name) {
+  //   return name;
+  // }
+  return name ?? label.split(' ').join('') + `-${id}`;
 };
 
 const getErrorMessage = (
   errors: FieldErrors<FieldValues>,
   label: string,
-  id: string
+  id: string,
+  name?: string
 ): ErrorMessage | null => {
+  console.log('---------------newId---------------', name);
+  // return null;
   let errorMessage = null;
   const errorKeys = Object.keys(errors);
   const errorValues = Object.values(errors);
-  const newId = generateFormName(label, id);
+  const newId = name ?? generateFormName(label, id);
 
   for (let i = 0; i < errorKeys.length; i++) {
     for (let z = 0; z < errorValues.length; z++) {

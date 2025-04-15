@@ -1,23 +1,25 @@
 import { FC } from 'react';
 import { Control, Controller, FieldValues } from 'react-hook-form';
-import { AppMultiSelect } from '@tribu/forms';
+import { AppMultiSelect, generateFormName } from '@tribu/forms';
 import AppErrorMessage from '../base/app_error2_message';
 import { CheckboxInterface } from '../../interfaces';
 interface FormMultiSelectInterface extends CheckboxInterface {
   control?: Control<FieldValues>;
 }
-export const FormMultiSelect = (item: FormMultiSelectInterface) => {
+export const FormMultiSelect = (props: FormMultiSelectInterface) => {
+  const name = props.name ?? generateFormName(props.label, props.id);
+
   return (
     <Controller
-      name={item.name}
-      control={item.control}
+      name={name}
+      control={props.control}
       render={({ field: { onChange, value }, fieldState: { error } }) => {
         return (
           <>
             <AppMultiSelect
-              {...item}
-              items={item.elements.map((i) => i.value)}
-              hasBorder={item.isPreview}
+              {...props}
+              items={props.elements.map((i) => i.value)}
+              hasBorder={props.isPreview}
               fullWidth
               onChange={(e) => {
                 onChange(e);

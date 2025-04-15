@@ -1,4 +1,4 @@
-import { TextDateInterface } from '@tribu/forms';
+import { generateFormName, TextDateInterface } from '@tribu/forms';
 import { AppDatePicker } from '../base/app_date_field';
 import { Control, Controller, FieldValues } from 'react-hook-form';
 import AppErrorMessage from '../base/app_error2_message';
@@ -7,9 +7,11 @@ interface FormDateFieldInterface extends TextDateInterface {
   control?: Control<FieldValues>;
 }
 export const FormDateField = (props: FormDateFieldInterface) => {
+  const name = props.name ?? generateFormName(props.label, props.id);
+
   return (
     <Controller
-      name={props.name}
+      name={name}
       control={props.control}
       render={({ field: { onChange, value }, fieldState: { error } }) => {
         return (

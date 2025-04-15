@@ -14,6 +14,7 @@ interface AudienceGenericFormProps<T extends FieldValues> {
   data?: T;
   control: any;
   formFields: AllFormInterfacesType[];
+  formTitle: string;
   updateAudienceGenericForm: (data: T) => void;
 }
 
@@ -22,6 +23,7 @@ const AudienceGenericForm = <T extends FieldValues>({
   updateAudienceGenericForm,
   formFields,
   control,
+  formTitle,
 }: AudienceGenericFormProps<T>) => {
   const generateField = (field: AllFormInterfacesType) => {
     const value = data ? (data[field.name as keyof T] as string) : '';
@@ -32,38 +34,37 @@ const AudienceGenericForm = <T extends FieldValues>({
         [fieldName]: fieldValue,
       } as T);
     };
-    const name = generateFormName(field.label, field.id);
 
-    switch (field.type) {
+    const name = generateFormName(formTitle, field.label);
+    const newField = { ...field, name };
+    // console.log('newField', newField);
+    switch (newField.type) {
       case FormFields.INPUT:
         return (
           <FormInputField
-            {...field}
+            {...newField}
             type={FormFields.INPUT}
-            name={name}
             control={control}
-            onChange={(e: any) => handleChange(field.name, e.target.value)}
+            onChange={(e: any) => handleChange(newField.name, e.target.value)}
           />
         );
 
       case FormFields.NUMBER_INPUT:
         return (
           <FormNumberField
-            {...field}
-            name={name}
+            {...newField}
             control={control}
-            onChange={(e) => handleChange(field.name, e.target.value)}
+            onChange={(e) => handleChange(newField.name, e.target.value)}
           />
         );
 
       case FormFields.DATE_TIME:
         return (
           <FormDateField
-            {...field}
-            name={name}
+            {...newField}
             control={control}
             onChange={(e: Date) => {
-              handleChange(field.name, e.toDateString());
+              handleChange(newField.name, e.toDateString());
               return e;
             }}
           />
@@ -72,29 +73,27 @@ const AudienceGenericForm = <T extends FieldValues>({
       case FormFields.RADIO:
         return (
           <FormSelect
-            {...field}
+            {...newField}
             value={value}
-            name={name}
             control={control}
-            onChange={(e) => handleChange(field.name, e.target.value)}
+            onChange={(e) => handleChange(newField.name, e.target.value)}
           />
         );
 
       case FormFields.CHECKBOX:
         return (
           <FormMultiSelect
-            {...field}
+            {...newField}
             control={control}
-            name={name}
             value={Array.isArray(value) ? value : [value]}
-            onChange={(e) => handleChange(field.name, e)}
+            onChange={(e) => handleChange(newField.name, e)}
           />
         );
 
       default:
         return (
           <p className="text-sm border rounded-md px-3 py-2 border-red-500">
-            <strong>{field.type}</strong> field type not supported!
+            <strong>{newField.type}</strong> field type not supported!
           </p>
         );
     }
@@ -102,9 +101,9 @@ const AudienceGenericForm = <T extends FieldValues>({
 
   return (
     <div className="w-full">
-      {formFields.map((field, key) => (
+      {formFields.map((newField, key) => (
         <div className="mb-3" key={key}>
-          {generateField(field)}
+          {generateField(newField)}
         </div>
       ))}
     </div>

@@ -23,8 +23,7 @@ export const FormCheckBox = (item: FormCheckBoxInterface) => {
     FormItemElementInterface[]
   >([]);
 
-  const name = generateFormName(item.label, item.id);
-
+  const name = item.name ?? generateFormName(item.label, item.id);
   return (
     <Box>
       <FormControl>
