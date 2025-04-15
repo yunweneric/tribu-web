@@ -23,34 +23,29 @@ export type AppInputType = {
 };
 export const AppInput = ({ ...props }: AppInputType) => {
   useEffect(() => {
-    // console.log("props.value", props.value, typeof props.value);
-
     if (typeof props.value == 'string') {
       setFieldValue(props.value);
     }
   }, [props.value]);
-  const [fieldValue, setFieldValue] = useState<string | null>(null);
 
+  const [fieldValue, setFieldValue] = useState<string | null>(null);
   return (
     <>
-      <label
-        htmlFor="email"
-        className="block text-sm/6 font-medium text-gray-900"
-      >
+      <label className="block text-sm/6 font-medium text-gray-900">
         {props.label}
       </label>
       <TextField
         type={props.type}
         fullWidth
-        label={props.label}
         variant="outlined"
         size="small"
         id={props.id}
-        value={fieldValue}
+        // label={props.label}
+        // value={fieldValue}
         placeholder={props.placeholder}
         onChange={(e) => {
           props.onChange && props.onChange(e);
-          setFieldValue(e.target.value);
+          // setFieldValue(e.target.value);
         }}
         InputProps={{
           startAdornment: props.startAdornment,
