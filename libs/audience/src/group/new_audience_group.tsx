@@ -22,7 +22,7 @@ import { weatherAndClimateFormData } from '../forms_data/data/weather_and_climat
 import { transactionFormData } from '../forms_data/data/transaction_form_data';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-
+import { AudienceGLMap } from '@tribu/maps';
 enum Parameters {
   Demographics = 'Demographics',
   Psychographics = 'Psychographics',
@@ -145,6 +145,9 @@ export const NewAudienceGroup = () => {
             }}
           />
         );
+
+      case Parameters.Location:
+        return <AudienceGLMap />;
 
       default:
         break;

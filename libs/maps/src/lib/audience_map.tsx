@@ -1,6 +1,9 @@
 import React from 'react';
 import { AppInput } from '@tribu/forms';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { AppLoader } from '@tribu/ui';
+// import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 const AudienceMap = () => {
   const containerStyle = {
@@ -33,20 +36,23 @@ const AudienceMap = () => {
 
   return (
     <div>
-      <AppInput type="text" id="" onChange={(e) => {}} />
-      {isLoaded && (
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={10}
-          onLoad={onLoad}
-          onUnmount={onUnmount}
-        >
-          {/* Child components, such as markers, info windows, etc. */}
-          <></>
-        </GoogleMap>
+      {isLoaded ? (
+        <>
+          <AppInput type="text" id="" onChange={(e) => {}} />
+          <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={center}
+            zoom={10}
+            onLoad={onLoad}
+            onUnmount={onUnmount}
+          >
+            {/* Child components, such as markers, info windows, etc. */}
+            <></>
+          </GoogleMap>
+        </>
+      ) : (
+        <AppLoader />
       )}
-      : (<></>)
     </div>
   );
 };

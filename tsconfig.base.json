@@ -22,7 +22,8 @@
       "@tribu/surveys": ["libs/surveys/src/index.ts"],
       "@tribu/table": ["libs/table/src/index.ts"],
       "@tribu/targets": ["libs/targets/src/index.ts"],
-      "@tribu/ui": ["libs/shared/ui/src/index.ts"]
+      "@tribu/ui": ["libs/shared/ui/src/index.ts"],
+      "@tribu/utils": ["libs/shared/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
