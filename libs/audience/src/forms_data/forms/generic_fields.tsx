@@ -7,38 +7,31 @@ import {
   FormSelect,
   generateFormName,
   FormMultiSelect,
-  AppInput,
-  CustomTextField,
 } from '@tribu/forms';
-import { useState } from 'react';
 import { FieldValues } from 'react-hook-form';
 
-interface AudienceGenericFormProps<T extends FieldValues> {
+interface AudienceGenericFormFIeldsProps<T extends FieldValues> {
   data?: T;
   control: any;
   formFields: AllFormInterfacesType[];
   formTitle: string;
-  updateAudienceGenericForm: (data: T) => void;
+  updateAudienceGenericFormFIelds: (data: T) => void;
 }
-
-const AudienceGenericForm = <T extends FieldValues>({
+export const AudienceGenericFormFIelds = <T extends FieldValues>({
   data,
-  updateAudienceGenericForm,
+  updateAudienceGenericFormFIelds,
   formFields,
   control,
   formTitle,
-}: AudienceGenericFormProps<T>) => {
+}: AudienceGenericFormFIeldsProps<T>) => {
   const generateField = (field: AllFormInterfacesType) => {
     const value = data ? (data[field.name as keyof T] as string) : '';
-    const [fieldValue, setFieldValue] = useState(value);
 
     const handleChange = (fieldName: string, val: any) => {
-      updateAudienceGenericForm({
+      updateAudienceGenericFormFIelds({
         ...data,
         [fieldName]: val,
       } as T);
-
-      setFieldValue(val);
     };
 
     const name = generateFormName(formTitle, field.label);
@@ -47,9 +40,9 @@ const AudienceGenericForm = <T extends FieldValues>({
     switch (newField.type) {
       case FormFields.INPUT:
         return (
-          <CustomTextField
+          <FormInputField
             {...newField}
-            value={fieldValue}
+            control={control}
             type={FormFields.INPUT}
             onChange={(e: any) => handleChange(newField.name, e.target.value)}
           />
@@ -116,4 +109,4 @@ const AudienceGenericForm = <T extends FieldValues>({
   );
 };
 
-export default AudienceGenericForm;
+export default AudienceGenericFormFIelds;

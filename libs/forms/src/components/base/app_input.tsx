@@ -20,12 +20,12 @@ export type AppInputType = {
   startAdornment?: JSX.Element;
 };
 export const AppInput = ({ ...props }: AppInputType) => {
-  useEffect(() => {
-    if (typeof props.value == 'string') {
-      setFieldValue(props.value);
-    }
-  }, [props.value]);
-  const [fieldValue, setFieldValue] = useState<string | null>(null);
+  // useEffect(() => {
+  //   if (typeof props.value == 'string') {
+  //     setFieldValue(props.value);
+  //   }
+  // }, [props.value]);
+  // const [fieldValue, setFieldValue] = useState<string | null>(null);
   return (
     <>
       {props.label && (
@@ -40,11 +40,11 @@ export const AppInput = ({ ...props }: AppInputType) => {
         size="small"
         id={props.id}
         // label={props.label}
-        value={fieldValue}
+        // value={fieldValue}
         placeholder={props.placeholder}
         onChange={(e) => {
           props.onChange && props.onChange(e);
-          setFieldValue(e.target.value);
+          // setFieldValue(e.target.value);
         }}
         InputProps={{
           startAdornment: props.startAdornment,

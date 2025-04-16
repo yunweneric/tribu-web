@@ -2,43 +2,19 @@ import { AppButton, AppChip } from '@tribu/ui';
 import React, { useEffect, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { demographicFormData } from '../forms_data/data/demographic_form_data';
-import {
-  AllFormInterfacesType,
-  generateFormName,
-  generateValidationSchema,
-} from '@tribu/forms';
-import {
-  DemographicDto,
-  PersonaDto,
-  PsychographicsDto,
-  TransactionDataDto,
-} from '@tribu/targets';
+import { generateFormName, generateValidationSchema } from '@tribu/forms';
+import { PersonaDto } from '@tribu/targets';
 import { psychographicFormData } from '../forms_data/data/psychographic_form_data';
-import AudienceGenericFormForm from '../forms_data/forms/audience_generic_form';
-import { IBehavioral } from 'libs/targets/src/interfaces/behavioral.dto';
 import { behavioralFormData } from '../forms_data/data/behavior_form_data';
-import { WeatherAndClimateDto } from 'libs/targets/src/interfaces/weather-and-climate.dto';
 import { weatherAndClimateFormData } from '../forms_data/data/weather_and_climate_form_data';
 import { transactionFormData } from '../forms_data/data/transaction_form_data';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { AudienceGLMap } from '@tribu/maps';
-enum Parameters {
-  Demographics = 'Demographics',
-  Psychographics = 'Psychographics',
-  Behavior = 'Behavior',
-  WeatherAndClimate = 'Weather And Climate',
-  TransactionalData = 'Transactional Data',
-  DeviceType = 'Device type',
-  Location = 'Location',
-}
-
-type FormStructure = {
-  title: Parameters;
-  data: AllFormInterfacesType[];
-};
+import { FormStructure, Parameters } from '../enums/form_enums';
+import GenerateForm from '../forms_data/forms/new_audience_form';
 
 export const NewAudienceGroup = () => {
+  console.log('Rendering NewAudienceGroup ....');
   const formData: FormStructure[] = [
     { data: demographicFormData, title: Parameters.Demographics },
     { data: psychographicFormData, title: Parameters.Psychographics },
@@ -83,83 +59,6 @@ export const NewAudienceGroup = () => {
     PersonaDto | undefined
   >({});
 
-  const GenerateForm = () => {
-    switch (currentParameter.title) {
-      case Parameters.Demographics:
-        return (
-          <AudienceGenericFormForm<DemographicDto>
-            data={formDataValue?.demographic}
-            formFields={demographicFormData}
-            formTitle={Parameters.Demographics}
-            control={control}
-            updateAudienceGenericForm={(data) => {
-              setFormDataValue({ ...formDataValue, demographic: data });
-            }}
-          />
-        );
-      case Parameters.Psychographics:
-        return (
-          <AudienceGenericFormForm<PsychographicsDto>
-            data={formDataValue?.psychographics}
-            formFields={psychographicFormData}
-            control={control}
-            formTitle={Parameters.Psychographics}
-            updateAudienceGenericForm={(data) => {
-              setFormDataValue({ ...formDataValue, psychographics: data });
-            }}
-          />
-        );
-      case Parameters.Behavior:
-        return (
-          <AudienceGenericFormForm<IBehavioral>
-            data={formDataValue?.behavioral}
-            formFields={behavioralFormData}
-            control={control}
-            formTitle={Parameters.Behavior}
-            updateAudienceGenericForm={(data) => {
-              setFormDataValue({ ...formDataValue, behavioral: data });
-            }}
-          />
-        );
-      case Parameters.WeatherAndClimate:
-        return (
-          <AudienceGenericFormForm<WeatherAndClimateDto>
-            data={formDataValue?.weatherAndClimate}
-            formFields={weatherAndClimateFormData}
-            control={control}
-            formTitle={Parameters.WeatherAndClimate}
-            updateAudienceGenericForm={(data) => {
-              setFormDataValue({ ...formDataValue, weatherAndClimate: data });
-            }}
-          />
-        );
-      case Parameters.TransactionalData:
-        return (
-          <AudienceGenericFormForm<TransactionDataDto>
-            control={control}
-            data={formDataValue?.transactionalData}
-            formFields={transactionFormData}
-            formTitle={Parameters.TransactionalData}
-            updateAudienceGenericForm={(data) => {
-              setFormDataValue({ ...formDataValue, transactionalData: data });
-            }}
-          />
-        );
-
-      case Parameters.Location:
-        return <AudienceGLMap />;
-
-      default:
-        break;
-    }
-
-    return (
-      <div className="flex items-center justify-center h-[50vh]">
-        No Form added yet!
-      </div>
-    );
-  };
-
   const onSubmit = (data: Record<string, any>) => {
     // console.log('data', data);
 
@@ -183,8 +82,6 @@ export const NewAudienceGroup = () => {
     // };
   };
 
-  // console.log('errors', errors);
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <div>
@@ -207,7 +104,14 @@ export const NewAudienceGroup = () => {
                 ))}
               </div>
               <div className="border-l border-gray-50 px-12 py-10 grow overflow-y-scroll h-[80vh]">
-                <GenerateForm />
+                <GenerateForm
+                  formDataValue={formDataValue}
+                  currentParameter={currentParameter}
+                  setFormDataValue={(data: PersonaDto) => {
+                    setFormDataValue(data);
+                  }}
+                  control={control}
+                />
               </div>
             </div>
             <div className="flex w-1/2 h-[80vh] overflow-y-auto">
