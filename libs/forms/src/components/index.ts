@@ -10,6 +10,7 @@ export * from './base/app_text_area';
 export * from './base/field_icon';
 export * from './base/app_multiselect';
 export * from './form_fields';
+export * from './formik';
 
 // export * from './v2/app_2_input';
 // export * from './v2/app_2_select';

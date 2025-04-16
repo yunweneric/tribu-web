@@ -1,7 +1,5 @@
-import { InputAdornment, TextField } from '@mui/material';
-import { FC, useEffect, useState } from 'react';
-import { styleFormFields } from '../../utils/formatters';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import { TextField } from '@mui/material';
+import { useEffect, useState } from 'react';
 export type AppInputType = {
   placeholder?: string | undefined;
   label?: string | undefined;
@@ -27,13 +25,14 @@ export const AppInput = ({ ...props }: AppInputType) => {
       setFieldValue(props.value);
     }
   }, [props.value]);
-
   const [fieldValue, setFieldValue] = useState<string | null>(null);
   return (
     <>
-      <label className="block text-sm/6 font-medium text-gray-900">
-        {props.label}
-      </label>
+      {props.label && (
+        <label className="block text-sm/6 font-medium text-gray-900">
+          {props.label}
+        </label>
+      )}
       <TextField
         type={props.type}
         fullWidth
@@ -41,11 +40,11 @@ export const AppInput = ({ ...props }: AppInputType) => {
         size="small"
         id={props.id}
         // label={props.label}
-        // value={fieldValue}
+        value={fieldValue}
         placeholder={props.placeholder}
         onChange={(e) => {
           props.onChange && props.onChange(e);
-          // setFieldValue(e.target.value);
+          setFieldValue(e.target.value);
         }}
         InputProps={{
           startAdornment: props.startAdornment,
