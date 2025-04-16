@@ -1,17 +1,17 @@
 import { AppButton, AppChip } from '@tribu/ui';
 import { useEffect, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
-import { demographicFormData } from '../forms_data/data/demographic_form_data';
+import { demographicFormData } from '../../ui/forms_data/data/demographic_form_data';
 import { generateFormName, generateValidationSchema } from '@tribu/forms';
 import { PersonaDto } from '@tribu/targets';
-import { psychographicFormData } from '../forms_data/data/psychographic_form_data';
-import { behavioralFormData } from '../forms_data/data/behavior_form_data';
-import { weatherAndClimateFormData } from '../forms_data/data/weather_and_climate_form_data';
-import { transactionFormData } from '../forms_data/data/transaction_form_data';
+import { psychographicFormData } from '../../ui/forms_data/data/psychographic_form_data';
+import { behavioralFormData } from '../../ui/forms_data/data/behavior_form_data';
+import { weatherAndClimateFormData } from '../../ui/forms_data/data/weather_and_climate_form_data';
+import { transactionFormData } from '../../ui/forms_data/data/transaction_form_data';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FormStructure, Parameters } from '../enums/form_enums';
-import GenerateForm from '../forms_data/forms/new_audience_form';
+import { FormStructure, Parameters } from '../../data/enums/form_enums';
+import GenerateForm from '../../ui/forms_data/forms/new_audience_form';
 export const NewAudienceGroup = () => {
   console.log('Rendering NewAudienceGroup ....');
   const formData: FormStructure[] = [

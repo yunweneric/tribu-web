@@ -13,7 +13,7 @@ import { demographicFormData } from '../data/demographic_form_data';
 import { psychographicFormData } from '../data/psychographic_form_data';
 import { transactionFormData } from '../data/transaction_form_data';
 import { weatherAndClimateFormData } from '../data/weather_and_climate_form_data';
-import { FormStructure, Parameters } from '../../enums/form_enums';
+import { FormStructure, Parameters } from '../../../data/enums/form_enums';
 
 export interface NewAudienceFormProps {
   formDataValue: PersonaDto | undefined;

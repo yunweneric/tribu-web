@@ -6,14 +6,12 @@ import {
   Ethnicity,
   IncomeDefault,
   Language,
-  MaritalStatus,
 } from '@tribu/targets';
 export const demographicFormData: AllFormInterfacesType[] = [
   {
     id: '',
     index: 0,
     activeSectionIndex: 0,
-    // selectedElements: [],
     name: 'age',
     icon: 'age',
     label: 'Age',
@@ -32,7 +30,6 @@ export const demographicFormData: AllFormInterfacesType[] = [
     id: '',
     index: 0,
     activeSectionIndex: 0,
-    // selectedElements: [],
     name: 'children',
     placeholder: 'Children',
     icon: 'Children',
