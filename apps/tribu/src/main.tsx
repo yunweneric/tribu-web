@@ -6,6 +6,8 @@ import { store } from './data/store/app_store';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import colors from './utils/styles/colors.module.scss';
 import App from './app/app';
+import { LoadingBarContainer } from 'react-top-loading-bar';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const theme = createTheme({
   typography: {
@@ -40,14 +42,20 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+const queryClient = new QueryClient();
+
 root.render(
   <StrictMode>
     <BrowserRouter>
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-      </Provider>
+      <QueryClientProvider client={queryClient}>
+        <LoadingBarContainer>
+          <Provider store={store}>
+            <ThemeProvider theme={theme}>
+              <App />
+            </ThemeProvider>
+          </Provider>
+        </LoadingBarContainer>
+      </QueryClientProvider>
     </BrowserRouter>
   </StrictMode>
 );

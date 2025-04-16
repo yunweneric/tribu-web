@@ -12,10 +12,8 @@ export type AppMultiSelectType = {
   id: string | undefined;
   hasBorder?: boolean;
   value?: readonly string[] | readonly number[] | undefined;
-  onChange: (
-    // event: SelectChangeEvent<string | number | readonly string[]>,
-    items: readonly number[] | readonly string[] | undefined,
-    child: React.ReactNode
+  onChange?: (
+    event: SelectChangeEvent<string | number | readonly string[]>
   ) => void;
   items: string[];
   fullWidth?: boolean;
@@ -25,11 +23,7 @@ export type AppMultiSelectType = {
   label?: string;
 };
 export const AppMultiSelect = ({ ...props }: AppMultiSelectType) => {
-  useEffect(() => {
-    // if (typeof props.value == 'string') {
-    //   setFieldValue(props.value);
-    // }
-  }, [props.value]);
+  useEffect(() => {}, [props.value]);
   const [fieldValue, setFieldValue] = useState<string[]>([]);
 
   const handleChange = (event: SelectChangeEvent<typeof fieldValue>) => {
@@ -37,6 +31,7 @@ export const AppMultiSelect = ({ ...props }: AppMultiSelectType) => {
       target: { value },
     } = event;
     setFieldValue(typeof value === 'string' ? value.split(',') : value);
+    if (props.onChange) props.onChange(event);
   };
 
   return (

@@ -1,5 +1,5 @@
 import { AppButton, AppChip } from '@tribu/ui';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { demographicFormData } from '../forms_data/data/demographic_form_data';
 import { generateFormName, generateValidationSchema } from '@tribu/forms';
@@ -12,7 +12,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormStructure, Parameters } from '../enums/form_enums';
 import GenerateForm from '../forms_data/forms/new_audience_form';
-
 export const NewAudienceGroup = () => {
   console.log('Rendering NewAudienceGroup ....');
   const formData: FormStructure[] = [
@@ -51,17 +50,13 @@ export const NewAudienceGroup = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const [currentParameter, setCurrentParameter] = React.useState<FormStructure>(
+  const [currentParameter, setCurrentParameter] = useState<FormStructure>(
     formData[0]
   );
 
-  const [formDataValue, setFormDataValue] = React.useState<
-    PersonaDto | undefined
-  >({});
+  const [formDataValue, setFormDataValue] = useState<PersonaDto>({});
 
   const onSubmit = (data: Record<string, any>) => {
-    // console.log('data', data);
-
     const groupedData: Record<string, any> = {};
 
     Object.entries(data).forEach(([key, value]) => {
@@ -81,6 +76,16 @@ export const NewAudienceGroup = () => {
     return groupedData;
     // };
   };
+
+  // const { data, isLoading } = useGet({
+  //   url: 'https://jsonplaceholder.typicode.com/todos/1',
+  //   method: 'GET',
+  //   showLoader: true,
+  //   queryKey: ['loading'],
+  //   onProgress: (progress) => {
+  //     console.log('progress', progress);
+  //   },
+  // });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
