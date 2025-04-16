@@ -10,16 +10,18 @@ interface RadioItemInterface {
 export interface RadioInterface {
   type: FormFields.RADIO;
   name: string;
-  isPreview?: boolean;
   label: string;
-  placeholder?: string;
-  required?: boolean;
-  icon: string;
   index: number;
-  activeSectionIndex: number;
   id: string;
-  value?: number | string | undefined;
+  activeSectionIndex: number;
   elements: RadioItemInterface[];
+
+  //*Optional Fields
+  icon?: string;
+  isPreview?: boolean;
+  required?: boolean;
+  placeholder?: string;
+  value?: number | string | undefined;
   branching?: BranchingBlockInterface;
   conditionLink?: ConditionLinkEnum.OR | ConditionLinkEnum.AND;
   previousItemId?: string;

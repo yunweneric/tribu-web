@@ -12,6 +12,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormStructure, Parameters } from '../../data/enums/form_enums';
 import GenerateForm from '../../ui/forms_data/forms/new_audience_form';
+import AudienceController from '../../controllers/audience_controller';
+import { useApi } from '@tribu/utils';
 export const NewAudienceGroup = () => {
   console.log('Rendering NewAudienceGroup ....');
   const formData: FormStructure[] = [
@@ -53,9 +55,17 @@ export const NewAudienceGroup = () => {
   const [currentParameter, setCurrentParameter] = useState<FormStructure>(
     formData[0]
   );
-
   const [formDataValue, setFormDataValue] = useState<PersonaDto>({});
 
+  const { data: dd, mutate: submitFormData } = useApi.post({
+    queryKey: ['audience', ''],
+    callBack: () => {
+      return AudienceController.getAudience({
+        id: '',
+        url: 'https://jsonplaceholder.typicode.com/todos/1',
+      });
+    },
+  });
   const onSubmit = (data: Record<string, any>) => {
     const groupedData: Record<string, any> = {};
 
@@ -73,20 +83,12 @@ export const NewAudienceGroup = () => {
     });
 
     console.log('groupedData', groupedData);
+    console.log('formDataValue', formDataValue);
+    submitFormData();
     return groupedData;
+
     // };
   };
-
-  // const { data, isLoading } = useGet({
-  //   url: 'https://jsonplaceholder.typicode.com/todos/1',
-  //   method: 'GET',
-  //   showLoader: true,
-  //   queryKey: ['loading'],
-  //   onProgress: (progress) => {
-  //     console.log('progress', progress);
-  //   },
-  // });
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <div>
@@ -109,6 +111,7 @@ export const NewAudienceGroup = () => {
                 ))}
               </div>
               <div className="border-l border-gray-50 px-12 py-10 grow overflow-y-scroll h-[80vh]">
+                <button onClick={() => submitFormData()}>Fetch data</button>
                 <GenerateForm
                   formDataValue={formDataValue}
                   currentParameter={currentParameter}

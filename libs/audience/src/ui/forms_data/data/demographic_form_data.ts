@@ -16,7 +16,6 @@ export const demographicFormData: AllFormInterfacesType[] = [
     icon: 'age',
     label: 'Age',
     placeholder: 'Age',
-    value: '',
     type: FormFields.RADIO,
     required: true,
     elements: Object.values(Age).map((item) => {
@@ -34,7 +33,7 @@ export const demographicFormData: AllFormInterfacesType[] = [
     placeholder: 'Children',
     icon: 'Children',
     label: 'Children',
-    value: '',
+
     type: FormFields.RADIO,
     required: true,
     elements: Object.values(Children).map((item) => {
@@ -51,7 +50,7 @@ export const demographicFormData: AllFormInterfacesType[] = [
     id: '',
     index: 0,
     activeSectionIndex: 0,
-    value: 0,
+
     name: 'income',
     icon: 'income',
     type: FormFields.RADIO,
@@ -70,7 +69,7 @@ export const demographicFormData: AllFormInterfacesType[] = [
     id: '',
     index: 0,
     activeSectionIndex: 0,
-    value: 0,
+
     name: 'education_level',
     icon: 'education_level',
     type: FormFields.RADIO,
@@ -100,7 +99,7 @@ export const demographicFormData: AllFormInterfacesType[] = [
     id: '',
     index: 0,
     activeSectionIndex: 0,
-    value: 0,
+
     name: 'ethnicity',
     icon: 'ethnicity',
     type: FormFields.RADIO,

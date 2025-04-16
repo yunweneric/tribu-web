@@ -6,13 +6,15 @@ export interface SliderInterface {
   type: FormFields.SLIDER;
   name: string;
   label: string;
-  placeholder?: string;
-  required?: boolean;
+  activeSectionIndex: number;
   icon: string;
   index: number;
   id: string;
   value: number;
-  activeSectionIndex: number;
+
+  //*Optional Fields
+  required?: boolean;
+  placeholder?: string;
   steps?: number | undefined;
   max?: number | undefined;
   min?: number | undefined;
