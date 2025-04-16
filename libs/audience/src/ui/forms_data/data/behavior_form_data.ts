@@ -13,7 +13,6 @@ export const behavioralFormData: AllFormInterfacesType[] = [
     icon: 'purchaseHistory',
     label: 'Purchase History',
     placeholder: 'Purchase History',
-
     type: FormFields.INPUT,
     required: true,
   },
