@@ -7,7 +7,10 @@ import {
   FormSelect,
   generateFormName,
   FormMultiSelect,
+  AppInput,
+  CustomTextField,
 } from '@tribu/forms';
+import { useState } from 'react';
 import { FieldValues } from 'react-hook-form';
 
 interface AudienceGenericFormProps<T extends FieldValues> {
@@ -27,24 +30,27 @@ const AudienceGenericForm = <T extends FieldValues>({
 }: AudienceGenericFormProps<T>) => {
   const generateField = (field: AllFormInterfacesType) => {
     const value = data ? (data[field.name as keyof T] as string) : '';
+    const [fieldValue, setFieldValue] = useState(value);
 
-    const handleChange = (fieldName: string, fieldValue: any) => {
+    const handleChange = (fieldName: string, val: any) => {
       updateAudienceGenericForm({
         ...data,
-        [fieldName]: fieldValue,
+        [fieldName]: val,
       } as T);
+
+      setFieldValue(val);
     };
 
     const name = generateFormName(formTitle, field.label);
     const newField = { ...field, name };
-    // console.log('newField', newField);
+
     switch (newField.type) {
       case FormFields.INPUT:
         return (
-          <FormInputField
+          <CustomTextField
             {...newField}
+            value={fieldValue}
             type={FormFields.INPUT}
-            control={control}
             onChange={(e: any) => handleChange(newField.name, e.target.value)}
           />
         );

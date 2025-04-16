@@ -3,7 +3,6 @@ import { RootState } from '../../data/store/app_store';
 import { Box, Stack, Typography } from '@mui/material';
 import colors from '../../utils/styles/colors.module.scss';
 import { FC, useEffect, useState } from 'react';
-import { AllFormInterfacesType } from '../../../../../libs/forms/src/types/all_form_types';
 import FormRenderer from '../forms/components/form_field_renderer';
 import { useDispatch } from 'react-redux';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -15,13 +14,16 @@ import {
 import PreviewProgressIndicator from './components/progress_indicator';
 import PreviewButtons from './components/form_progress_buttons';
 import { FormFields } from '../../../../../libs/forms/src/enum';
-import { ActionActions } from '../../../../../libs/forms/src/enum/condition_actions';
 import {
   AppFormState,
+  ActionActions,
   evaluateCanSkip,
   generateValidationSchema,
   getErrorMessage,
+  AllFormInterfacesType,
+  generateFormName,
 } from '@tribu/forms';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 type AnimatingData = {
   isAnimating: boolean;
@@ -42,7 +44,7 @@ const FormPreview = () => {
   const [validationSchema, setValidationSchema] = useState<any>();
 
   const form = useForm({
-    resolver: validationSchema,
+    resolver: yupResolver(validationSchema),
   });
 
   const { handleSubmit, control, formState, reset, watch } = form;
@@ -255,8 +257,10 @@ const FormPreview = () => {
                 {previewItems &&
                   previewItems
                     .map((item, index) => {
+                      const name = generateFormName(item.label, `${index}`);
+                      const newField = { ...item, name };
                       const newItem = {
-                        ...item,
+                        ...newField,
                         isPreview: true,
                         control: control,
                       };

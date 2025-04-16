@@ -1,39 +1,65 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AppInput } from '@tribu/forms';
+import { useDebounce } from '@tribu/utils';
 import { AppLoader } from '@tribu/ui';
-import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
-
-import { AppConfig } from '@tribu/utils';
+import Map from 'react-map-gl/mapbox';
+import useGeolocation from '../hooks/use_location';
+import useGeocode from '../hooks/use_geocode';
 
 export const AudienceGLMap = () => {
-  const mapRef = useRef<mapboxgl.Map | null>(null);
-  const mapContainerRef = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    // AppConfig.initConfig();
-    mapboxgl.accessToken =
-      'pk.eyJ1IjoiZmFrZXVzZXJnaXRodWIiLCJhIjoiY2pwOGlneGI4MDNnaDN1c2J0eW5zb2ZiNyJ9.mALv0tCpbYUPtzT7YysA2g';
-    mapRef.current = new mapboxgl.Map({
-      container: mapContainerRef.current as HTMLElement,
-      center: [-74.0242, 40.6941],
-      zoom: 10.12,
-    });
+  const env = import.meta.env;
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const { location, setLocation } = useGeolocation(false);
+  const [address, setAddress] = useState('');
+  const { coordinates, error, geocode } = useGeocode();
+  const debouncedAddress = useDebounce(address, 500);
 
-    return () => {
-      mapRef?.current?.remove();
-    };
-  }, []);
-  const isLoaded = true;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAddress(e.target.value);
+  };
+
+  useEffect(() => {
+    if (debouncedAddress) {
+      geocode(debouncedAddress);
+      setLocation(coordinates);
+    }
+  }, [debouncedAddress, geocode]);
+
   return (
     <div>
-      {isLoaded ? (
-        <>
-          <AppInput type="text" id="" onChange={(e) => {}} />
-          <div id="map-container" ref={mapContainerRef} />
-        </>
-      ) : (
-        <AppLoader />
-      )}
+      <AppInput
+        type="text"
+        id=""
+        onChange={handleChange}
+        placeholder="Search city"
+      />
+      <div className="w-full mt-2 relative h-[40vh]">
+        <Map
+          onLoad={(e) => {
+            e.type === 'load' && setIsLoaded(true);
+            console.log(e);
+          }}
+          mapboxAccessToken={env.VITE_MAP_BOX_KEY}
+          initialViewState={{
+            longitude: location?.longitude,
+            latitude: location?.latitude,
+            zoom: 4,
+          }}
+          style={{
+            width: '100%',
+            height: '40vh',
+            borderRadius: '0.2rem',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+          }}
+          mapStyle="mapbox://styles/mapbox/streets-v9"
+        />
+
+        {isLoaded ? null : (
+          <AppLoader className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+        )}
+      </div>
     </div>
   );
 };

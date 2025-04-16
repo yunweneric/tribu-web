@@ -13,29 +13,20 @@ export function App() {
   }, []);
 
   return (
-    <AnimatePresence mode="wait">
-      <Routes>
-        <Route path="/" element={<HomeInt />} />
-        <Route path="surveys/templates" element={<SurveyTemplates />} />
-        <Route
-          path="dashboard"
-          element={
-            <PageTransition>
-              <Layout />
-            </PageTransition>
-          }
-        >
-          <Route index element={<Home />} />
-          <Route path="home" element={<Home />} />
-          <Route path="surveys" element={<SurveyHome />} />
-          <Route path="surveys/new" element={<FormBuilder />} />
-          <Route path="audience" element={<AudienceHome />} />
-          <Route path="audience/groups/new" element={<NewAudienceGroup />} />
-          <Route path="*" element={<DashboardNotFound />} />
-        </Route>
+    <Routes>
+      <Route path="/" element={<HomeInt />} />
+      <Route path="surveys/templates" element={<SurveyTemplates />} />
+      <Route path="dashboard" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="home" element={<Home />} />
+        <Route path="surveys" element={<SurveyHome />} />
+        <Route path="surveys/new" element={<FormBuilder />} />
+        <Route path="audience" element={<AudienceHome />} />
+        <Route path="audience/groups/new" element={<NewAudienceGroup />} />
         <Route path="*" element={<DashboardNotFound />} />
-      </Routes>
-    </AnimatePresence>
+      </Route>
+      <Route path="*" element={<DashboardNotFound />} />
+    </Routes>
   );
 }
 
