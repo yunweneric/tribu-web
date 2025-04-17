@@ -99,10 +99,11 @@ export const weatherAndClimateFormData: AllFormInterfacesType[] = [
     icon: 'weatherCondition',
     type: FormFields.RADIO,
     elements: Object.values(WeatherCondition).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
   {
@@ -117,10 +118,11 @@ export const weatherAndClimateFormData: AllFormInterfacesType[] = [
     icon: 'timesOfDay',
     type: FormFields.RADIO,
     elements: Object.values(TimesOfDay).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
   {
@@ -135,10 +137,11 @@ export const weatherAndClimateFormData: AllFormInterfacesType[] = [
     icon: 'season',
     type: FormFields.RADIO,
     elements: Object.values(Season).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
   {

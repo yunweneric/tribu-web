@@ -26,10 +26,11 @@ export const psychographicFormData: AllFormInterfacesType[] = [
     type: FormFields.RADIO,
     required: true,
     elements: Object.values(LifeStyle).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
   {
@@ -44,10 +45,11 @@ export const psychographicFormData: AllFormInterfacesType[] = [
     type: FormFields.RADIO,
     required: true,
     elements: Object.values(PersonalityTrait).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
   {
@@ -62,10 +64,11 @@ export const psychographicFormData: AllFormInterfacesType[] = [
     icon: 'values',
     type: FormFields.RADIO,
     elements: Object.values(Values).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
 
@@ -81,10 +84,11 @@ export const psychographicFormData: AllFormInterfacesType[] = [
     icon: 'interest',
     type: FormFields.RADIO,
     elements: Object.values(Interest).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
 
@@ -136,10 +140,11 @@ export const psychographicFormData: AllFormInterfacesType[] = [
     icon: 'speedingHabits',
     type: FormFields.RADIO,
     elements: Object.values(Ethnicity).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
   {
@@ -153,10 +158,11 @@ export const psychographicFormData: AllFormInterfacesType[] = [
     icon: 'politicalAffiliation',
     type: FormFields.RADIO,
     elements: Object.values(PoliticalAffiliation).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
   {
@@ -170,10 +176,11 @@ export const psychographicFormData: AllFormInterfacesType[] = [
     icon: 'language',
     type: FormFields.RADIO,
     elements: Object.values(Language).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
   {
@@ -187,10 +194,11 @@ export const psychographicFormData: AllFormInterfacesType[] = [
     icon: 'children',
     type: FormFields.RADIO,
     elements: Object.values(Children).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
 ];

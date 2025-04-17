@@ -2,18 +2,18 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 import { useLoadingBar } from 'react-top-loading-bar';
 
-interface UseApiProps {
+interface UseApiProps<T> {
   queryKey: string[];
   showLoader?: boolean;
   onProgress?: (progress: number) => void;
-  callBack: (data?: any) => Promise<AxiosResponse<any, any>>;
+  callBack: (data?: any) => Promise<AxiosResponse<T, any>>;
 }
-export const get = ({
+export const get = <T,>({
   queryKey,
   onProgress,
   showLoader = true,
   callBack,
-}: UseApiProps) => {
+}: UseApiProps<T>) => {
   const { start, complete } = useLoadingBar({ color: 'green', height: 2 });
 
   const req = useQuery({
@@ -28,11 +28,11 @@ export const get = ({
 
   return req;
 };
-export const post = ({
+export const post = <T,>({
   queryKey,
   showLoader = true,
   callBack,
-}: UseApiProps) => {
+}: UseApiProps<T>) => {
   const { start, complete } = useLoadingBar({ color: 'green', height: 2 });
 
   const req = useMutation({

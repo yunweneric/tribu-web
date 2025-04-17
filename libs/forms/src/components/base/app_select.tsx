@@ -9,12 +9,12 @@ import { useEffect, useState } from 'react';
 export type AppSelectType = {
   id: string | undefined;
   hasBorder?: boolean;
-  value?: string | number | readonly string[] | undefined;
+  value?: string | number | undefined;
   onChange?: (
     event: SelectChangeEvent<string | number | readonly string[]>,
     child: React.ReactNode
   ) => void;
-  items: string[];
+  items: number[] | string[] | undefined;
   fullWidth?: boolean;
   width?: string;
   prefix?: string;

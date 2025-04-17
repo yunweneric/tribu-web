@@ -24,7 +24,6 @@ export const behavioralFormData: AllFormInterfacesType[] = [
     placeholder: 'Past Purchases',
     icon: 'Past Purchases',
     label: 'Past Purchases',
-
     type: FormFields.INPUT,
     required: true,
   },
@@ -73,10 +72,11 @@ export const behavioralFormData: AllFormInterfacesType[] = [
     icon: 'subscriptionStatus',
     type: FormFields.RADIO,
     elements: Object.values(SubscriptionStatus).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
   {
@@ -101,10 +101,11 @@ export const behavioralFormData: AllFormInterfacesType[] = [
     icon: 'shoppingCartAbandonment',
     type: FormFields.RADIO,
     elements: ['true', 'false'].map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
 
@@ -164,10 +165,11 @@ export const behavioralFormData: AllFormInterfacesType[] = [
     icon: 'advertisingExposure',
     type: FormFields.RADIO,
     elements: Object.values(AdvertisingExposure).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
   {
@@ -181,10 +183,11 @@ export const behavioralFormData: AllFormInterfacesType[] = [
     icon: 'socialMediaInteraction',
     type: FormFields.RADIO,
     elements: Object.values(SocialMediaInteraction).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
 ];

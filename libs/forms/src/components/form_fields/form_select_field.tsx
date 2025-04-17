@@ -18,16 +18,13 @@ export const FormSelect = (props: FormSelectInterface) => {
           <>
             <AppSelect
               {...props}
-              items={props.elements.map((i) => i.value)}
+              // items={props.elements.map((i) => i.value)}
+              items={props.elements}
               hasBorder={props.isPreview}
               fullWidth
               onChange={(e, child) => {
                 onChange(e);
-                if (props.onChange)
-                  props?.onChange(
-                    e as unknown as React.ChangeEvent<HTMLInputElement>,
-                    child as boolean
-                  );
+                if (props.onChange) props.onChange(e, child as boolean);
               }}
               value={value}
             />

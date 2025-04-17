@@ -11,11 +11,12 @@ import {
 import { FieldValues } from 'react-hook-form';
 
 interface AudienceGenericFormFIeldsProps<T extends FieldValues> {
-  data?: T;
+  data?: any;
   control: any;
   formFields: AllFormInterfacesType[];
   formTitle: string;
   updateAudienceGenericFormFIelds: (data: T) => void;
+  updateField: (index: number, value: any) => void;
 }
 export const AudienceGenericFormFIelds = <T extends FieldValues>({
   data,
@@ -23,15 +24,19 @@ export const AudienceGenericFormFIelds = <T extends FieldValues>({
   formFields,
   control,
   formTitle,
+  updateField,
 }: AudienceGenericFormFIeldsProps<T>) => {
-  const generateField = (field: AllFormInterfacesType) => {
-    const value = data ? (data[field.name as keyof T] as string) : '';
-
-    const handleChange = (fieldName: string, val: any) => {
+  const generateField = (field: AllFormInterfacesType, index: number) => {
+    // const value = data ? (data[field.name as keyof T] as string) : '';
+    // const value = data ? (data[field.name as keyof T])
+    const value = data;
+    const handleChange = (fieldName: string, updatedValue: any) => {
       updateAudienceGenericFormFIelds({
         ...data,
-        [fieldName]: val,
+        [fieldName]: updatedValue,
       } as T);
+
+      updateField(index, updatedValue);
     };
 
     const name = generateFormName(formTitle, field.label);
@@ -84,8 +89,10 @@ export const AudienceGenericFormFIelds = <T extends FieldValues>({
           <FormMultiSelect
             {...newField}
             control={control}
-            value={Array.isArray(value) ? value : [value]}
-            onChange={(e) => handleChange(newField.name, e)}
+            value={value}
+            onChange={(e) => handleChange(newField.name, e.target.value)}
+            // value={Array.isArray(value) ? value : [value]}
+            // onChange={(e) => handleChange(newField.name, e.target.value)}
           />
         );
 
@@ -102,7 +109,7 @@ export const AudienceGenericFormFIelds = <T extends FieldValues>({
     <div className="w-full">
       {formFields.map((newField, key) => (
         <div className="mb-3" key={key}>
-          {generateField(newField)}
+          {generateField(newField, key)}
         </div>
       ))}
     </div>

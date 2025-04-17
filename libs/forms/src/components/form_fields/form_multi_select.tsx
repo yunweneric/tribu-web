@@ -18,11 +18,13 @@ export const FormMultiSelect = (props: FormMultiSelectInterface) => {
           <>
             <AppMultiSelect
               {...props}
-              items={props.elements.map((i) => i.value)}
+              items={props.elements}
+              // items={props.elements.map((i) => i.value)}
               hasBorder={props.isPreview}
               fullWidth
               onChange={(e) => {
                 onChange(e);
+                if (props.onChange) props.onChange(e);
               }}
               value={value}
             />

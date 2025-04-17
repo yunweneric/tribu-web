@@ -6,16 +6,16 @@ import {
   Select,
   SelectChangeEvent,
 } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export type AppMultiSelectType = {
   id: string | undefined;
   hasBorder?: boolean;
   value?: readonly string[] | readonly number[] | undefined;
   onChange?: (
-    event: SelectChangeEvent<string | number | readonly string[]>
+    event: SelectChangeEvent<readonly string[] | readonly number[] | undefined>
   ) => void;
-  items: string[];
+  items: number[] | string[] | undefined;
   fullWidth?: boolean;
   width?: string;
   prefix?: string;
@@ -23,7 +23,6 @@ export type AppMultiSelectType = {
   label?: string;
 };
 export const AppMultiSelect = ({ ...props }: AppMultiSelectType) => {
-  useEffect(() => {}, [props.value]);
   const [fieldValue, setFieldValue] = useState<string[]>([]);
 
   const handleChange = (event: SelectChangeEvent<typeof fieldValue>) => {
@@ -46,7 +45,6 @@ export const AppMultiSelect = ({ ...props }: AppMultiSelectType) => {
         multiple
         displayEmpty
         size="small"
-        // label={props.label}
         value={fieldValue}
         onChange={handleChange}
         inputProps={{ 'aria-label': 'Without label' }}

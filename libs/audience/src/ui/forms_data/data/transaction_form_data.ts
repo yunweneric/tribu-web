@@ -30,10 +30,11 @@ export const transactionFormData: AllFormInterfacesType[] = [
     icon: 'transactionCurrency',
     type: FormFields.RADIO,
     elements: Object.values(Currencies).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
   {
@@ -59,10 +60,11 @@ export const transactionFormData: AllFormInterfacesType[] = [
     icon: 'paymentMethod',
     type: FormFields.RADIO,
     elements: Object.values(PaymentMethod).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
   {
@@ -98,10 +100,11 @@ export const transactionFormData: AllFormInterfacesType[] = [
     icon: 'loyaltyCardUsage',
     type: FormFields.RADIO,
     elements: ['true', 'false'].map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
   {
@@ -115,10 +118,11 @@ export const transactionFormData: AllFormInterfacesType[] = [
     icon: 'discountApplied',
     type: FormFields.RADIO,
     elements: ['true', 'false'].map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
   {
@@ -165,10 +169,11 @@ export const transactionFormData: AllFormInterfacesType[] = [
     icon: 'refundsProcessed',
     type: FormFields.RADIO,
     elements: ['true', 'false'].map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
   {
@@ -182,10 +187,11 @@ export const transactionFormData: AllFormInterfacesType[] = [
     icon: 'promotionalCodeUsage',
     type: FormFields.RADIO,
     elements: ['true', 'false'].map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
   {
@@ -233,10 +239,11 @@ export const transactionFormData: AllFormInterfacesType[] = [
     icon: 'recurringPurchases',
     type: FormFields.RADIO,
     elements: ['true', 'false'].map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
+      return item;
     }),
   },
 ];

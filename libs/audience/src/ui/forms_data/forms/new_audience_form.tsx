@@ -19,6 +19,7 @@ export interface NewAudienceFormProps {
   formDataValue: PersonaDto | undefined;
   currentParameter: FormStructure;
   setFormDataValue: (data: PersonaDto) => void;
+  updateFormFieldValue: (data: FormStructure) => void;
   control: any;
 }
 const GenerateForm = ({
@@ -26,6 +27,7 @@ const GenerateForm = ({
   control,
   formDataValue,
   setFormDataValue,
+  updateFormFieldValue,
 }: NewAudienceFormProps) => {
   switch (currentParameter.title) {
     case Parameters.Demographics:
@@ -35,6 +37,10 @@ const GenerateForm = ({
           formFields={demographicFormData}
           formTitle={Parameters.Demographics}
           control={control}
+          updateField={(index, value) => {
+            currentParameter.data[index].value = value;
+            updateFormFieldValue(currentParameter);
+          }}
           updateAudienceGenericFormFIelds={(data) => {
             setFormDataValue({ ...formDataValue, demographic: data });
           }}
@@ -50,6 +56,10 @@ const GenerateForm = ({
           updateAudienceGenericFormFIelds={(data) => {
             setFormDataValue({ ...formDataValue, psychographics: data });
           }}
+          updateField={(index, value) => {
+            currentParameter.data[index].value = value;
+            updateFormFieldValue(currentParameter);
+          }}
         />
       );
     case Parameters.Behavior:
@@ -61,6 +71,10 @@ const GenerateForm = ({
           formTitle={Parameters.Behavior}
           updateAudienceGenericFormFIelds={(data) => {
             setFormDataValue({ ...formDataValue, behavioral: data });
+          }}
+          updateField={(index, value) => {
+            currentParameter.data[index].value = value;
+            updateFormFieldValue(currentParameter);
           }}
         />
       );
@@ -74,6 +88,10 @@ const GenerateForm = ({
           updateAudienceGenericFormFIelds={(data) => {
             setFormDataValue({ ...formDataValue, weatherAndClimate: data });
           }}
+          updateField={(index, value) => {
+            currentParameter.data[index].value = value;
+            updateFormFieldValue(currentParameter);
+          }}
         />
       );
     case Parameters.TransactionalData:
@@ -85,6 +103,10 @@ const GenerateForm = ({
           formTitle={Parameters.TransactionalData}
           updateAudienceGenericFormFIelds={(data) => {
             setFormDataValue({ ...formDataValue, transactionalData: data });
+          }}
+          updateField={(index, value) => {
+            currentParameter.data[index].value = value;
+            updateFormFieldValue(currentParameter);
           }}
         />
       );

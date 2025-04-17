@@ -14,6 +14,7 @@ import { FormStructure, Parameters } from '../../data/enums/form_enums';
 import GenerateForm from '../../ui/forms_data/forms/new_audience_form';
 import AudienceController from '../../controllers/audience_controller';
 import { useApi } from '@tribu/utils';
+
 export const NewAudienceGroup = () => {
   console.log('Rendering NewAudienceGroup ....');
   const formData: FormStructure[] = [
@@ -26,6 +27,7 @@ export const NewAudienceGroup = () => {
     { data: demographicFormData, title: Parameters.Location },
   ];
   const [validationSchema, setValidationSchema] = useState<any>();
+  const [formStructure, setFormStructure] = useState<FormStructure[]>(formData);
 
   const schema = generateValidationSchema(
     formData
@@ -49,7 +51,7 @@ export const NewAudienceGroup = () => {
     control,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(validationSchema),
+    // resolver: yupResolver(validationSchema),
   });
 
   const [currentParameter, setCurrentParameter] = useState<FormStructure>(
@@ -87,10 +89,11 @@ export const NewAudienceGroup = () => {
       // console.log('groupedData', value);
     });
 
-    console.log('groupedData', groupedData);
-    console.log('formDataValue', formDataValue);
-    submitFormData(formDataValue);
-    return groupedData;
+    // console.log('groupedData', groupedData);
+    console.log('formStructure', formStructure);
+    // console.log('formDataValue', formDataValue);
+    // submitFormData(formDataValue);
+    // return groupedData;
 
     // };
   };
@@ -132,8 +135,17 @@ export const NewAudienceGroup = () => {
                 <GenerateForm
                   formDataValue={formDataValue}
                   currentParameter={currentParameter}
-                  setFormDataValue={(data: PersonaDto) => {
-                    setFormDataValue(data);
+                  setFormDataValue={(data: PersonaDto) =>
+                    setFormDataValue(data)
+                  }
+                  updateFormFieldValue={(newFormData) => {
+                    const others = formStructure.filter(
+                      (item) => item.title != currentParameter.title
+                    );
+                    const updatedFormStructure = [...others, newFormData];
+                    // setFormStructure(updatedFormStructure);
+                    console.log('newFormData', newFormData);
+                    console.log('updatedFormStructure', updatedFormStructure);
                   }}
                   control={control}
                 />

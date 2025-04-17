@@ -1,5 +1,5 @@
-import { ActionInterface, ConditionInterface } from "../interfaces";
-import { AllFormInterfacesType } from "./all_form_types";
+import { ActionInterface, ConditionInterface } from '../interfaces';
+import { AllFormInterfacesType } from './all_form_types';
 
 export type AppConditionProps = {
   formItem: AllFormInterfacesType;

@@ -18,9 +18,6 @@ const createAudience = async (audience: PersonaDto) => {
     method: 'POST',
     body: audience,
     queryKey: ['audience'],
-    onProgress: (progress) => {
-      console.log(progress);
-    },
   });
 };
 
@@ -30,9 +27,6 @@ const addPost = async (data: any) => {
     method: 'POST',
     body: data,
     queryKey: ['data'],
-    onProgress: (progress) => {
-      console.log(progress);
-    },
   });
 };
 const AudienceService = {

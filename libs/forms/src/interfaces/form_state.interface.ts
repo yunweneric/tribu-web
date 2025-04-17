@@ -1,9 +1,9 @@
-import { AllFormInterfacesType } from "../types/all_form_types";
+import { AllFormInterfacesType } from '../types/all_form_types';
 import {
   FormDescriptionInterface,
   FormTitleInterface,
-} from "./form_title.interface";
-import { TextInputInterface } from "./input.interface";
+} from './form_title.interface';
+import { TextInputInterface } from './input.interface';
 
 export interface FormSection {
   id: string;

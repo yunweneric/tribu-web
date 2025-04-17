@@ -1,29 +1,19 @@
+import { SelectChangeEvent } from '@mui/material';
 import { FormFields } from '../enum';
-
-import { BranchingBlockInterface } from './index';
-import { ConditionLinkEnum } from '../enum/condition_actions';
+import { BaseInterface } from './base_interface';
 export interface FormItemElementInterface {
   value: string;
   label: string;
 }
-export interface CheckboxInterface {
+export interface CheckboxInterface extends BaseInterface {
   type: FormFields.CHECKBOX;
-  id: string;
-  name: string;
-  label: string;
-  placeholder?: string;
-  required?: boolean;
-  index: number;
-  icon?: string | undefined;
-  activeSectionIndex: number;
-  isPreview?: boolean;
-  value: readonly number[] | readonly string[] | undefined;
-  elements: FormItemElementInterface[];
-  selectedElements: FormItemElementInterface[];
-  branching?: BranchingBlockInterface;
-  conditionLink?: ConditionLinkEnum.OR | ConditionLinkEnum.AND;
-  previousItemId?: string;
-  onChange?:
-    | ((event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void)
-    | undefined;
+  // value: readonly number[] | readonly string[] | undefined;
+  // elements: FormItemElementInterface[];
+  // value: FormItemElementInterface[];
+
+  elements: number[] | string[] | undefined;
+  value: number[] | string[] | undefined;
+  onChange?: (
+    event: SelectChangeEvent<readonly string[] | readonly number[] | undefined>
+  ) => void;
 }

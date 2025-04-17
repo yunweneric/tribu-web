@@ -19,10 +19,12 @@ export const demographicFormData: AllFormInterfacesType[] = [
     type: FormFields.RADIO,
     required: true,
     elements: Object.values(Age).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      return item;
+
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
     }),
   },
   {
@@ -37,10 +39,12 @@ export const demographicFormData: AllFormInterfacesType[] = [
     type: FormFields.RADIO,
     required: true,
     elements: Object.values(Children).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      return item;
+
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
     }),
   },
   {
@@ -50,15 +54,16 @@ export const demographicFormData: AllFormInterfacesType[] = [
     id: '',
     index: 0,
     activeSectionIndex: 0,
-
     name: 'income',
     icon: 'income',
     type: FormFields.RADIO,
     elements: Object.values(IncomeDefault).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      return item;
+
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
     }),
   },
 
@@ -69,15 +74,16 @@ export const demographicFormData: AllFormInterfacesType[] = [
     id: '',
     index: 0,
     activeSectionIndex: 0,
-
     name: 'education_level',
     icon: 'education_level',
     type: FormFields.RADIO,
     elements: Object.values(Education).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      return item;
+
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
     }),
   },
 
@@ -104,10 +110,12 @@ export const demographicFormData: AllFormInterfacesType[] = [
     icon: 'ethnicity',
     type: FormFields.RADIO,
     elements: Object.values(Ethnicity).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      return item;
+
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
     }),
   },
   {
@@ -117,15 +125,15 @@ export const demographicFormData: AllFormInterfacesType[] = [
     index: 0,
     activeSectionIndex: 0,
     value: [],
-    selectedElements: [],
     name: 'language',
     icon: 'language',
     type: FormFields.CHECKBOX,
     elements: Object.values(Language).map((item) => {
-      return {
-        value: item,
-        label: item,
-      };
+      return item;
+      // return {
+      //   value: item,
+      //   label: item,
+      // };
     }),
   },
 ];
