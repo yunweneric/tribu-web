@@ -64,6 +64,13 @@ export const NewAudienceGroup = () => {
     },
   });
 
+  const { data: posts, mutate: addPost } = useApi.post({
+    queryKey: ['audience', ''],
+    callBack: (formDataValue: any) => {
+      return AudienceController.addPost(formDataValue);
+    },
+  });
+
   const onSubmit = (data: Record<string, any>) => {
     const groupedData: Record<string, any> = {};
 
@@ -109,8 +116,18 @@ export const NewAudienceGroup = () => {
                 ))}
               </div>
               <div className="border-l border-gray-50 px-12 py-10 grow overflow-y-scroll h-[80vh]">
-                <button onClick={() => submitFormData(formDataValue)}>
-                  Fetch data
+                {/* <button onClick={() => submitFormData(formDataValue)}> */}
+                <button
+                  onClick={() =>
+                    addPost({
+                      id: 1,
+                      title: 'Sample Title',
+                      body: 'This is a sample post body.',
+                      userId: 1,
+                    })
+                  }
+                >
+                  Add Post
                 </button>
                 <GenerateForm
                   formDataValue={formDataValue}

@@ -14,7 +14,7 @@ const findAudienceGroupById = async (id: string, url: string) => {
 
 const createAudience = async (audience: PersonaDto) => {
   return await http.run({
-    url: '',
+    url: 'https://jsonplaceholder.typicode.com/',
     method: 'POST',
     body: audience,
     queryKey: ['audience'],
@@ -23,9 +23,22 @@ const createAudience = async (audience: PersonaDto) => {
     },
   });
 };
+
+const addPost = async (data: any) => {
+  return await http.run({
+    url: 'https://jsonplaceholder.typicode.com/posts',
+    method: 'POST',
+    body: data,
+    queryKey: ['data'],
+    onProgress: (progress) => {
+      console.log(progress);
+    },
+  });
+};
 const AudienceService = {
   findAudienceGroupById,
   createAudience,
+  addPost,
 };
 
 export default AudienceService;

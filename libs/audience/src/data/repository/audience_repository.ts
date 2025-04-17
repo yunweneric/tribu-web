@@ -15,9 +15,14 @@ const findAudienceGroupById = async (id: string, url: string) => {
 const createAudience = async (audience: PersonaDto) => {
   return AudienceService.createAudience(audience);
 };
+
+const addPost = async (audience: any) => {
+  return AudienceService.addPost(audience);
+};
 const AudienceRepository = {
   findAudienceGroupById,
   createAudience,
+  addPost,
 };
 
 export default AudienceRepository;

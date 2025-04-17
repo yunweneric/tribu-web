@@ -43,6 +43,14 @@ export const post = ({
       if (showLoader) complete();
       return response.data;
     },
+    onError: (error) => {
+      if (showLoader) complete();
+      console.log('error', error);
+    },
+    onSuccess: (data) => {
+      if (showLoader) complete();
+      console.log('data', data);
+    },
   });
 
   return req;

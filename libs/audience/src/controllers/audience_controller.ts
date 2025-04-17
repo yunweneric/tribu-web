@@ -9,9 +9,14 @@ const createAudience = async (audience: PersonaDto) => {
   return AudienceRepository.createAudience(audience);
 };
 
+const addPost = async (audience: any) => {
+  return AudienceRepository.addPost(audience);
+};
+
 const AudienceController = {
   getAudience,
   createAudience,
+  addPost,
 };
 
 export default AudienceController;
