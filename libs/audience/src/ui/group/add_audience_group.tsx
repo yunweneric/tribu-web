@@ -59,13 +59,11 @@ export const NewAudienceGroup = () => {
 
   const { data: dd, mutate: submitFormData } = useApi.post({
     queryKey: ['audience', ''],
-    callBack: () => {
-      return AudienceController.getAudience({
-        id: '',
-        url: 'https://jsonplaceholder.typicode.com/todos/1',
-      });
+    callBack: (formDataValue: PersonaDto) => {
+      return AudienceController.createAudience(formDataValue);
     },
   });
+
   const onSubmit = (data: Record<string, any>) => {
     const groupedData: Record<string, any> = {};
 
@@ -84,7 +82,7 @@ export const NewAudienceGroup = () => {
 
     console.log('groupedData', groupedData);
     console.log('formDataValue', formDataValue);
-    submitFormData();
+    submitFormData(formDataValue);
     return groupedData;
 
     // };
@@ -111,7 +109,9 @@ export const NewAudienceGroup = () => {
                 ))}
               </div>
               <div className="border-l border-gray-50 px-12 py-10 grow overflow-y-scroll h-[80vh]">
-                <button onClick={() => submitFormData()}>Fetch data</button>
+                <button onClick={() => submitFormData(formDataValue)}>
+                  Fetch data
+                </button>
                 <GenerateForm
                   formDataValue={formDataValue}
                   currentParameter={currentParameter}

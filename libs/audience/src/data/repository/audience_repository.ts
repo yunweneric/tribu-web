@@ -1,3 +1,4 @@
+import { PersonaDto } from '@tribu/targets';
 import AudienceService from '../services/audience_service';
 
 interface Audience {
@@ -10,8 +11,13 @@ interface Audience {
 const findAudienceGroupById = async (id: string, url: string) => {
   return AudienceService.findAudienceGroupById(id, url);
 };
+
+const createAudience = async (audience: PersonaDto) => {
+  return AudienceService.createAudience(audience);
+};
 const AudienceRepository = {
   findAudienceGroupById,
+  createAudience,
 };
 
 export default AudienceRepository;

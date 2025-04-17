@@ -6,7 +6,7 @@ interface UseApiProps {
   queryKey: string[];
   showLoader?: boolean;
   onProgress?: (progress: number) => void;
-  callBack: () => Promise<AxiosResponse<any, any>>;
+  callBack: (data?: any) => Promise<AxiosResponse<any, any>>;
 }
 export const get = ({
   queryKey,
@@ -37,9 +37,9 @@ export const post = ({
 
   const req = useMutation({
     mutationKey: queryKey,
-    mutationFn: async () => {
+    mutationFn: async (data: any) => {
       if (showLoader) start();
-      const response = await callBack();
+      const response = await callBack(data);
       if (showLoader) complete();
       return response.data;
     },

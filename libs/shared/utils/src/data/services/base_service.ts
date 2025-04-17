@@ -9,7 +9,7 @@ interface ApiProps {
   headers?: any;
   onProgress?: (progress: number) => void;
 }
-export const get = ({ url, method, headers, body, onProgress }: ApiProps) => {
+export const run = ({ url, method, headers, body, onProgress }: ApiProps) => {
   return axios({
     url: url,
     method: method,
@@ -26,7 +26,7 @@ export const get = ({ url, method, headers, body, onProgress }: ApiProps) => {
   });
 };
 export const http = {
-  get,
+  run,
 };
 
 export default http;
