@@ -21,13 +21,20 @@ export const get = <T,>({
 
   const req = useQuery({
     queryKey: queryKey,
+    retry: false,
     queryFn: async () => {
       if (showLoader) start();
       const response = await callBack();
-      if (showLoader) complete();
+
+      if (response.status === 200) {
+        console.log('response', response);
+      }
+
       return response.data;
     },
   });
+
+  complete();
 
   return req;
 };

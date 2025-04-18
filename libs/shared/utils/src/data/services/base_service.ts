@@ -21,7 +21,7 @@ export const run = ({ url, method, headers, body, onProgress }: ApiProps) => {
       if (onProgress) {
         onProgress(progress);
       }
-      console.log(event);
+      // console.log(event);
     },
   });
 };

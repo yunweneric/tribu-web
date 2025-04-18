@@ -1,9 +1,10 @@
-import { AppButton, AppUIInput } from '@tribu/ui';
+import { AppButton, AppLoader, AppUIInput } from '@tribu/ui';
 import { useApi } from '@tribu/utils';
 import { CiSearch } from 'react-icons/ci';
 import { IoMdAdd } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 import AudienceController from '../../controllers/audience_controller';
+import { CreateAudience } from '../../data/interfaces/create_audience';
 
 type Persona = {
   id: number;
@@ -61,9 +62,9 @@ const personas: Persona[] = [
 export const AudienceHome = () => {
   const navigate = useNavigate();
 
-  const { data } = useApi.get({
+  const { data, isLoading, isError, error } = useApi.get<CreateAudience>({
     queryKey: ['audience', ''],
-    callBack: (data: any) => {
+    callBack: () => {
       return AudienceController.getAudience();
     },
   });
@@ -90,38 +91,66 @@ export const AudienceHome = () => {
         />
       </div>
 
-      <div className="w-full flex flex-wrap gap-10 mt-10">
-        {personas.map((persona, index) => (
-          <div className="w-[30%]">
-            <div className="border flex items-center border-gray-100 rounded-lg p-4">
-              <img
-                src={`https://avatar.iran.liara.run/public/${index}`}
-                alt={persona.name}
-                className="w-20 h-20 object-cover rounded-full"
-              />
-              <div className="flex ml-10">
-                <div className="">
-                  <p className="text-xs mr-5">Name</p>
-
-                  <p className="text-xs mr-5">Age</p>
-
-                  <p className="text-xs mr-5">Location</p>
-
-                  <p className="text-xs mr-5">Interest</p>
+      <div className="w-full flex flex-wrap gap-y-14 md:gap-x-[4%] lg:gap-x-[5%] mt-10">
+        {isLoading &&
+          [1, 2, 3, 4, 5, 6].map((index) => {
+            return (
+              <div
+                className="flex items-center w-full md:w-[48%] lg:w-[30%] rounded-sm animate-pulse border border-gray-100 p-4"
+                key={`sk-${index}-${index}`}
+              >
+                <div className="w-20 h-20 object-cover rounded-full bg-gray-300"></div>
+                <div className="ml-10 grow flex flex-col gap-2">
+                  <p className="w-full h-3 rounded-sm bg-gray-300"></p>
+                  <p className="w-full h-3 rounded-sm bg-gray-300"></p>
+                  <p className="w-full h-3 rounded-sm bg-gray-300"></p>
                 </div>
-                <div className="">
-                  <p className="text-xs mr-5">{persona.name}</p>
+              </div>
+            );
+          })}
 
-                  <p className="text-xs mr-5">{persona.age}</p>
+        {isError && (
+          <div className="item-center w-full flex flex-col gap-y-2 justify-center bg-purple-50 h-[50vh] items-center">
+            <p className="text-md">Failed to load audience!</p>
+            {<p>{error.message}</p>}
+          </div>
+        )}
 
-                  <p className="text-xs mr-5">{persona.location}</p>
+        {data &&
+          personas.map((persona, index) => (
+            <div
+              className="w-full md:w-[48%] lg:w-[30%]"
+              key={`pk-${index}-${index}`}
+            >
+              <div className="border flex items-center border-gray-100 rounded-lg p-4">
+                <img
+                  src={`https://avatar.iran.liara.run/public/${index}`}
+                  alt={persona.name}
+                  className="w-20 h-20 object-cover rounded-full"
+                />
+                <div className="flex ml-10">
+                  <div className="">
+                    <p className="text-xs mr-5">Name</p>
 
-                  <p className="text-xs mr-5">{persona.interest}</p>
+                    <p className="text-xs mr-5">Age</p>
+
+                    <p className="text-xs mr-5">Location</p>
+
+                    <p className="text-xs mr-5">Interest</p>
+                  </div>
+                  <div className="">
+                    <p className="text-xs mr-5">{persona.name}</p>
+
+                    <p className="text-xs mr-5">{persona.age}</p>
+
+                    <p className="text-xs mr-5">{persona.location}</p>
+
+                    <p className="text-xs mr-5">{persona.interest}</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );

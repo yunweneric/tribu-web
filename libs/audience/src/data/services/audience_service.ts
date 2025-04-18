@@ -4,7 +4,7 @@ import { CreateAudience } from '../interfaces/create_audience';
 
 const getAudiences = async () => {
   return await http.run({
-    url: '/',
+    url: 'https://jsonplaceholder.typicode.com/post',
     method: 'GET',
     queryKey: [],
   });
@@ -19,7 +19,7 @@ const findAudienceGroupById = async (id: string) => {
 
 const createAudience = async (audience: CreateAudience) => {
   return await http.run({
-    url: 'https://jsonplaceholder.typicode.com/',
+    url: 'https://jsonplaceholder.typicode.com/posts',
     method: 'POST',
     body: audience,
     queryKey: ['audience'],
