@@ -125,10 +125,14 @@ export const NewAudienceGroup = () => {
   const [currentBloc, setCurrentBloc] = useState<Bloc>(allBlocs[0]);
   const [formDataValue, setFormDataValue] = useState<PersonaDto>({});
 
-  const { data: dd, mutate: submitFormData } = useApi.post({
+  const {
+    data: dd,
+    mutate: addAudience,
+    isPending,
+  } = useApi.post({
     queryKey: ['audience', ''],
-    callBack: (formDataValue: PersonaDto) => {
-      return AudienceController.createAudience(formDataValue);
+    callBack: (data: CreateAudience) => {
+      return AudienceController.createAudience(data);
     },
   });
 
@@ -146,23 +150,10 @@ export const NewAudienceGroup = () => {
       isTemplate: true,
       metaData: {},
       blocs: currentBloc,
-      // blocs: {
-      //   key: 0,
-      //   questions: questions,
-      //   // questions: questions.map((item, i) => {
-      //   //   return {
-      //   //     metaData: item,
-      //   //     key: `${item.key}_${i}`,
-      //   //     name: item.name,
-      //   //     description: item.description,
-      //   //     type: item.type,
-      //   //   };
-      //   // }),
-      // },
     };
 
     console.log('Final Data', finalData);
-    // submitFormData(finalData);
+    addAudience(finalData);
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -186,8 +177,7 @@ export const NewAudienceGroup = () => {
                 ))}
               </div>
               <div className="border-l border-gray-50 px-12 py-10 grow overflow-y-scroll h-[80vh]">
-                {/* <button onClick={() => submitFormData(formDataValue)}> */}
-                <button
+                {/* <button
                   onClick={() =>
                     addPost({
                       id: 1,
@@ -198,7 +188,7 @@ export const NewAudienceGroup = () => {
                   }
                 >
                   Add Post
-                </button>
+                </button> */}
                 <GenerateForm
                   formDataValue={formDataValue}
                   currentBloc={currentBloc}
@@ -249,6 +239,7 @@ export const NewAudienceGroup = () => {
           <div className="border-b border-b-gray-50 w-full"></div>
           <div className="flex justify-end w-[90%] mx-auto mt-5">
             <AppButton
+              isLoading={isPending}
               label="Save"
               type="submit"
               additionalClassName="rounded-none w-32 justify-center item-center"

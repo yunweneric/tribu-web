@@ -1,7 +1,9 @@
 import { AppButton, AppUIInput } from '@tribu/ui';
+import { useApi } from '@tribu/utils';
 import { CiSearch } from 'react-icons/ci';
 import { IoMdAdd } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
+import AudienceController from '../../controllers/audience_controller';
 
 type Persona = {
   id: number;
@@ -58,6 +60,13 @@ const personas: Persona[] = [
 
 export const AudienceHome = () => {
   const navigate = useNavigate();
+
+  const { data } = useApi.get({
+    queryKey: ['audience', ''],
+    callBack: (data: any) => {
+      return AudienceController.getAudience();
+    },
+  });
   return (
     <div className="w-[85%] mx-auto mt-20">
       <div className="flex justify-between mt-10">

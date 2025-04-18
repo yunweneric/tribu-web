@@ -1,5 +1,7 @@
 import { PersonaDto } from '@tribu/targets';
 import AudienceService from '../services/audience_service';
+import { CreateAudience } from '../interfaces/create_audience';
+import { AxiosResponse } from 'axios';
 
 interface Audience {
   id: string;
@@ -8,11 +10,16 @@ interface Audience {
   // Add more fields as needed
 }
 
-const findAudienceGroupById = async (id: string, url: string) => {
-  return AudienceService.findAudienceGroupById(id, url);
+const getAudiences = async () => {
+  return AudienceService.getAudiences();
+};
+const findAudienceGroupById = async (id: string) => {
+  return AudienceService.findAudienceGroupById(id);
 };
 
-const createAudience = async (audience: PersonaDto) => {
+const createAudience = async (
+  audience: CreateAudience
+): Promise<AxiosResponse<CreateAudience, any>> => {
   return AudienceService.createAudience(audience);
 };
 
@@ -23,6 +30,7 @@ const AudienceRepository = {
   findAudienceGroupById,
   createAudience,
   addPost,
+  getAudiences,
 };
 
 export default AudienceRepository;

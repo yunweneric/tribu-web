@@ -1,18 +1,23 @@
 import { PersonaDto } from '@tribu/targets';
 import { http } from '@tribu/utils';
+import { CreateAudience } from '../interfaces/create_audience';
 
-const findAudienceGroupById = async (id: string, url: string) => {
+const getAudiences = async () => {
   return await http.run({
-    url: url,
+    url: '/',
+    method: 'GET',
+    queryKey: [],
+  });
+};
+const findAudienceGroupById = async (id: string) => {
+  return await http.run({
+    url: '/',
     method: 'GET',
     queryKey: ['audience', id],
-    onProgress: (progress) => {
-      console.log(progress);
-    },
   });
 };
 
-const createAudience = async (audience: PersonaDto) => {
+const createAudience = async (audience: CreateAudience) => {
   return await http.run({
     url: 'https://jsonplaceholder.typicode.com/',
     method: 'POST',
@@ -33,6 +38,7 @@ const AudienceService = {
   findAudienceGroupById,
   createAudience,
   addPost,
+  getAudiences,
 };
 
 export default AudienceService;

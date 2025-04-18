@@ -1,21 +1,27 @@
-import { PersonaDto } from '@tribu/targets';
-import AudienceService from '../data/services/audience_service';
+// import AudienceService from '../data/services/audience_service';
+import AudienceRepository from '../data/repository/audience_repository';
+import { CreateAudience } from '../data/interfaces/create_audience';
 
-const getAudience = async ({ id, url }: { id: string; url: string }) => {
-  return AudienceService.findAudienceGroupById(id, url);
+const getAudience = async () => {
+  return AudienceRepository.getAudiences();
 };
 
-const createAudience = async (audience: PersonaDto) => {
-  return AudienceService.createAudience(audience);
+const findAudienceGroupById = async (id: string) => {
+  return AudienceRepository.findAudienceGroupById(id);
+};
+
+const createAudience = async (audience: CreateAudience) => {
+  return AudienceRepository.createAudience(audience);
 };
 
 const addPost = async (audience: any) => {
-  return AudienceService.addPost(audience);
+  return AudienceRepository.addPost(audience);
 };
 
 const AudienceController = {
   getAudience,
   createAudience,
+  findAudienceGroupById,
   addPost,
 };
 

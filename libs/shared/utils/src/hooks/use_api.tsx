@@ -1,10 +1,12 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 import { useLoadingBar } from 'react-top-loading-bar';
+import toast from 'react-hot-toast';
 
 interface UseApiProps<T> {
   queryKey: string[];
   showLoader?: boolean;
+  showErrorToast?: boolean;
   onProgress?: (progress: number) => void;
   callBack: (data?: any) => Promise<AxiosResponse<T, any>>;
 }
@@ -12,6 +14,7 @@ export const get = <T,>({
   queryKey,
   onProgress,
   showLoader = true,
+  showErrorToast = true,
   callBack,
 }: UseApiProps<T>) => {
   const { start, complete } = useLoadingBar({ color: 'green', height: 2 });
@@ -31,6 +34,7 @@ export const get = <T,>({
 export const post = <T,>({
   queryKey,
   showLoader = true,
+  showErrorToast = true,
   callBack,
 }: UseApiProps<T>) => {
   const { start, complete } = useLoadingBar({ color: 'green', height: 2 });
@@ -45,6 +49,9 @@ export const post = <T,>({
     },
     onError: (error) => {
       if (showLoader) complete();
+      if (showErrorToast) {
+        toast.error(error.message);
+      }
       console.log('error', error);
     },
     onSuccess: (data) => {
