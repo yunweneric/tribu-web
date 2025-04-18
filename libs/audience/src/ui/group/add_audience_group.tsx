@@ -202,7 +202,7 @@ export const NewAudienceGroup = () => {
                     const updatedBloc = [...others, newFormData];
                     setBlocs(updatedBloc);
                     console.log('newFormData', newFormData);
-                    console.log('updatedBloc', updatedBloc);
+                    console.log('updatedBoc', updatedBloc);
                   }}
                   control={control}
                 />
