@@ -5,37 +5,105 @@ import { demographicFormData } from '../../ui/forms_data/data/demographic_form_d
 import { generateFormName, generateValidationSchema } from '@tribu/forms';
 import { PersonaDto } from '@tribu/targets';
 import { psychographicFormData } from '../../ui/forms_data/data/psychographic_form_data';
-import { behavioralFormData } from '../../ui/forms_data/data/behavior_form_data';
 import { weatherAndClimateFormData } from '../../ui/forms_data/data/weather_and_climate_form_data';
 import { transactionFormData } from '../../ui/forms_data/data/transaction_form_data';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FormStructure, Parameters } from '../../data/enums/form_enums';
 import GenerateForm from '../../ui/forms_data/forms/new_audience_form';
 import AudienceController from '../../controllers/audience_controller';
 import { useApi } from '@tribu/utils';
+import { Parameters } from '../../data/enums/form_enums';
+import { Bloc, CreateAudience } from '../../data/interfaces/create_audience';
 
 export const NewAudienceGroup = () => {
   console.log('Rendering NewAudienceGroup ....');
-  const formData: FormStructure[] = [
-    { data: demographicFormData, title: Parameters.Demographics },
-    { data: psychographicFormData, title: Parameters.Psychographics },
-    { data: behavioralFormData, title: Parameters.Behavior },
-    { data: weatherAndClimateFormData, title: Parameters.WeatherAndClimate },
-    { data: transactionFormData, title: Parameters.TransactionalData },
-    { data: demographicFormData, title: Parameters.DeviceType },
-    { data: demographicFormData, title: Parameters.Location },
+  const allBlocs: Bloc[] = [
+    {
+      questions: [
+        ...demographicFormData.map((item, index) => ({
+          metaData: item,
+          key: `${Parameters.Demographics}-${index}`,
+          name: item.name,
+          description: '',
+          type: item.type,
+        })),
+      ],
+      key: Parameters.Demographics,
+    },
+
+    {
+      questions: [
+        ...psychographicFormData.map((item, index) => ({
+          metaData: item,
+          key: `${Parameters.Psychographics}-${index}`,
+          name: item.name,
+          description: '',
+          type: item.type,
+        })),
+      ],
+      key: Parameters.Psychographics,
+    },
+
+    {
+      questions: [
+        ...weatherAndClimateFormData.map((item, index) => ({
+          metaData: item,
+          key: `${Parameters.WeatherAndClimate}-${index}`,
+          name: item.name,
+          description: '',
+          type: item.type,
+        })),
+      ],
+      key: Parameters.WeatherAndClimate,
+    },
+    {
+      questions: [
+        ...transactionFormData.map((item, index) => ({
+          metaData: item,
+          key: `${Parameters.TransactionalData}-${index}`,
+          name: item.name,
+          description: '',
+          type: item.type,
+        })),
+      ],
+      key: Parameters.TransactionalData,
+    },
+
+    {
+      questions: [
+        ...[].map((item, index) => ({
+          metaData: item,
+          key: `${Parameters.DeviceType}-${index}`,
+          name: '',
+          description: '',
+          type: '',
+        })),
+      ],
+      key: Parameters.DeviceType,
+    },
+    {
+      questions: [
+        ...[].map((item, index) => ({
+          metaData: item,
+          key: `${Parameters.Location}-${index}`,
+          name: '',
+          description: '',
+          type: '',
+        })),
+      ],
+      key: Parameters.Location,
+    },
   ];
   const [validationSchema, setValidationSchema] = useState<any>();
-  const [formStructure, setFormStructure] = useState<FormStructure[]>(formData);
+  const [blocs, setBlocs] = useState<Bloc[]>(allBlocs);
 
   const schema = generateValidationSchema(
-    formData
+    allBlocs
       .map((item) =>
-        item.data.map((field) => {
+        item.questions.map((field) => {
           return {
-            ...field,
-            name: generateFormName(item.title, field.label),
+            ...field.metaData,
+            name: generateFormName(item.key, field.metaData.label),
           };
         })
       )
@@ -54,9 +122,7 @@ export const NewAudienceGroup = () => {
     // resolver: yupResolver(validationSchema),
   });
 
-  const [currentParameter, setCurrentParameter] = useState<FormStructure>(
-    formData[0]
-  );
+  const [currentBloc, setCurrentBloc] = useState<Bloc>(allBlocs[0]);
   const [formDataValue, setFormDataValue] = useState<PersonaDto>({});
 
   const { data: dd, mutate: submitFormData } = useApi.post({
@@ -74,28 +140,29 @@ export const NewAudienceGroup = () => {
   });
 
   const onSubmit = (data: Record<string, any>) => {
-    const groupedData: Record<string, any> = {};
+    const finalData: CreateAudience = {
+      name: '',
+      description: '',
+      isTemplate: true,
+      metaData: {},
+      blocs: currentBloc,
+      // blocs: {
+      //   key: 0,
+      //   questions: questions,
+      //   // questions: questions.map((item, i) => {
+      //   //   return {
+      //   //     metaData: item,
+      //   //     key: `${item.key}_${i}`,
+      //   //     name: item.name,
+      //   //     description: item.description,
+      //   //     type: item.type,
+      //   //   };
+      //   // }),
+      // },
+    };
 
-    Object.entries(data).forEach(([key, value]) => {
-      const [category, attribute] = key.split('-');
-      // Format keys by replacing spaces with underscores and making them lowercase
-      const formattedCategory = category.toLowerCase().replace(/\s+/g, '_');
-      const formattedAttribute = attribute.toLowerCase().replace(/\s+/g, '_');
-
-      if (!groupedData[formattedCategory]) {
-        groupedData[formattedCategory] = {};
-      }
-      groupedData[formattedCategory][formattedAttribute] = value;
-      // console.log('groupedData', value);
-    });
-
-    // console.log('groupedData', groupedData);
-    console.log('formStructure', formStructure);
-    // console.log('formDataValue', formDataValue);
-    // submitFormData(formDataValue);
-    // return groupedData;
-
-    // };
+    console.log('Final Data', finalData);
+    // submitFormData(finalData);
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -104,17 +171,17 @@ export const NewAudienceGroup = () => {
           <div className="flex w-[90%] mx-auto  border-b-gray-100">
             <div className="flex w-1/2">
               <div className="w-1/4 py-10">
-                {formData.map((parameter, index) => (
+                {allBlocs.map((parameter, index) => (
                   <div
                     key={`{${parameter}-x-${index}`}
                     className={`py-4 cursor-pointer pl-2 text-sm ${
-                      currentParameter.title === parameter.title
+                      currentBloc.key === parameter.key
                         ? 'bg-gray-100 border-r-primary-500 border-r-2'
                         : ''
                     }`}
-                    onClick={() => setCurrentParameter(parameter)}
+                    onClick={() => setCurrentBloc(parameter)}
                   >
-                    {parameter.title}
+                    {parameter.key}
                   </div>
                 ))}
               </div>
@@ -134,18 +201,18 @@ export const NewAudienceGroup = () => {
                 </button>
                 <GenerateForm
                   formDataValue={formDataValue}
-                  currentParameter={currentParameter}
+                  currentBloc={currentBloc}
                   setFormDataValue={(data: PersonaDto) =>
                     setFormDataValue(data)
                   }
-                  updateFormFieldValue={(newFormData) => {
-                    const others = formStructure.filter(
-                      (item) => item.title != currentParameter.title
+                  updateBloc={(newFormData) => {
+                    const others = blocs.filter(
+                      (item) => item.key != currentBloc.key
                     );
-                    const updatedFormStructure = [...others, newFormData];
-                    // setFormStructure(updatedFormStructure);
+                    const updatedBloc = [...others, newFormData];
+                    setBlocs(updatedBloc);
                     console.log('newFormData', newFormData);
-                    console.log('updatedFormStructure', updatedFormStructure);
+                    console.log('updatedBloc', updatedBloc);
                   }}
                   control={control}
                 />

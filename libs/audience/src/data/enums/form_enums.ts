@@ -1,5 +1,3 @@
-import { AllFormInterfacesType } from '@tribu/forms';
-
 export enum Parameters {
   Demographics = 'Demographics',
   Psychographics = 'Psychographics',
@@ -9,7 +7,3 @@ export enum Parameters {
   DeviceType = 'Device type',
   Location = 'Location',
 }
-export type FormStructure = {
-  title: Parameters;
-  data: AllFormInterfacesType[];
-};

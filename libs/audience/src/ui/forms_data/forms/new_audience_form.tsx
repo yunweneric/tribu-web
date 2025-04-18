@@ -13,23 +13,24 @@ import { demographicFormData } from '../data/demographic_form_data';
 import { psychographicFormData } from '../data/psychographic_form_data';
 import { transactionFormData } from '../data/transaction_form_data';
 import { weatherAndClimateFormData } from '../data/weather_and_climate_form_data';
-import { FormStructure, Parameters } from '../../../data/enums/form_enums';
+import { Parameters } from '../../../data/enums/form_enums';
+import { Bloc } from 'libs/audience/src/data/interfaces/create_audience';
 
 export interface NewAudienceFormProps {
   formDataValue: PersonaDto | undefined;
-  currentParameter: FormStructure;
+  currentBloc: Bloc;
   setFormDataValue: (data: PersonaDto) => void;
-  updateFormFieldValue: (data: FormStructure) => void;
+  updateBloc: (data: Bloc) => void;
   control: any;
 }
 const GenerateForm = ({
-  currentParameter,
+  currentBloc,
   control,
   formDataValue,
   setFormDataValue,
-  updateFormFieldValue,
+  updateBloc,
 }: NewAudienceFormProps) => {
-  switch (currentParameter.title) {
+  switch (currentBloc.key) {
     case Parameters.Demographics:
       return (
         <AudienceGenericFormFIeldsForm<DemographicDto>
@@ -38,8 +39,9 @@ const GenerateForm = ({
           formTitle={Parameters.Demographics}
           control={control}
           updateField={(index, value) => {
-            currentParameter.data[index].value = value;
-            updateFormFieldValue(currentParameter);
+            currentBloc.questions[index].metaData.value = value;
+            currentBloc.questions[index].description = value;
+            updateBloc(currentBloc);
           }}
           updateAudienceGenericFormFIelds={(data) => {
             setFormDataValue({ ...formDataValue, demographic: data });
@@ -57,8 +59,9 @@ const GenerateForm = ({
             setFormDataValue({ ...formDataValue, psychographics: data });
           }}
           updateField={(index, value) => {
-            currentParameter.data[index].value = value;
-            updateFormFieldValue(currentParameter);
+            currentBloc.questions[index].metaData.value = value;
+            currentBloc.questions[index].description = value;
+            updateBloc(currentBloc);
           }}
         />
       );
@@ -73,8 +76,9 @@ const GenerateForm = ({
             setFormDataValue({ ...formDataValue, behavioral: data });
           }}
           updateField={(index, value) => {
-            currentParameter.data[index].value = value;
-            updateFormFieldValue(currentParameter);
+            currentBloc.questions[index].metaData.value = value;
+            currentBloc.questions[index].description = value;
+            updateBloc(currentBloc);
           }}
         />
       );
@@ -89,8 +93,9 @@ const GenerateForm = ({
             setFormDataValue({ ...formDataValue, weatherAndClimate: data });
           }}
           updateField={(index, value) => {
-            currentParameter.data[index].value = value;
-            updateFormFieldValue(currentParameter);
+            currentBloc.questions[index].metaData.value = value;
+            currentBloc.questions[index].description = value;
+            updateBloc(currentBloc);
           }}
         />
       );
@@ -105,8 +110,9 @@ const GenerateForm = ({
             setFormDataValue({ ...formDataValue, transactionalData: data });
           }}
           updateField={(index, value) => {
-            currentParameter.data[index].value = value;
-            updateFormFieldValue(currentParameter);
+            currentBloc.questions[index].metaData.value = value;
+            currentBloc.questions[index].description = value;
+            updateBloc(currentBloc);
           }}
         />
       );
